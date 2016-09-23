@@ -1,36 +1,39 @@
-.registration{
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+  
+}
+
+.header-content{
 	background-image: url("../img/backgrounds/1.jpg");
 	background-size: cover;
-	height:900px;
 }
 
+.description{
+	color: white;
+}
+
+h1, h2 {
+	margin-top: 10px;
+	font-size: 38px;
+    font-weight: 100;
+    line-height: 50px;
+}
+
+#navigation {
+  background-color: #22E2B3;
+  padding: 5px 20px 5px 5px;
+  width: 100%;
+}
+
+
+/*Coming soon icons*/
 .coming-soon{
-	padding-top:50px;
+	padding:50px;
 }
 
 
-.what-is-tb{
-	overflow:auto;
-	margin: 100px 100px 200px 200px;
-}
-
-.what-is-tb h1{
-	color:black;
-}
-
-.about-us{
-	margin: 100px 100px 200px 200px;
-}
-
-.tb-aim{
-	
-	margin:50px;
-}
-
-.itin-description{
-	margin:50px;
-}
-
-.footer{
-	font-size: 0.7em;
-}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<!-- the base template html page. Other pages will be extending from this page to use its footer and navbar. Jinja2 is used to connect this with the other templates.  -->
+
+<html lang="en">
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{{vars.title}}</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="assets/css/base.css" type="text/css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/form-elements.css">
+
+
+
+        {% block customCSS %}{% endblock %}
+
+    </head>
+
+
+    <body>
+
+        <div id="header">{% block header %}{% endblock %}</div>
+        <div id="content">{% block content %}{% endblock %}</div>
+        <div id = "footer"><p>Copyright © 2016 TravelBug | Terms | Privacy | Contact</p></div>
+
+        
+        <script src="assets/js/jquery-1.11.1.min.js">
+        </script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+        </script>
+        <script src="assets/js/jquery.backstretch.min.js">
+        </script>
+        <script src="assets/js/retina-1.1.0.min.js">
+        </script>
+        {% block customJS %}{% endblock %}
+
+
+    </body>
+</html>
