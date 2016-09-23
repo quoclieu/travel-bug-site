@@ -8,13 +8,20 @@ html,body
   
 }
 
+
+
 .header-content{
 	background-image: url("../img/backgrounds/1.jpg");
 	background-size: cover;
 }
 
-.description{
-	color: white;
+/*Coming soon icons*/
+.coming-soon{
+	padding:50px;
+}
+
+.bg{
+	background: rgba(0, 0, 0, 0.5);
 }
 
 h1, h2 {
@@ -24,16 +31,20 @@ h1, h2 {
     line-height: 50px;
 }
 
-#navigation {
+
+/*nav bar color*/
+#navigation 
+{
   background-color: #22E2B3;
   padding: 5px 20px 5px 5px;
   width: 100%;
 }
 
+/*content app descriptions*/
 
-/*Coming soon icons*/
-.coming-soon{
-	padding:50px;
-}
+
+/*team bios*/
+
+
 
 
