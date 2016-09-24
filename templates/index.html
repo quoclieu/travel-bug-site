@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block header %}
-        <div class="header-content">
+        <section id="register" class="header-content">
 		    <div class="row bg">
 		        <div class="col-sm-8 col-sm-offset-2 text">
 		            <h1><span style="color:white">Register for <strong><span style="color:#22E2B3">Travel</span></strong>Bug</span></h1>
@@ -68,7 +68,7 @@
 		            </div>
 		        </div>
 		    </div>
-		</div>
+		</section>
 		<!--navigation bar-->
         <nav id ="navigation" class="navbar navbar-inverse navbar-static-top" >
             <div class="navbar-header">
@@ -107,94 +107,12 @@
         {% endblock %}
 
 		   
-		{% block content %}	    
+{% block content %}	  
 
-		<div class = "app-description">
+	{% include "app-description.html" %}
 
-			<h1>Making collaborative planning <strong><span style="color:#22E2B3">easy</span></strong></h1>
+	{% include "teambios.html" %}
 
-			<div class="welcome">
-				<div class="row">
-					<div class="col-sm-6" style="text-align:left;">
-						<p>
-							Going on a trip with a group of your friends is always great fun and exciting.
-							However the planning can involve messy groups chats, long back and forth conversions and avoidable miscommunications.
-						</p>
-						<p>
-							Travel Bug strives to solve all of this. It is a platform for you to plan your travels collaboratively with your friends and family or even your solo trips in a <strong>simple, easy and effective manner.</strong>
-						</p>
-						<p>
-							<i>Less stress. More adventures.</i>
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<img src="assets/img/screenshots/welcome.png" style="height:400px;">
-					</div>
-				</div>
-			</div>
-				
-			<div class="day-plan">		
-				<div class="row">
-					<div class="col-sm-6" style="text-align:left;">
-						<p>
-							A <strong>shareable</strong> itinerary
-						</p>
-						<p>
-							All your plans collated into a simple and easy to access format. 
-							Just punch in your holiday schedule and we sort out the rest. Share it with all your friends and you can all start your holidays on the same page. Can't decide on an activity? Our dedicated voting system allows you and your friends to decide on what activities or locations to visit next. Our group planning functionalities will visualise any clashes between you and your mates. 
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<img src="assets/img/screenshots/day.png" style="height:400px;">
-					</div>
-				</div>
-			</div>
-			<div class="itin">		
-				<div class="row">
-					<div class="col-sm-6" style="text-align:left;">
-						<p>
-							A <strong>shareable</strong> itinerary
-						</p>
-						<p>
-							Your itinerary set out in a clean and simple format for all your travel buddies to see. Locations are linked with google maps so you can get to where you need to.
-						</p>
-						<p>
-							<i>On time. Stress free.</i>
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<img src="assets/img/screenshots/itineraries.png" style="height:400px;">
-					</div>
-				</div>
-			</div>
-			<div class="calendar">		
-				<div class="row">
-					<div class="col-sm-6" style="text-align:left;">
-						<p>
-							A <strong>shareable</strong> itinerary
-						</p>
-						<p>
-							Your itinerary set out in a clean and simple format for all your travel buddies to see. Locations are linked with google maps so you can get to where you need to.
-						</p>
-						<p>
-							<i>On time. Stress free.</i>
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<img src="assets/img/screenshots/cal.png" style="height:400px;">
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class = "team">
-			<h1>The team behind Travel Bug</h1>
-			<h3>Travel Bug is developed by a team of <strong>wanderlust</strong> University students and graduates</h3>
-			<p><i>Creating a more effective way to travel <strong>together.</strong></i></p>
-			<p>Visit our company site to find more about Appolus</p>
-		</div>
-
-	</div>
 {% endblock %}
 
 

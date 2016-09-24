@@ -8,7 +8,9 @@ html,body
   
 }
 
-
+ul{
+	list-style: none;
+}
 
 .header-content{
 	background-image: url("../img/backgrounds/1.jpg");
@@ -44,6 +46,14 @@ h1, h2 {
 
 
 /*team bios*/
+
+.image-cropper {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
 
 
 
