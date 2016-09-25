@@ -33,6 +33,11 @@ h1, h2 {
     line-height: 50px;
 }
 
+hr{
+	padding:10px;
+}
+
+
 
 /*nav bar color*/
 #navigation 
@@ -45,6 +50,15 @@ h1, h2 {
 /*content app descriptions*/
 
 
+.motto{
+	font-style: italic;
+	text-align:right;
+}
+
+.screen{
+	padding:70px;
+}
+
 /*team bios*/
 
 .image-cropper {
@@ -55,6 +69,27 @@ h1, h2 {
     border-radius: 50%;
 }
 
+.member{
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
 
+.member-bio{
+	text-align: left;
+}
+
+.team-bios{
+	margin-top:50px;
+	margin-bottom: 50px;
+}
+
+
+/*contact us form*/
+
+.contact-form{
+	width:500px;
+	margin: 0px auto;
+	text-align: left;
+}
 
 
