@@ -90,7 +90,7 @@ ul.navbar-nav {
 .navbar-inverse ul.navbar-nav li .li-text { opacity: 0.8; }
 
 .navbar-inverse ul.navbar-nav li a { display: inline; padding: 0; color: #fff; }
-.navbar-inverse ul.navbar-nav li a:hover { color: #19b9e7; background-color: #fff;}
+.navbar-inverse ul.navbar-nav li a:hover { color: #19b9e7;}
 .navbar-inverse ul.navbar-nav li a:focus { color: #fff; outline: 0; opacity: 1; border-bottom: 1px dotted #fff; }
 
 .navbar-inverse ul.navbar-nav li .li-social a {
