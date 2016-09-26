@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block header %}
-        <section id="register" class="header-content">
+ <section id="register" class="header-content">
 		    <div class="row bg">
 		        <div class="col-sm-8 col-sm-offset-2 text">
 		            <h1><span style="color:white">Register for <strong><span style="color:#22E2B3">Travel</span></strong>Bug</span></h1>
@@ -41,34 +41,36 @@
 		        			</div>
 		                </div>
 		                <div class="form-bottom">
-		                    <form role="form" action="" method="post" class="registration-form">
+		                    <form role="form" action="" method="post" class="registration-form" onsubmit="return checkSignUp()">
 		                    	<div class="form-group">
 		                    		<label class="sr-only" for="form-first-name">First name</label>
-		                        	<input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
+		                        	<input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name" onblur="firstNameBlur()">
 		                        </div>
 		                        <div class="form-group">
 		                        	<label class="sr-only" for="form-last-name">Last name</label>
-		                        	<input type="text" name="form-last-name" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
+		                        	<input type="text" name="form-last-name" placeholder="Last name..." class="form-last-name form-control" id="form-last-name" onblur="lastNameBlur()">
 		                        </div>
 		                        <div class="form-group">
 		                        	<label class="sr-only" for="form-email">Email</label>
-		                        	<input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
+		                        	<input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email" onblur="emailBlur()">
+		                        </div>
+                                <div class="form-group">
+		                        	<label class="sr-only" for="form-pwd">Password</label>
+                                    <input type="password" name="form-pwd" placeholder="Password..." class="form-pwd form-control" id="form-pwd" onblur="pwdBlur()">
 		                        </div>
 		                        <div class="form-group">
-		                        	<label class="sr-only" for="form-password">Password</label>
-		                        	<input type="password" name="form-password" placeholder="Password..." class="form-control" id="form-password">
+		                        	<label class="sr-only" for="form-rePwd">Confirm Password</label>
+		                        	<input type="password" name="form-rePwd" placeholder="Confirm Password..." class="form-rePwd form-control" id="form-rePwd" onblur="confirmPwdBlur()">
 		                        </div>
-		                        <div class="form-group">
-		                    		<label class="sr-only" for="form-confirm-password">Confirm Password</label>
-		                        	<input type="password" name="form-confirm-password" placeholder="Confirm password..." class="form-control" id="form-first-name" id="form-password">
-		                        </div>
+		                        
+                               
 		                        <button type="submit" class="btn" id="btn-signup">Sign me up!</button>
 		                    </form>
 		                </div>
 		            </div>
 		        </div>
 		    </div>
-		</section>
+</section>
 		<!--navigation bar-->
         <nav id ="navigation" class="navbar navbar-inverse navbar-static-top" >
             <div class="navbar-header">
@@ -122,7 +124,7 @@
 
 {% block customJS %}
     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/signup.js"></script>
     <script src="assets/js/firebase-signup.js"></script>
 
 {% endblock %}
