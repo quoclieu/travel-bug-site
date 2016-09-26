@@ -96,7 +96,7 @@
        });
 	   
 	// //Sign out, in order try to add differnet users
- //   btnLogout.addEventListener('click', function(e){
+    //btnLogout.addEventListener('click', function(e){
 	// 	   firebase.auth().signOut();
 	//    });
 	   
