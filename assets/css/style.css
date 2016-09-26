@@ -68,6 +68,11 @@ img { max-width: 100%; }
 .btn-link-2:hover, .btn-link-2:focus, 
 .btn-link-2:active, .btn-link-2:active:focus { outline: 0; opacity: 0.6; background: rgba(0, 0, 0, 0.3); color: #fff; }
 
+.affix {
+      top:0;
+      width: 100%;
+      z-index: 9999 !important;
+  }
 
 /***** Top menu *****/
 
