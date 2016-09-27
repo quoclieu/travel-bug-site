@@ -20,7 +20,7 @@
       var rePwd = null;
 	  
       window.onload = function() {
-           initSignUp();
+           initApp();
          };	  
 
       /**
@@ -29,7 +29,7 @@
        *    and that is where we push userDetails in firebase realtime-database.
        *    The user will log out automatically once after their userDetails be stored.
        */
-      function initSignUp(){
+      function initApp(){
       	//Listening for auth state changes.
       	//[START authstatelistener]
       	firebase.auth().onAuthStateChanged(function(user){
@@ -56,6 +56,8 @@
 
       /**
        * Handles the sign up button press
+       * Tries to create a new user account with the given email address and password. 
+       * If successful, it also signs the user in into the app.
        */
       function handleSignUp(){      		
         if(checkSignUp){
