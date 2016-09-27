@@ -1,103 +1,158 @@
-/*the following app.js will deal with the user details which include the userName, email and password
- from the form, and passing them to the firebase.*/
 
-/*This ap.js initializes Firebase, gets the user details first .
- Since for now we set our database rules as default in the firebase console:
-
-{
-  "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
-  }
-}
- It requires  Authentication.
-
- So we need to sends two elements: email and password to firebase to get authentication (Sign up) in order 
- to write user details in real-time databse. 
- 
- We cannot write the userName and email as soon as we get the authentication, so we cannot write push(data) 
- in the signup eventListener. 
- (if we set public database rules, we can write push() in the signup eventListener, but we'd better not do that)
- 
- After the authentication, the userName and email may be stored in the real-time database via 
- method auth().onAuthStateChanged of Firebase SDK
- */
-
-(function(){
-	
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBNT4gDmMljV3Oko-E5WLMnNvW9mBfQ5FE",
-    authDomain: "travel-bugg.firebaseapp.com",
-    databaseURL: "https://travel-bugg.firebaseio.com",
-    storageBucket: "travel-bugg.appspot.com",
-    messagingSenderId: "262014884649"
-  };
-  firebase.initializeApp(config);
- 
-
-  //Get elements
-  const txtEmail = document.getElementById("form-email");
-  const txtPassword = document.getElementById("form-password");
-  const btnSignUp = document.getElementById("btn-signup");
-  const txtFirstName= document.getElementById("form-first-name");
-  const txtLastName= document.getElementById("form-last-name");
-  // const btnLogout = document.getElementById("btnLogout");
-  
-  //Create a database refernce, so we can add userDetails in to real-time database
-  const dbRefUsers = firebase.database().ref().child('User');
-  var userDetails=null; //This var is going to hold JOSN (email and fullName from the form)
-  
+     // Initialize Firebase
+      var config = {
+         apiKey: "AIzaSyBNT4gDmMljV3Oko-E5WLMnNvW9mBfQ5FE",
+         authDomain: "travel-bugg.firebaseapp.com",
+         databaseURL: "https://travel-bugg.firebaseio.com",
+         storageBucket: "travel-bugg.appspot.com",
+         messagingSenderId: "262014884649"
+      };
+      firebase.initializeApp(config);
 	  
-  //Add signup event
-  btnSignUp.addEventListener('click', function(e){
-	  //Get email and password
-	  //TODO: CHECK IF IT IS A REAL EMAIL
-	  const email = txtEmail.value;
-	  const pass = txtPassword.value;
-	  const firstName = txtFirstName.value;
-	  const lastName = txtLastName.value;
-	  const auth = firebase.auth(); 
+	 //Get elements
+      var dbRefUsers = firebase.database().ref().child('User');
+      var buttonSignUp = document.getElementById('btn-signup');
+      var userDetails=null;
+      var firstName = null;
+      var lastName = null;
+      var email = null;
+      var password = null;
+      var rePwd = null;
+	  
+      window.onload = function() {
+           initSignUp();
+         };	  
 
-	  userDetails = {UserDetails: {
-                                   Email: email,
-                                   FirstName: firstName,
-                                   LastName: lastName
-                                   }
-	  }
-      //Sign up
-	  const promiseSignUp = auth.createUserWithEmailAndPassword(email,pass);
-	  //Above promiseSignUp can only work for one time, so we should add a realTime listener latter
-	   
-	   
-	  //Print & alert the message if there is an error, 
-	  //such as: if the email has already been auth, the firebase will reject adding them automatically
-	  promiseSignUp.catch(function(e){
-		  console.log(e.message)
-		  alert(e.message);
-		  userDetails = null;//Clear the userDetails so that it won't be stored in the real-time database
-		  });
+      /**
+       * initApp handles registering Firebase auth listeners:
+       *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in 
+       *    and that is where we push userDetails in firebase realtime-database.
+       *    The user will log out automatically once after their userDetails be stored.
+       */
+      function initSignUp(){
+      	//Listening for auth state changes.
+      	//[START authstatelistener]
+      	firebase.auth().onAuthStateChanged(function(user){
+      		if(user){
+      			//User is signed in.
+      			if(userDetails!=null){ 
+      			   //store the user details into firebase			   
+		           dbRefUsers.push(userDetails); 
+		           alert("Sign up successfully !");	 
+		           firebase.auth().signOut();
+		        }
+      		}else{
+		       console.log("Not logged in");
+			}
 
-		});
+      	});
+      	// [END authstatelistener]     
 		
+      }
+	  
+	  //Add signup event
+	  buttonSignUp.addEventListener('click', handleSignUp, false); 
+	 
 
-  //Add a realTime listener
-   firebase.auth().onAuthStateChanged( function(firebaseUser){
-	   if(firebaseUser){//If there is a firebaseUser( which means we've already signed in)
-		   console.log(firebaseUser);
-		   if(userDetails!=null){ //store the user details into firebase			   
-		      dbRefUsers.push(userDetails); 
-			  alert("Successfully pushed");	 
-		   }
-	   }else{
-		   console.log("Not logged in");
-		   btnLogout.style.visibility = "hidden" //If there is no user signed up, hides the log out button	   	 
+      /**
+       * Handles the sign up button press
+       */
+      function handleSignUp(){      		
+        if(checkSignUp){
+        	fillUserDetails();
+      		//Sign in with email and pass
+      		// [START createwith email]
+      		email=document.getElementById("form-email").value;
+      		password = document.getElementById("form-pwd").value;
+            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+              // Handle Errors here.
+              var errorMessage = error.message;
+              // [START_EXCLUDE]
+              alert(errorMessage);
+              console.log(error);
+              // [END_EXCLUDE]
+              //Clear the userDetails
+              userDetails = null;
+           });
+          // [END createwithemail]     		
+        }
+      }
+
+      function fillUserDetails(){
+      	//Get userDetails
+      	firstName = document.getElementById("form-first-name").value;
+      	lastName = document.getElementById("form-last-name").value;
+      	email=document.getElementById("form-email").value;
+	    userDetails = {UserDetails: {
+                                Email: email,
+                                FirstName: firstName,
+                                lastName: lastName
+                                    }
+	                  }
+        }
+ 
+
+      function checkSignUp(){
+		   if(firstNameBlur()&&lastNameBlur()&&emailBlur()&&pwdBlur()&&confirmPwdBlur()){
+		    return true;
+		}else {
+		    return false;
+		}
+		   
 	   }
-       });
 	   
-	// //Sign out, in order try to add differnet users
-    //btnLogout.addEventListener('click', function(e){
-	// 	   firebase.auth().signOut();
-	//    });
+	   function firstNameBlur(){
+	   	 firstName = document.getElementById("form-first-name").value;
+	     if(firstName.length==0){
+		       alert("Please input your first name.");
+		       return false;
+	       }else{
+			   return true;
+		   }
+	   }
 	   
-	}());
+	   
+	   function lastNameBlur(){
+	     lastName = document.getElementById("form-last-name").value;	        
+	     if(lastName.length==0){
+		       alert("Please input your last name.");
+		       return false;
+	       }else{
+			   return true;
+		   }
+	   }
+	   
+	   function emailBlur(){
+	       email=document.getElementById("form-email").value;	       
+	       var reg=/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+	       if(reg.test(email)){
+		       return true;   
+	       }else{
+		       alert("Please input a correct email format.");
+		       return false;
+		   }
+	   }
+
+	   function pwdBlur(){
+	        password = document.getElementById("form-pwd").value;		   
+		    if(password.length<6){
+		       alert("Please input a password whose length is over 6.");
+		       return false;
+	       }else{
+			   return true;
+		   }  
+	   }       
+	   
+	    function confirmPwdBlur(){
+	       password = document.getElementById("form-pwd").value;
+	       rePwd = document.getElementById("form-rePwd").value;		   		  
+           if(password==rePwd){
+		       return true;   
+	       }else{
+		       alert("Please ensure you input the same password.");
+		       return false;
+	       }	   
+	   }
+ 
+	   
+   

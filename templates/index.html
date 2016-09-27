@@ -41,7 +41,7 @@
 		        			</div>
 		                </div>
 		                <div class="form-bottom">
-		                    <form role="form" action="" method="post" class="registration-form" onsubmit="return checkSignUp()">
+		                    <form role="form" action="" method="post" class="registration-form">
 		                    	<div class="form-group">
 		                    		<label class="sr-only" for="form-first-name">First name</label>
 		                        	<input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name" onblur="firstNameBlur()">
@@ -64,7 +64,7 @@
 		                        </div>
 		                        
                                
-		                        <button type="submit" class="btn" id="btn-signup">Sign me up!</button>
+		                        <button type="button" class="btn" id="btn-signup">Sign me up!</button>
 		                    </form>
 		                </div>
 		            </div>
@@ -74,7 +74,7 @@
 		<!--navigation bar-->
         <nav id ="navigation" class="navbar navbar-inverse" data-spy="affix" data-offset-top="812" >
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                 </button>
@@ -123,8 +123,8 @@
 
 
 {% block customJS %}
-    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-    <script src="assets/js/signup.js"></script>
-    <script src="assets/js/firebase-signup.js"></script>
+    
+<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<script src="assets/js/firebase-signup.js"></script>
 
 {% endblock %}
