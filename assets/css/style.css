@@ -68,6 +68,11 @@ img { max-width: 100%; }
 .btn-link-2:hover, .btn-link-2:focus, 
 .btn-link-2:active, .btn-link-2:active:focus { outline: 0; opacity: 0.6; background: rgba(0, 0, 0, 0.3); color: #fff; }
 
+.affix {
+      top:0;
+      width: 100%;
+      z-index: 9999 !important;
+  }
 
 /***** Top menu *****/
 
@@ -171,6 +176,7 @@ ul.navbar-nav {
 	text-align: left;
 }
 
+
 .form-bottom form textarea {
 	height: 100px;
 }
@@ -178,8 +184,31 @@ ul.navbar-nav {
 .form-bottom form .input-error {
 	border-color: #19b9e7;
 }
+/*
+.onfocus1{
+	background-color:#f1ffde;
+	   width:200px;
+	   height:16px;
+	   border:solid 1px #999;
+}
+div .onfocus2{
+	font-size:12px;
+	color:#CCC;
+}
+.onburl1{
+	background-color:#FFE8E8;
+	   width:200px;
+	   height:16px;
+	   border:solid 1px #999;
+}
+.onburl2{
+	background-color:#FFF;
+	   width:200px;
+	   height:16px;
+	   border:solid 1px #999;
+}
 
-
+*/
 
 /***** Media queries *****/
 
