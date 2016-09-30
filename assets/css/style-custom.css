@@ -6,9 +6,9 @@ html,body
     padding: 0px;
     /*overflow-x: hidden; */
 	
-	/*overflow: visible; 
+	overflow: visible; 
 	overflow: no-display; 
-	above two are suitable for affix, otherwise the affix won't work with other overflow attributs
+	/*above two are suitable for affix, otherwise the affix won't work with other overflow attributs
 	*/
 }
 
