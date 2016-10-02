@@ -37,6 +37,7 @@
                     // Log the fulfillment value
                     function(val) {
 						alert("Sign Up Successfully");
+						
                     })
                 .catch(
                     // Log the rejection reason

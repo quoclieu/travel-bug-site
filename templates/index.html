@@ -41,7 +41,7 @@
 		        			</div>
 		                </div>
 		                <div class="form-bottom">
-		                    <form role="form" action="" method="post" class="registration-form">
+		                    <form id="sign-interest" role="form" action="" method="post" class="registration-form">
 		                    	<div class="form-group">
 		                    		<label class="sr-only" for="form-first-name">First name</label>
 		                        	<input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name" onblur="firstNameBlur()">
@@ -124,5 +124,7 @@
     
 <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
 <script src="assets/js/firebase-signup.js"></script>
+<script data-cfasync="false" type="text/javascript"
+src="assets/js/contact-send-email.js"></script>
 
 {% endblock %}
