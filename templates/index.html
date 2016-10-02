@@ -33,8 +33,8 @@
 		            <div class="col-sm-4 form-box">
 		            	<div class="form-top">
 		            		<div class="form-top-left">
-		            			<h3>Register now</h3>
-		                		<p>And start planning!</p>
+		            			<h3>Register your interests</h3>
+                                <p>And start planning!</p>
 		            		</div>
 		            		<div class="form-top-right">
 		        				<img src="assets/img/logo.png">
@@ -54,17 +54,15 @@
 		                        	<label class="sr-only" for="form-email">Email</label>
 		                        	<input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email" onblur="emailBlur()">
 		                        </div>
-                                <div class="form-group">
-		                        	<label class="sr-only" for="form-pwd">Password</label>
-                                    <input type="password" name="form-pwd" placeholder="Password..." class="form-pwd form-control" id="form-pwd" onblur="pwdBlur()">
-		                        </div>
-		                        <div class="form-group">
-		                        	<label class="sr-only" for="form-rePwd">Confirm Password</label>
-		                        	<input type="password" name="form-rePwd" placeholder="Confirm Password..." class="form-rePwd form-control" id="form-rePwd" onblur="confirmPwdBlur()">
-		                        </div>
-		                        
-                               
-		                        <button type="button" class="btn" id="btn-signup">Sign me up!</button>
+                                <div id="isReceive" style="padding-bottom:10px">                           
+		                        <input type="radio" name="form-receiveEmail"  id="form-receiveEmail"  value="true" checked = "checked"> 
+		                               Receive the newsletter &nbsp;&nbsp;&nbsp;&nbsp;
+		                        <input type="radio" name="form-receiveEmail" id="form-nonReceiveEmail"  value="false">
+		                       	       No, thanks  
+                                </div>          
+                                <div class="form-group">                                                                      
+		                             <button type="button" class="btn" id="btn-signup">I'm in!</button>
+                                </div>
 		                    </form>
 		                </div>
 		            </div>
@@ -124,7 +122,7 @@
 
 {% block customJS %}
     
-<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
 <script src="assets/js/firebase-signup.js"></script>
 
 {% endblock %}

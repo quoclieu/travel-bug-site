@@ -1,55 +1,25 @@
 
-     // Initialize Firebase
-      var config = {
-         apiKey: "AIzaSyBNT4gDmMljV3Oko-E5WLMnNvW9mBfQ5FE",
-         authDomain: "travel-bugg.firebaseapp.com",
-         databaseURL: "https://travel-bugg.firebaseio.com",
-         storageBucket: "travel-bugg.appspot.com",
-         messagingSenderId: "262014884649"
-      };
-      firebase.initializeApp(config);
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA9-kemWmPvaN-ZmmUZXoJejsoaxHB3fxY",
+    authDomain: "travel-bug-potential-user.firebaseapp.com",
+    databaseURL: "https://travel-bug-potential-user.firebaseio.com",
+    storageBucket: "",
+    messagingSenderId: "374111239552"
+  };
+  firebase.initializeApp(config);
+
+
 	  
 	 //Get elements
-      var dbRefUsers = firebase.database().ref().child('User');
       var buttonSignUp = document.getElementById('btn-signup');
       var userDetails=null;
       var firstName = null;
       var lastName = null;
       var email = null;
-      var password = null;
-      var rePwd = null;
-	  
-      window.onload = function() {
-           initApp();
-         };	  
-
-      /**
-       * initApp handles registering Firebase auth listeners:
-       *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in 
-       *    and that is where we push userDetails in firebase realtime-database.
-       *    The user will log out automatically once after their userDetails be stored.
-       */
-      function initApp(){
-      	//Listening for auth state changes.
-      	//[START authstatelistener]
-      	firebase.auth().onAuthStateChanged(function(user){
-      		if(user){
-      			//User is signed in.
-      			if(userDetails!=null){ 
-      			   //store the user details into firebase			   
-		           dbRefUsers.push(userDetails); 
-		           alert("Sign up successfully !");	 
-		           firebase.auth().signOut();
-		        }
-      		}else{
-		       console.log("Not logged in");
-			}
-
-      	});
-      	// [END authstatelistener]     
-		
-      }
-	  
+      var receiveEmail = null;
+	  var encodedEmail = null;
+	  	  
 	  //Add signup event
 	  buttonSignUp.addEventListener('click', handleSignUp, false); 
 	 
@@ -61,41 +31,54 @@
        */
       function handleSignUp(){      		
         if(checkSignUp){
-        	fillUserDetails();
-      		//Sign in with email and pass
-      		// [START createwith email]
-      		email=document.getElementById("form-email").value;
-      		password = document.getElementById("form-pwd").value;
-            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-              // Handle Errors here.
-              var errorMessage = error.message;
-              // [START_EXCLUDE]
-              alert(errorMessage);
-              console.log(error);
-              // [END_EXCLUDE]
-              //Clear the userDetails
-              userDetails = null;
-           });
-          // [END createwithemail]     		
+        	fillUserDetails();     	
+        	var promise = firebase.database().ref('PotentialUser/'+encodedEmail).set(userDetails);
+            promise.then(
+                    // Log the fulfillment value
+                    function(val) {
+						alert("Sign Up Successfully");
+                    })
+                .catch(
+                    // Log the rejection reason
+                    function(reason) {
+                        console.log('Handle rejected promise ('+reason+') here.');
+                        alert(reason);
+                    });
+		}
+	  }
+
+      function fillUserDetails(){
+      	//Get userDetails     
+		email=document.getElementById("form-email").value;
+		firstName = document.getElementById("form-first-name").value;
+		lastName = document.getElementById("form-last-name").value;
+      	receiveEmail = getReceiveValue();
+      	encodedEmail = email.replace(/\./g, ",");
+      	if(receiveEmail!=null){
+      		userDetails = {
+                                email: email,
+                                firstName: firstName,
+                                isReceive:receiveEmail,
+                                lastName: lastName                                
+	                  }
         }
       }
 
-      function fillUserDetails(){
-      	//Get userDetails
-      	firstName = document.getElementById("form-first-name").value;
-      	lastName = document.getElementById("form-last-name").value;
-      	email=document.getElementById("form-email").value;
-	    userDetails = {UserDetails: {
-                                Email: email,
-                                FirstName: firstName,
-                                lastName: lastName
-                                    }
-	                  }
+	    
+
+      function getReceiveValue(){
+      	var reveiveEmails = document.getElementsByName('form-receiveEmail');
+        for(var i = 0; i < reveiveEmails.length; i++){
+            if(reveiveEmails[i].checked){
+                receiveEmail = reveiveEmails[i].value;
+            }
         }
+        return receiveEmail;
+      }
  
 
       function checkSignUp(){
-		   if(firstNameBlur()&&lastNameBlur()&&emailBlur()&&pwdBlur()&&confirmPwdBlur()){
+		   if(firstNameBlur()&&lastNameBlur()&&emailBlur()){
 		    return true;
 		}else {
 		    return false;
@@ -135,26 +118,6 @@
 		   }
 	   }
 
-	   function pwdBlur(){
-	        password = document.getElementById("form-pwd").value;		   
-		    if(password.length<6){
-		       alert("Please input a password whose length is over 6.");
-		       return false;
-	       }else{
-			   return true;
-		   }  
-	   }       
-	   
-	    function confirmPwdBlur(){
-	       password = document.getElementById("form-pwd").value;
-	       rePwd = document.getElementById("form-rePwd").value;		   		  
-           if(password==rePwd){
-		       return true;   
-	       }else{
-		       alert("Please ensure you input the same password.");
-		       return false;
-	       }	   
-	   }
+		
  
 	   
-   
