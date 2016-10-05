@@ -1,4 +1,5 @@
 <section id="contact" class="contact">
+<div id="contactText">
 	<h1>Want to get in touch with us?</h1>
 
 	<p>
@@ -8,16 +9,25 @@
 	<p>
 		Please fill following form and we will get back to you within 24 hours!
 	</p>
-
-	<form class="contact-form" action="mailto:travelbuggg42@gmail.com?subject=Travel Bug Enquiry" method="post" enctype="text/plain">
+</div>
+	<form id="gform" class="contact-form" action="https://script.google.com/macros/s/AKfycbz80XivIYtGSWzBOESZdGAoaYA7-B3xf_sVg6DdnqE6TaOA5dU/exec" method="post">
 	Name:<br>
-		<input type="text" name="name" class="form-control"><br>
+		<input type="text" name="name" class="form-control">
+    Email:<br>
+		<input type="text" name="email" class="form-control">
+        <span id="email-invalid" style="visibility:hidden">
+        Must be a valid email address</span>
+        <br>
 		<!-- E-mail:<br>
 		<input type="text" class="form-control" name="mail"><br> -->
 		Enquiry:<br>
-		<textarea name="textarea" class="form-control" style="height:150px;"></textarea>
+		<textarea name="textarea" id="message" class="form-control" style="height:150px;"></textarea>
 		<br><br>
 		<input type="submit" class="btn" style="background-color:#22E2B3;color:white;" value="Send">
 	</form>
-
+<div style="display:none;" id="thankyou_message">
+    <h2><em>Thanks</em> for contacting us!
+      We will get back to you soon!</h2>
+  </div>
+  
 </section>
