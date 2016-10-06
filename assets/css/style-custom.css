@@ -6,7 +6,7 @@ html,body
 }
 
 ul{
-	list-style: none;
+	list-style: bullet;
 }
 
 .header-content{
