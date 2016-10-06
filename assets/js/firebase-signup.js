@@ -9,6 +9,11 @@
   };
   firebase.initializeApp(config);
 
+   window.onload = function() {
+      //Add signup event
+	  buttonSignUp.addEventListener('click', handleSignUp, false); 
+    };
+
 
 	  
 	 //Get elements
@@ -17,11 +22,10 @@
       var firstName = null;
       var lastName = null;
       var email = null;
-      var receiveEmail = null;
+      //var receiveEmail = null;
 	  var encodedEmail = null;
 	  	  
-	  //Add signup event
-	  buttonSignUp.addEventListener('click', handleSignUp, false); 
+	  
 	 
 
       /**
@@ -30,7 +34,7 @@
        * If successful, it also signs the user in into the app.
        */
       function handleSignUp(){      		
-        if(checkSignUp){
+        if(checkSignUp()){
         	fillUserDetails();     	
         	var promise = firebase.database().ref('PotentialUser/'+encodedEmail).set(userDetails);
             promise.then(
@@ -43,7 +47,7 @@
                     // Log the rejection reason
                     function(reason) {
                         console.log('Handle rejected promise ('+reason+') here.');
-                        alert(reason);
+                        alert("You have signed your interest!");
                     });
 		}
 	  }
@@ -53,21 +57,21 @@
 		email=document.getElementById("form-email").value;
 		firstName = document.getElementById("form-first-name").value;
 		lastName = document.getElementById("form-last-name").value;
-      	receiveEmail = getReceiveValue();
+      	//receiveEmail = getReceiveValue();
       	encodedEmail = email.replace(/\./g, ",");
-      	if(receiveEmail!=null){
+      	//if(receiveEmail!=null){
       		userDetails = {
                                 email: email,
                                 firstName: firstName,
-                                isReceive:receiveEmail,
+                                //isReceive:receiveEmail,
                                 lastName: lastName                                
 	                  }
-        }
+      //  }
       }
 
 	    
 
-      function getReceiveValue(){
+    /*  function getReceiveValue(){
       	var reveiveEmails = document.getElementsByName('form-receiveEmail');
         for(var i = 0; i < reveiveEmails.length; i++){
             if(reveiveEmails[i].checked){
@@ -75,7 +79,7 @@
             }
         }
         return receiveEmail;
-      }
+      }*/
  
 
       function checkSignUp(){
