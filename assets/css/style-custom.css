@@ -7,6 +7,7 @@ html,body
 
 ul{
 	list-style: bullet;
+	line-height: 130%;
 }
 
 .header-content{
@@ -34,6 +35,12 @@ hr{
 	padding:10px;
 }
 
+.icon{
+	text-align:center;
+	font-size:30px;
+	padding:10px;
+	color: #5DBCD2;
+}
 
 
 /*nav bar color*/
@@ -55,6 +62,11 @@ hr{
 .screen{
 	padding:70px;
 }
+
+.screenshot{
+	padding-top:40px;
+}
+
 
 /*team bios*/
 
