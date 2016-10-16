@@ -88,10 +88,13 @@ hr{
 }
 
 .team-bios{
+	padding-top: 50px;
 	margin-top:50px;
 	margin-bottom: 50px;
 }
-
+.app-description{
+	padding-top: 50px;
+}
 
 /*contact us form*/
 
