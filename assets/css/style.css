@@ -116,12 +116,13 @@ ul.navbar-nav {
 
 
 .navbar-my-style ul.navbar-nav li .li-social a {
+	color: #fff;
 	margin: 0 5px;
 	font-size: 20px;
 	vertical-align: middle;
 }
-.navbar-my-style ul.navbar-nav li .li-social a:hover, 
-.navbar-my-style ul.navbar-nav li .li-social a:focus { outline: 0; border: 0;color: #19b9e7; background-color: #22E2B3;}
+.navbar-my-style ul.navbar-nav li .li-social a:hover 
+/**.navbar-my-style ul.navbar-nav li .li-social a:focus **/{ outline: 0; border: 0;color: #19b9e7; background-color: #22E2B3;}
 
 .navbar-brand {
 	width: 123px;
