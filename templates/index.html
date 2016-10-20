@@ -59,10 +59,18 @@
 		                               Receive the newsletter &nbsp;&nbsp;&nbsp;&nbsp;
 		                        <input type="radio" name="form-receiveEmail" id="form-nonReceiveEmail"  value="false">
 		                       	       No, thanks  
-                                </div> -->         
+                                </div> -->  
+                                <div class="form-group">
+		                        	<label class="sr-only" for="form-pwd">Password</label>
+                                    <input type="password" name="form-pwd" placeholder="Password..." class="form-pwd form-control" id="form-pwd" onblur="pwdBlur()">
+		                        </div>
+		                        <div class="form-group">
+		                        	<label class="sr-only" for="form-rePwd">Confirm Password</label>
+		                        	<input type="password" name="form-rePwd" placeholder="Confirm Password..." class="form-rePwd form-control" id="form-rePwd" onblur="confirmPwdBlur()">
+		                        </div>       
                                 <div class="form-group">                                                                      
-		                             <button type="button" class="btn" id="btn-signup">Sign me up!</button>
-		                             <p style="font-size:13px;line-height:150%;padding-top:20px;">Fill out the form and we will keep you updated about launch day!</p>
+		                             <button type="button" class="btn" id="btn-signup">Sign me up!</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                     <button type="button" class="btn" id="btn-continue-with-facebook">Continue with Facebook!</button>
                                 </div>
 		                    </form>
 		                </div>
@@ -133,4 +141,4 @@
 <script data-cfasync="false" type="text/javascript"
 src="assets/js/contact-send-email.js"></script>
 <script src="assets/js/smoothy-scroll-effect.js"></script>
-{% endblock %}
+{% endblock %}**/
