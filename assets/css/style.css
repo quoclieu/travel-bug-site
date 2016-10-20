@@ -6,6 +6,7 @@ body {
     color: #888;
     line-height: 30px;
     text-align: center;
+	position:relative;
 }
 
 strong { font-weight: 500; }
@@ -86,6 +87,7 @@ img { max-width: 100%; }
 }
 /**change font-weight and size when scrolling**/
 .navbar-my-style .active{
+	 outline: 0;
 	font-size:20px;
 	font-weight:bold;
 	background-color: #22E2B3;
@@ -93,6 +95,7 @@ img { max-width: 100%; }
 
 /** change color and size when scrolling
 .navbar-my-style .navbar-nav > .active > a{
+	 outline: 0;
 	font-size:20px;
 	color: #19b9e7;
 }
@@ -103,26 +106,23 @@ ul.navbar-nav {
 	font-size: 14px;
 	color: #fff;
 }
-.navbar-header a{
-	font-size: 14px;
-	display: inline; padding: 0; color: #fff;
-}
 
 .navbar-my-style ul.navbar-nav li { padding-top: 8px; padding-bottom: 8px; }
 
 .navbar-my-style ul.navbar-nav li .li-text { opacity: 0.8; }
 
-.navbar-my-style ul.navbar-nav li a { display: inline; padding: 0; color: #fff; }
-.navbar-my-style ul.navbar-nav li a:hover { /**color: #19b9e7;**/font-weight:bold; background-color: #22E2B3;}
+.navbar-my-style ul.navbar-nav li a { /**display: outline;**/outline: 0; padding: 0; color: #fff; background-color: #22E2B3;}
+.navbar-my-style ul.navbar-nav li a:hover {  outline: 0;/**color: #19b9e7;**/font-weight:bold; background-color: #22E2B3;}
 
 
 .navbar-my-style ul.navbar-nav li .li-social a {
+	color: #fff;
 	margin: 0 5px;
 	font-size: 20px;
 	vertical-align: middle;
 }
-.navbar-my-style ul.navbar-nav li .li-social a:hover, 
-.navbar-my-style ul.navbar-nav li .li-social a:focus { border: 0;color: #19b9e7; background-color: #22E2B3;}
+.navbar-my-style ul.navbar-nav li .li-social a:hover 
+/**.navbar-my-style ul.navbar-nav li .li-social a:focus **/{ outline: 0; border: 0;color: #19b9e7; background-color: #22E2B3;}
 
 .navbar-brand {
 	width: 123px;
