@@ -38,20 +38,15 @@
         firebase.auth().onAuthStateChanged(function(user){
           if(user){
             //User is signed in.
-            //Check if the user.uid is already in databse
-            if(!UserExist(user)){
-             // alert("Sign in with fb successfully");
-
-            }
             if(userDetails!=null){
-               //If the user choose the email method and is the first time to sign in 
-               updateDisplayName(user,firstName);
-               //store the user details into firebase        
-               dbRefUsers.child(user.uid).set(userDetails); 
-               //alert("push successfully !");  
-               setTimeout('sendEmailVerification()',2000);              
-            }
-            setTimeout('signOut()',3000);
+				//If the user registered via email & pwd
+				emailPwdStore(user);
+                           
+            }else{
+				//If the user continued with Facebook
+			    fbStore(user);
+			}
+            setTimeout('signOut()',3000);//This function will be deleted once after-login website is created
 
           }else{
            console.log("Not logged in");
@@ -64,7 +59,7 @@
     
     //Add signup event
     buttonSignUp.addEventListener('click', handleSignUp, false); 
-
+    //Add fb sign in
     buttonFacebook.addEventListener('click', FacebookSignIn, false);
 
     /**
@@ -153,9 +148,9 @@
     // [END buttoncallback]
 
     /**
-     *Check if user has existed in database
-     */
-    function UserExist(user){
+	*Strore the user details in database
+	*/
+    function fbStore(user){
       if(user!=null){
         dbRefUsers.once('value', function(snapshot) {
           if (!snapshot.hasChild(user.uid)) {
@@ -167,16 +162,40 @@
               updateDisplayName(user,fbFirstName);
               //alert("updateDisplayName successfully");
               dbRefUsers.child(user.uid).set(userDetailsFacebook);
-              //alert("store in firebase successfully");
-              setTimeout('sendEmailVerification()',2000);
-            return false;            
+              alert("You have signed in with Facebook!");
+                       
             }
         });
       }
-      return true;
     }
-cbGmMqEkx7R6dzNZhwspPVeXTUw2
-EIsIQnUXGRVy41XHcvQIotZZin12
+	
+	function emailPwdStore(user){
+		if(user!=null){
+			 //If the user choose the email method and is the first time to sign in 
+               updateDisplayName(user,firstName);
+               //store the user details into firebase        
+               dbRefUsers.child(user.uid).set(userDetails); 
+               //alert("push successfully !");  
+               setTimeout('sendEmailVerification()',1000); 
+		}
+	}
+
+
+
+    /**
+    *get the first name
+    */
+    function getFirstName(fullName){
+      return fullName.split(' ').slice(0, -1).join(' ');
+    }
+
+    /**
+    *get the last name
+    */
+    function getLastName(fullName){
+      return  fullName.split(' ').slice(-1).join(' ');
+    }
+	
     /**
     *Fill user infomations from facebook
     */
@@ -194,20 +213,8 @@ EIsIQnUXGRVy41XHcvQIotZZin12
     }
 
     /**
-    *get the first name
-    */
-    function getFirstName(fullName){
-      return fullName.split(' ').slice(0, -1).join(' ');
-    }
-
-    /**
-    *get the last name
-    */
-    function getLastName(fullName){
-      return  fullName.split(' ').slice(-1).join(' ');
-    }
-
-
+	*Fill user infomations from email & pwd
+	*/
     function fillUserDetails(){
         //Get userDetails
         firstName = document.getElementById("form-first-name").value;
