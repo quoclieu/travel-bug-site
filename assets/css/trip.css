@@ -1,0 +1,118 @@
+body{
+	font-family: Work Sans, sans-serif;
+}
+
+#heading{
+	padding:10px 80px 10px 80px;
+}
+
+#card-buttons{
+	padding:10px 90px 0px 90px;
+}
+
+#card-grid{
+	padding:10px 20px 10px 90px;
+}
+
+
+.card-block{
+	margin:-50px 10px 10px 10px;
+	float:left;
+	padding:5px;
+}
+
+.date-box{
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	background-color: #9F9F9F;
+	height:45px;
+	width: 40px;
+	position:relative;
+	top:120px;
+	left:10px;
+
+	text-align: right;
+	padding-right: 10px;
+}
+
+.date-box .date{
+	color: white;
+	font-size: 20px;
+	font-weight: 200;
+
+}
+
+.date-box .month{
+	color: white;
+	text-transform: uppercase;
+	font-size: 10px;
+	font-weight: lighter;
+}
+
+.trip-textbox{
+	padding: 25px 10px 10px 10px;
+}
+
+.trip-textbox hr{
+    padding: 0px;
+    margin: 0px;
+}
+
+.trip-textbox .days{
+	float:right;
+	padding-top:10px;
+	font-size: 10px;
+	font-weight: 500;
+	color: #9F9F9F;
+}
+
+.trip-textbox .title{
+	font-weight: 500;
+	font-size: 12px;
+}
+
+.trip-textbox .full-dates{
+	font-weight: 400;
+	font-size: 12px;
+	color: #9F9F9F;
+}
+
+.trip-textbox .numtravelers{
+	padding-top:10px;
+	font-weight: 300;
+	color: #9F9F9F;
+}
+
+#card-grid .card-top{
+	/*background-image: url("/assets/img/logo.png");*/
+	background-color:#41E2B0;
+	border-top-left-radius:8px;
+	border-top-right-radius:8px;
+	height:115px;
+	width:230px;
+}
+
+#card-grid .card-bottom{
+	background-color:#F7F7F7;
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:8px;
+	height:140px;
+	width:230px;
+}
+
+.card-bottom .location{
+	position:absolute;
+	top:410px;
+	padding-left: 15px;
+	font-size: 10px;
+	color: #9F9F9F;
+}
+
+.card-bottom hr{
+	height:1px;
+	border:none;
+	color:#9F9F9F;
+	background-color:#9F9F9F;
+}
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<!-- the base template html page. Other pages will be extending from this page to use its footer and navbar. Jinja2 is used to connect this with the other templates.  -->
+
+<html lang="en">
+
+<html>
+    <head>
+        
+        <title>{{vars.title}}</title>
+
+        <!-- CSS -->
+        
+        <link rel="stylesheet" href="assets/css/base.css" type="text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      
+        {% block customCSS %}{% endblock %}
+
+    </head>
+
+
+    <body data-spy="scroll" data-target=".navbar" data-offset="50" >
+
+        <div id="header">
+            <ul>
+
+                <div id="leftnav">
+                    <li>
+                        <a href="/"><img src="assets/img/logoblack.png" style="width:20px;">
+                        </a>
+                    </li>
+                    <li><a href="#">My Trips</a></li>            
+                </div>
+
+                <div id="rightnav">
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li> 
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">About</a></li>
+                    <li class="icon">
+                        <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+                    </li>
+                </div>
+
+            </ul>
+
+        </div>
+
+        <div id="content">{% block content %}{% endblock %}</div>
+
+        <div id = "footer">
+
+            <div id = "footer-links">
+                <ul>
+                    <li>
+                        <a href="#"><strong>ABOUT</strong></a>
+                    </li>
+                    <li>
+                        <a href="#"><strong>TERM AND CONDITIONS</strong></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="assets/img/logoblack.png" style="width:30px;padding-bottom:13px;"></a>
+                    </li>
+                    <li>
+                        <a href="#"><strong>PRIVACY POLICY</strong></a>
+                    </li>
+                    <li>
+                        <a href="#"><strong>CONTACT</strong></a>
+                    </li>
+                </ul>
+            </div>
+
+            <hr style="height:1px;border:none;color:gray;background-color:gray;width:70%;" />
+
+            <div id = "disclaimer">
+
+                <div class="column" id="copyright-text">
+                    <p>© TravelBug 2016. All rights reserved. Use of this site constitutes acceptance of our User Agreement and Privacy Policy. The material on this site may not be reproduced, distributed, transmitted, cached or otherwised, except with prior written permission of Travel Bug.</p>
+                </div>
+
+                <div class="column" id = "trio-logo">
+                    <ul>
+                        <li><img src="assets/img/logoblack.png" style="width:20px"></li>
+                        <li><img src="assets/img/logoblack.png" style="width:20px"></li>
+                        <li><img src="assets/img/logoblack.png" style="width:20px"></li>
+                    </ul>
+                </div>
+
+            </div>
+            
+
+        </div>
+
+       
+        <script src="assets/js/jquery-1.11.1.min.js">
+        </script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+        </script>
+        <script src="assets/js/jquery.backstretch.min.js">
+        </script>
+        <script src="assets/js/retina-1.1.0.min.js">
+        </script>
+
+
+        {% block customJS %}{% endblock %}
+
+
+    </body>
+</html>

@@ -1,0 +1,45 @@
+body{
+	font-family: Work Sans, sans-serif;
+}
+
+#slider{
+	background-color: #41E2B0;
+	padding:10px 80px 10px 80px;
+	color:white;
+	height:210px;
+	margin-top: -20px;
+}
+
+#slider .trip-details{
+	padding-top: 100px;
+	font-size: 20px;
+}
+
+#slider .location{
+	font-weight: 200;
+}
+
+#card-grid{
+	padding:10px 20px 10px 90px;
+}
+
+#card-grid .day-card{
+	height:200px;
+	width:200px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #9F9F9F;
+}
+
+#card-grid .day-card .day-label{
+	height:60px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	background-color: #F7F7F7;
+}
+
+#card-grid .day-card hr{
+	margin-top: 0px;
+}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block customCSS %}
+
+<link rel="stylesheet" href="assets/css/register.css" type="text/css">
+
+{% endblock %}
+
+{% block content %}
+<div id="form">
+	<h3><strong>Join Travel Bug</strong></h3>
+	<div>
+		<span>Already have an account with us?</span>
+		<div class="btn">LOGIN</div>
+	</div>
+
+	<div class="divider">OR</div>
+
+	<div class="btn">REGISTER WITH FACEBOOK</div>
+
+	<hr />
+	<div style="position:relative;top:-30px;">OR</div>
+
+	<form class="">
+
+		<input type="text" placeholder="Email...">
+
+		<div class="form-group">
+			<input type="text" placeholder="First Name...">
+			<input type="text" placeholder="Last Name...">
+		</div>
+
+        <input type="password" placeholder="Password...">
+
+
+    	<input type="password" name="form-rePwd" placeholder="Confirm Password...">
+  
+
+        <br>
+
+		<input type="submit" class="btn" style="background-color:#22E2B3;color:white;" value="Register">
+
+		<div id="checkbox"></div>
+		<span>I agree to Travel Bug's <a href="#">terms &amp; conditions</a> and <a href="#">privacy policy.</a></span>
+	</form>
+
+
+
+</div>
+{% endblock %}

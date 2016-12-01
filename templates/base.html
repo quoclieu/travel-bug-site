@@ -6,37 +6,98 @@
 
 <html>
     <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <meta property="og:image" content="http://www.travelbug-app.com/assets/img/iphone.png"/>
-        <meta property="og:description" content="An innovative collaborative trip planning platform." />
-        <meta property="og:url"content="http://www.travelbug-app.com/" />
-        <meta property="og:title" content="Travel Bug" />
         
-
         <title>{{vars.title}}</title>
 
         <!-- CSS -->
         
         <link rel="stylesheet" href="assets/css/base.css" type="text/css">
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/form-elements.css">      
-
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,300,400,500" rel="stylesheet"> 
+      
         {% block customCSS %}{% endblock %}
 
     </head>
 
 
     <body data-spy="scroll" data-target=".navbar" data-offset="50" >
+        <div id="wrapper">
+            <div id="header">
+                <ul>
 
-        <div id="header">{% block header %}{% endblock %}</div>
-        <div id="content">{% block content %}{% endblock %}</div>
-        <div id = "footer"><p>Copyright © 2016 TravelBug | Terms | Privacy</p></div>
+                    <div id="leftnav">
+                        <li>
+                            <a href="/"><img src="assets/img/logoblack.png" style="width:20px;">
+                            </a>
+                        </li>
+                        <li><a href="#">My Trips</a></li>            
+                    </div>
+
+                    <div id="rightnav">
+                        <li><a href="#">Login</a></li>
+                        <li style="border-left:1px solid #DBDBDB;"><a href="#">Register</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li class="icon">
+                            <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+                        </li>
+                    </div>
+
+                </ul>
+                <hr style="margin-top:0px;">
+
+            </div>
+
+            <div id="content" class="row">
+                {% block content %}{% endblock %}
+            </div>
+
+            <div id="footer">
+
+                <div id = "footer-links">
+                    <ul>
+                        <li>
+                            <a href="/about">ABOUT</a>
+                        </li>
+                        <li>
+                            <a href="#">TERM AND CONDITIONS</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="assets/img/logoblack.png" style="width:20px;padding-bottom:13px;"></a>
+                        </li>
+                        <li>
+                            <a href="#">PRIVACY POLICY</a>
+                        </li>
+                        <li>
+                            <a href="/contact">CONTACT</a>
+                        </li>
+                        <li class="icon">
+                            <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <hr/>
+
+                <div id = "disclaimer">
+
+                    <div class="column" id="copyright-text">
+                        <p>© TravelBug 2016. All rights reserved. Use of this site constitutes acceptance of our User Agreement and Privacy Policy. The material on this site may not be reproduced, distributed, transmitted, cached or otherwised, except with prior written permission of Travel Bug.</p>
+                    </div>
+
+                    <div class="column" id = "trio-logo">
+                        <ul>
+                            <li><img src="assets/img/logoblack.png" style="width:20px"></li>
+                            <li><img src="assets/img/logoblack.png" style="width:20px"></li>
+                            <li><img src="assets/img/logoblack.png" style="width:20px"></li>
+                        </ul>
+                    </div>
+
+                </div>
+                
+
+            </div>
+        </div>
 
        
         <script src="assets/js/jquery-1.11.1.min.js">
@@ -47,6 +108,9 @@
         </script>
         <script src="assets/js/retina-1.1.0.min.js">
         </script>
+
+        <!-- font awesome icons -->
+        <script src="https://use.fontawesome.com/72140f873c.js"></script>
 
 
         {% block customJS %}{% endblock %}

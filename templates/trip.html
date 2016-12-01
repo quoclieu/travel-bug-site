@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="assets/css/trip.css" type="text/css">
+{% endblock %}
+
+{% block content%}
+
+<div id="heading">
+	<h2>My Trips</h2>
+</div>
+
+<div id="card-buttons">
+	<div style="padding-bottom:30px;">
+		<h5 style="float:left;">sort by</h5>
+		<h5 style="float:right;">new trip+</h5>
+	</div>
+</div>
+
+<div id="card-grid">
+
+	<div class="card-block">
+
+		<div class="date-box">
+			<div class="date">19</div>
+			<div class="month">Aug</div>
+		</div>
+
+		<div class="card-top"></div>
+
+		<div class="card-bottom">
+			<div class="trip-textbox">
+				<hr/>
+				<div class="days">9 DAYS</div>
+				<div class="title">Melbourne with da lads</div>
+				<div class="full-dates">19-27 August</div>
+				<hr/>
+				<div class="numtravelers">5 travelers</div>
+			</div>
+			
+			<div class="location">
+				<i class="fa fa-map-marker" aria-hidden="true"></i> Melbourne, Australia
+			</div>
+		</div>
+
+	</div>
+
+	<div class="card-block">
+		<div class="date-box"></div>
+		<div class="card-top"></div>
+		<div class="card-bottom"></div>
+	</div>
+
+	<div class="card-block">
+		<div class="date-box"></div>
+		<div class="card-top"></div>
+		<div class="card-bottom"></div>
+	</div>
+
+	<div class="card-block">
+		<div class="date-box"></div>
+		<div class="card-top"></div>
+		<div class="card-bottom"></div>
+	</div>
+
+</div>
+
+{% endblock %}
