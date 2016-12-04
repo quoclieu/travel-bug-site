@@ -2,117 +2,132 @@ body{
 	font-family: Work Sans, sans-serif;
 }
 
-#heading{
+#trip-heading{
 	padding:10px 80px 10px 80px;
+	text-align:center;
+	text-transform: uppercase;
+	font-size: 20px;
 }
 
-#card-buttons{
-	padding:10px 90px 0px 90px;
-}
+#button-row, #card-column{
+	padding:10px 40px 50px 200px;
 
-#card-grid{
-	padding:10px 20px 10px 90px;
+	min-width:800px; /* suppose you want minimun width of 1000px */
+    width: auto !important;  /* Firefox will set width as auto */
+    width:1000px;             /* As IE ignores !important it will set width as 1000px; */
 }
 
 
 .card-block{
-	margin:-50px 10px 10px 10px;
+	margin:-50px 0px 10px 0px;
 	float:left;
-	padding:5px;
+	padding-bottom:15px;
+	width:100%;
 }
 
 .date-box{
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
-	background-color: #9F9F9F;
-	height:45px;
+	background-color: white;
+	border: 1px solid #9F9F9F;
+	height:40px;
 	width: 40px;
 	position:relative;
-	top:120px;
-	left:10px;
+	top:60px;
+	left:240px;
 
 	text-align: right;
 	padding-right: 10px;
 }
 
 .date-box .date{
-	color: white;
-	font-size: 20px;
+
+	font-size: 23px;
 	font-weight: 200;
 
 }
 
 .date-box .month{
-	color: white;
 	text-transform: uppercase;
 	font-size: 10px;
 	font-weight: lighter;
+	margin-top: -8px;
 }
 
-.trip-textbox{
-	padding: 25px 10px 10px 10px;
+.card-right .trip-textbox{
+	padding: 20px 10px 10px 300px;
 }
 
-.trip-textbox hr{
-    padding: 0px;
+.card-right .trip-textbox hr{
+    padding-left: 0px;
     margin: 0px;
 }
 
-.trip-textbox .days{
+.card-right .trip-textbox .days{
 	float:right;
-	padding-top:10px;
+	padding-top:30px;
 	font-size: 10px;
 	font-weight: 500;
 	color: #9F9F9F;
 }
 
-.trip-textbox .title{
+.card-right .trip-textbox .title{
 	font-weight: 500;
-	font-size: 12px;
+	font-size: 18px;
 }
 
-.trip-textbox .full-dates{
+.card-right .trip-textbox .full-dates{
 	font-weight: 400;
-	font-size: 12px;
+	font-size: 18px;
 	color: #9F9F9F;
 }
 
-.trip-textbox .numtravelers{
+.card-right .trip-textbox .numtravelers{
 	padding-top:10px;
 	font-weight: 300;
 	color: #9F9F9F;
 }
 
-#card-grid .card-top{
+.card-right .trip-textbox .host{
+	font-size:10px;
+	font-weight:500;
+	padding-bottom:10px;
+}
+
+
+#card-column .card-left{
 	/*background-image: url("/assets/img/logo.png");*/
 	background-color:#41E2B0;
 	border-top-left-radius:8px;
 	border-top-right-radius:8px;
-	height:115px;
-	width:230px;
-}
-
-#card-grid .card-bottom{
-	background-color:#F7F7F7;
 	border-bottom-left-radius:8px;
 	border-bottom-right-radius:8px;
-	height:140px;
-	width:230px;
+	float:left;
+	height:160px;
+	width:260px;
 }
 
-.card-bottom .location{
-	position:absolute;
-	top:410px;
-	padding-left: 15px;
+#card-column .card-right{
+	background-color:#F7F7F7;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:8px;
+	height:160px;
+	min-width:600px;
+}
+
+.card-right .location{
+	padding-top:10px;
 	font-size: 10px;
 	color: #9F9F9F;
 }
 
-.card-bottom hr{
+.card-right hr{
 	height:1px;
 	border:none;
-	color:#9F9F9F;
+	color: #9F9F9F;
 	background-color:#9F9F9F;
+
 }
 

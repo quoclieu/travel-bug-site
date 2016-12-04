@@ -1,9 +1,7 @@
 from flask import render_template
 from travelbug import app
 
-#Trip page
-
-#server/mytrips
+#server/trips
 @app.route("/fullview")
 def fullview():
 	title = "Full Trip View"

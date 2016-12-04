@@ -5,12 +5,12 @@ html,body{
     margin: 0px;
     padding: 0px;
     overflow-x: hidden; 
-    font-family: 'Work Sans', sans-serif;
 }
 
 #wrapper {
 	min-height:100%;
 	position:relative;
+	font-family: 'Work Sans', sans-serif;
 }
 
 #content {
@@ -24,7 +24,6 @@ img{
 }
 
 /*********** Top Nav Bar Styling **********/
-
 
 #header ul{
 	list-style-type: none;

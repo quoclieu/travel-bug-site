@@ -5,41 +5,140 @@ body{
 #slider{
 	background-color: #41E2B0;
 	padding:10px 80px 10px 80px;
-	color:white;
 	height:210px;
-	margin-top: -20px;
+	margin-top: 0px;
 }
 
-#slider .trip-details{
-	padding-top: 100px;
-	font-size: 20px;
+.trip-details{
+	padding-top: 20px;
+	padding-left: 100px;
+	font-size: 25px;
+	font-weight: 500;
 }
 
-#slider .location{
+.trip-details .location{
+	font-size: 15px;
 	font-weight: 200;
 }
 
+.trip-details .host{
+	font-size: 15px;
+	font-weight:400;
+}
+
+.trip-details hr{
+	margin:10px 0px 10px 0px;
+	max-width:400px;
+	height:1px;
+	border:none;
+	color: #9F9F9F;
+	background-color:#9F9F9F;
+
+}
+
 #card-grid{
+	min-width:800px; /* suppose you want minimun width of 1000px */
+    width: auto !important;  /* Firefox will set width as auto */
+    width:1000px;             /* As IE ignores !important it will set width as 1000px; */
 	padding:10px 20px 10px 90px;
 }
 
 #card-grid .day-card{
-	height:200px;
-	width:200px;
+	height:250px;
+	width:270px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
-	border: 1px solid #9F9F9F;
+	border: 2px solid #F7F7F7;
+	float:left;
+	margin:10px;
 }
 
 #card-grid .day-card .day-label{
 	height:60px;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
-	background-color: #F7F7F7;
+	border-top-left: 6px;
+	border-top-right: 6px;
+	background-color: #EDEDED;
+}
+
+#card-grid .day-card .day-label .day-title{
+	float:right;
+	position:relative;
+	left:-70px;
+	top:10px;
+	font-size: 15px;
+}
+
+#card-grid .day-card .day-label .day-title .num-act{
+	font-size: 10px;
+	padding-left: 2px;
+}
+
+#card-grid .day-card .day-label .date-circle{
+	width:45px;
+	height:45px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	color: black;
+	background-color: white;
+	text-align: center;
+	vertical-align: middle;
+	position:relative;
+	top:8px;
+	left:10px;
+}
+
+#card-grid .day-card .activity .activity-pic{
+	width:45px;
+	height:45px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	color: black;
+	/*background-image: url('/assets/img/logo.png');*/
+	background-color: #41E2B0;
+	text-align: center;
+	vertical-align: middle;
+	position:relative;
+	top:8px;
+	left:10px;
+}
+
+#card-grid .day-card .activity .activity-name{
+	float:right;
+	position:relative;
+	left:-95px;
+	top:10px;
+	font-size: 15px;
+}
+
+#card-grid .day-card .activity .activity-name .activity-location{
+	font-size: 10px;
+}
+
+#card-grid .day-card .activity hr{
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+
+#card-grid .day-card .activity{
+	margin-top: 5px;
+	margin-bottom: 0px;
+	overflow:auto;
+	height:170px;
+}
+
+#card-grid .day-card .day-label .date-circle .daynum{
+	font-size: 24px;
+	margin-bottom: -8px;
+}
+
+#card-grid .day-card .day-label .date-circle .date{
+	font-size: 8px;
 }
 
 #card-grid .day-card hr{
 	margin-top: 0px;
 }
+
