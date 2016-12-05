@@ -10,4 +10,4 @@ def trips():
 	template_vars = {
 		"title" : title
 	}
-	return render_template("trip.html",vars = template_vars)
+	return render_template("trips.html",vars = template_vars)
