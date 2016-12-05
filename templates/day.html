@@ -9,26 +9,59 @@
 
 {% block content %}
 <div id="day-wrapper">
-	<div id="recommendations-box">
-		<div class="create-btn"></div>
-		<div class="recommendations">
-			<div class="activity"></div>
+	
+
+	<div id="day-dropdown">
+		<div class="day-num">2</div>
+		<div class="date">
+			20 August 2016
+			<i class="fa fa-calendar" aria-hidden="true"></i>
 		</div>
 	</div>
 	
-	<div id="day-dropdown">
-		<div class="day-circle">2</div>
-		<div class="date"></div>
-	</div>
-
-
-	
 
 	<div class="trip-name">Melbourne with da lads</div>
-	<div class="day-name">CBD Sightseeing</div>
+	<div class="day-name"><h1>CBD Sightseeing</h1></div>
+
+	
+	<div id="schedule-details">
+		<hr>
+		<div class="small-label" style="float:left;">last updated by:</div>
+		<div class="schedule-values" style="float:left;">Jason</div>
+		<div class="schedule-values" style="float:right;">9.00am-6.00pm</div>
+		<div class="small-label" style="float:right;">5 activities from:</div>
+	</div>
+	<hr width="50%" align="left">
 
 	<div id="schedule-block">
+		<div id="schedule-container">
+			<div class="activity">
+				<div class="time"></div>
+				<div class="pic"></div>
+				<div class="title"></div>
+				<div class="location"></div>
+				<div class="description"></div>
+			</div>
 
+			<div class="transport">
+			</div>
+			<div class="activity">hello</div>
+			<div class="activity">hello</div>
+			<div class="activity">hello</div>
+			<div class="activity">hello</div>
+			<div class="activity">hello</div>
+			<div class="activity">hello</div>
+			<div class="activity">hello</div>
+			<div class="activity">hello</div>
+
+		</div>
+
+	</div>
+
+	<div id="recommendations-box">
+		<div class="create-btn"></div>
+		<div class="recommendations">
+		</div>
 	</div>
 </div>
 {% endblock %}

@@ -10,11 +10,11 @@ body{
 }
 
 #button-row, #card-column{
-	padding:10px 40px 50px 200px;
+	padding:10px 60px 50px 130px;
 
-	min-width:800px; /* suppose you want minimun width of 1000px */
+	min-width:600px; /* suppose you want minimun width of 1000px */
     width: auto !important;  /* Firefox will set width as auto */
-    width:1000px;             /* As IE ignores !important it will set width as 1000px; */
+    width:600px;             /* As IE ignores !important it will set width as 1000px; */
 }
 
 
