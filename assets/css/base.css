@@ -1,16 +1,30 @@
-/*Fixes any overflow issues caused by Bootstrap*/
-html,body{   
-	width: 100%;
+html,body{
+	margin:0;
+	padding:0;
+	font-family: 'Work Sans', sans-serif;
 	height:100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden; 
 }
+
 
 #wrapper {
 	min-height:100%;
 	position:relative;
-	font-family: 'Work Sans', sans-serif;
+	margin-left: auto;
+	margin-right: auto; 
+	
+}
+
+.right{float:right;}
+.left{float:left;}
+
+.row{
+	margin:0;
+}
+
+.circle{
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
 }
 
 #content {
@@ -24,6 +38,10 @@ img{
 }
 
 /*********** Top Nav Bar Styling **********/
+
+#header{
+	padding-top: 5px;
+}
 
 #header ul{
 	list-style-type: none;
@@ -72,7 +90,7 @@ img{
 
 
 @media screen and (max-width:680px) {
-	#footer-links li:not(:nth-child(3)) {
+	#links li:not(:nth-child(3)) {
 		display: none;
 	}
 	#footer ul li.icon {
@@ -86,6 +104,30 @@ img{
 
 
 /************ Footer Styling ***************/
+
+#footer {
+	text-align: center;
+	background-color:#F7F7F7;
+
+	width:100%;
+	height:300px;
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+
+#footer #links{
+	padding-top:60px;
+	padding-bottom: 70px;
+}
+
+#footer hr{
+
+   border-color: #9F9F9F;
+   background-color: #9F9F9F;
+   width:70%;
+
+}
 
 #footer ul{
     list-style-type: none;
@@ -114,28 +156,13 @@ img{
 
 #disclaimer{
 	width:70%;
+	padding-top: -20;
 	margin:0 auto;
 }
 
 #disclaimer .column {
-    float: left;
     margin: 0;
     width: 50%;
-}
-
-
-#footer{
-	text-align: center;
-	background-color:#F7F7F7;
-
-	height:300px;
-	padding-top: 30px;
-
-	position:absolute;
-	bottom:0;
-	width:100%;
-
-	margin:0px auto;
 }
 
 
@@ -148,4 +175,101 @@ img{
 #trio-logo{
 	padding: 40px;
 }
+
+
+
+
+
+
+
+/*** TWITTERS GRID SYSTEM - still testing ***/
+
+/*  SECTIONS  
+.section
+splits up the page horizontally. You'll need a few of these to break up the content, 
+and you can use them in your main wrapper, or within other divs.
+*/
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  
+.col
+divides the section into columns. Each column has a left margin of 1.6% 
+(around 20 pixels on a normal monitor), except the first one. 
+Using .col:first-child { margin-left: 0; } means you don't need to use class="last" anywhere. 
+It works in all browsers since IE6.*/
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING
+.group
+solves floating problems, by forcing the section to self clear its children 
+(aka the clearfix hack). This is good in Firefox 3.5+, Safari 4+, Chrome, Opera 9+ 
+and IE 6+.
+*/
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID SPANS */
+.span_80 {
+	width: 80%;
+}
+
+.span_70 {
+	width: 70%;
+}
+
+.span_60 {
+	width: 60%;
+}
+.span_50 {
+	width: 50%;
+}
+.span_40 {
+	width: 40%;
+}
+
+.span_33{
+	width: 33%;
+}
+
+.span_30 {
+	width: 30%;
+}
+.span_20 {
+	width: 20%;
+}
+.span_10 {
+	width: 10%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS
+@media queries
+as soon as the screen size gets less than 480 pixels the columns stack 
+and the margins disappear.
+ */
+
+@media only screen and (max-width: 480px) {
+	.col { margin: 1% 0 1% 0%;}
+	.span_3_of_3, .span_2_of_3, .span_1_of_3 { width: 100%; }
+}
+
+
 

@@ -1,7 +1,3 @@
-body{
-	font-family: Work Sans, sans-serif;
-}
-
 #trip-heading{
 	padding:10px 80px 10px 80px;
 	text-align:center;
@@ -10,20 +6,16 @@ body{
 }
 
 #button-row, #card-column{
-	padding:10px 60px 50px 130px;
+	font-weight: 300;
 
-	min-width:600px; /* suppose you want minimun width of 1000px */
-    width: auto !important;  /* Firefox will set width as auto */
-    width:600px;             /* As IE ignores !important it will set width as 1000px; */
+	padding:10px 10% 10px 10%;
+
+	min-width:600px;
+    width: auto !important; 
+    width:600px;       
+   
 }
 
-
-.card-block{
-	margin:-50px 0px 10px 0px;
-	float:left;
-	padding-bottom:15px;
-	width:100%;
-}
 
 .date-box{
 	-webkit-border-radius: 6px;
