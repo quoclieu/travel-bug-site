@@ -1,6 +1,6 @@
 #day-wrapper{
 	padding-top:10px;
-	padding-left: 10%;
+	padding-left: 20%;
 	min-width:900px; /* suppose you want minimun width of 1000px */
     width: auto !important;  /* Firefox will set width as auto */
     width:900px;             /* As IE ignores !important it will set width as 1000px; */
@@ -10,9 +10,9 @@
 	background-color: #EDEDED;
 	float:right;
 	height:400px;
-	width:300px;
-	margin-right:50px;
-	margin-top:-690px;
+	width:250px;
+	margin-right:90px;
+	margin-top:-770px;
 
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -76,15 +76,17 @@
 	padding-top: 80px;
 	color: #9F9F9F;
 	font-weight:200;
+	font-size: 10px;
 }
 
 #day-wrapper .day-name{
 	font-weight: 400;
-	font-size:40px;
+	font-size:30px;
 }
 
 #schedule-details{
 	width:60%;
+	padding-top: 40px;
 	padding-bottom: 20px;
 }
 

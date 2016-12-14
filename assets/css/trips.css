@@ -8,7 +8,7 @@
 #button-row, #card-column{
 	font-weight: 300;
 
-	padding:10px 10% 10px 10%;
+	padding:10px 20% 10px 20%;
 
 	min-width:600px;
     width: auto !important; 
@@ -24,10 +24,10 @@
 	background-color: white;
 	border: 1px solid #9F9F9F;
 	height:40px;
-	width: 40px;
+	width: 30px;
 	position:relative;
 	top:60px;
-	left:240px;
+	left:150px;
 
 	text-align: right;
 	padding-right: 10px;
@@ -48,7 +48,7 @@
 }
 
 .card-right .trip-textbox{
-	padding: 20px 10px 10px 300px;
+	padding: 20px 10px 10px 200px;
 }
 
 .card-right .trip-textbox hr{
@@ -88,7 +88,7 @@
 }
 
 
-#card-column .card-left{
+.card-left{
 	/*background-image: url("/assets/img/logo.png");*/
 	background-color:#41E2B0;
 	border-top-left-radius:8px;
@@ -97,16 +97,16 @@
 	border-bottom-right-radius:8px;
 	float:left;
 	height:160px;
-	width:260px;
+	width:170px;
 }
 
-#card-column .card-right{
+.card-right{
 	background-color:#F7F7F7;
 	border-top-right-radius: 8px;
 	border-bottom-left-radius:8px;
 	border-bottom-right-radius:8px;
 	height:160px;
-	min-width:600px;
+	width:600px;
 }
 
 .card-right .location{

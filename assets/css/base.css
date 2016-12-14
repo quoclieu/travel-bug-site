@@ -27,6 +27,8 @@ html,body{
 	border-radius: 50%;
 }
 
+
+
 #content {
 	padding-bottom:300px; /* Height of the footer element */
 }
@@ -35,6 +37,14 @@ html,body{
 img{
 	max-width: 100%;
 	height:auto;
+}
+
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 2px solid #eee;
 }
 
 /*********** Top Nav Bar Styling **********/
@@ -52,7 +62,7 @@ img{
 
 #rightnav li{
 	float: right;
-	padding: 10px 30px 10px 30px;
+	padding: 10px 20px 10px 20px;
 }
 
 #leftnav li{
@@ -119,14 +129,13 @@ img{
 #footer #links{
 	padding-top:60px;
 	padding-bottom: 70px;
+
 }
 
 #footer hr{
-
-   border-color: #9F9F9F;
-   background-color: #9F9F9F;
    width:70%;
-
+   margin-top:0;
+   margin-bottom:0;
 }
 
 #footer ul{
@@ -138,7 +147,7 @@ img{
 
 #footer li{
 	display:inline;
-	padding:30px;
+	padding:20px;
 }
 
 

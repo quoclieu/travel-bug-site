@@ -11,6 +11,7 @@
 
         <!-- CSS -->        
         <link rel="stylesheet" href="assets/css/base.css" type="text/css">
+        <link rel="stylesheet" href="assets/css/jquery.qtip.css" type="text/css">
  
         <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,300,400,500" rel="stylesheet"> 
 
@@ -40,7 +41,7 @@
 
                     <div id="rightnav">
                         <li><a href="#">Login</a></li>
-                        <li style="border-left:1px solid #DBDBDB;"><a href="#">Register</a></li>
+                        <li style="border-left:2px solid #DBDBDB;"><a href="#">Register</a></li>
                         <li><a href="/contact">Contact</a></li>
                         <li><a href="/about">About</a></li>
                         <li class="icon">
@@ -66,7 +67,7 @@
                             <a href="#">TERM AND CONDITIONS</a>
                         </li>
                         <li>
-                            <a href="#"><img src="assets/img/logoblack.png" style="width:20px;"></a>
+                            <a href="/" class="bug0"><img src="assets/img/logoblack.png" style="width:25px;"></a>
                         </li>
                         <li>
                             <a href="#">PRIVACY POLICY</a>
@@ -90,9 +91,9 @@
 
                     <div style="right column" id = "trio-logo">
                         <ul>
-                            <li><img src="assets/img/logoblack.png" style="width:20px"></li>
-                            <li><img src="assets/img/logoblack.png" style="width:20px"></li>
-                            <li><img src="assets/img/logoblack.png" style="width:20px"></li>
+                            <li><img class="bug1" src="assets/img/logoblack.png" style="width:20px"></li>
+                            <li><img class="bug2" src="assets/img/logoblack.png" style="width:20px"></li>
+                            <li><img class="bug3" src="assets/img/logoblack.png" style="width:20px"></li>
                         </ul>
                     </div>
 
@@ -104,11 +105,30 @@
 
         <script src="assets/js/jquery-1.11.1.min.js">
         </script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+        <script src="assets/js/jquery.qtip.js">
         </script>
-        <script src="assets/js/jquery.backstretch.min.js">
-        </script>
-        <script src="assets/js/retina-1.1.0.min.js">
+
+        <script>
+        $('.bug0').qtip({ // Grab some elements to apply the tooltip to
+            content: {
+                text: "Airplane travel is nature’s way of making you look like your passport photo."
+            }
+        })
+        $('.bug1').qtip({ // Grab some elements to apply the tooltip to
+            content: {
+                text: 'My wife told me: Sex is better on holiday.'
+            }
+        })
+        $('.bug2').qtip({ // Grab some elements to apply the tooltip to
+            content: {
+                text: "That wasn't a very nice postcard to receive."
+            }
+        })
+        $('.bug3').qtip({ // Grab some elements to apply the tooltip to
+            content: {
+                text: ':<'
+            }
+        })
         </script>
 
         <!-- font awesome icons -->

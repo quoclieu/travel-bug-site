@@ -9,7 +9,7 @@
 
 .trip-details{
 	padding-top: 20px;
-	padding-left: 100px;
+	padding-left: 20%;
 	font-size: 25px;
 	font-weight: 500;
 }
@@ -38,14 +38,16 @@
 	min-width:200px;
     width: auto !important;  
     width:200px;             
-	padding:10px 20px 10px 90px;
+	padding:10px 0px 10px 20%;
 }
 
 #card-grid .day-card{
 	height:250px;
 	width:270px;
 	float:left;
-	margin:10px;
+	margin-right: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
@@ -126,12 +128,12 @@
 	margin-top: 5px;
 	margin-bottom: 0px;
 	overflow:auto;
-	height:170px;
+	height:180px;
 }
 
 #card-grid .day-card .day-label .date-circle .daynum{
 	font-size: 24px;
-	margin-bottom: -8px;
+	margin-bottom: -2px;
 }
 
 #card-grid .day-card .day-label .date-circle .date{
