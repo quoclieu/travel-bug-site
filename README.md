@@ -1,6 +1,6 @@
 #Travel Bug Website
 
-Ensure Python 2.7, Flask and Requests are installed
+Ensure Python 3, Flask and Requests are installed
 
 Navigate to the root directory
 Run on command line with python travelbug.py
