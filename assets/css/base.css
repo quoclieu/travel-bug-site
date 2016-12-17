@@ -67,7 +67,7 @@ hr {
 
 #leftnav li{
 	float: left;
-	padding: 10px 5px 10px 30px;
+	padding: 10px 20px 10px 20px;
 }
 
 /* Style the links inside the list items */
@@ -237,12 +237,21 @@ and IE 6+.
 }
 
 /*  GRID SPANS */
+.span_100{
+	width:100%;
+}
+
 .span_80 {
 	width: 80%;
 }
 
 .span_70 {
 	width: 70%;
+}
+
+/*for the input boxes zz*/
+.span_69 {
+	width: 69%;
 }
 
 .span_60 {

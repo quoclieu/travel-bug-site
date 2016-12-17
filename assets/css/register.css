@@ -1,3 +1,92 @@
-#form{
+#form-wrapper {
 	text-align: center;
+	background-color: #F7F7F7;
+
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	border-radius: 25px;
+
+	width:350px;
+	height:400px;
+
+
+	margin:80px auto;
+
+	padding:50px 5px 50px 5px;
 }
+
+#form-wrapper .title{
+	font-size: 20px;
+	font-weight: 500;
+	padding-bottom:15px;
+}
+
+#form-wrapper .smallgray{
+	font-size: 10px;
+	color:#9F9F9F;
+	padding:10px;
+}
+
+#form-wrapper a{
+	color:#41E2B0;
+}
+
+#form-wrapper .facebook{
+	border:none;
+	background-color:#3b5998;
+	color:white;
+
+	font-size:10px; 
+	font-weight: 200;
+	padding:10px 15px 10px 15px;
+	margin:10px;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#form-wrapper .login{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	padding:5px 25px 5px 25px;
+
+	border:1px solid #9F9F9F;
+	background-color: #F7F7F7;
+	color:#9F9F9F;
+	font-size: 8px
+
+}
+
+form .submit{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	border:none;
+	margin-top:10px;
+
+	padding:7px;
+	margin:20px;
+
+	color:white;
+	background-color: #41E2B0;
+}
+
+form input {
+	font-size: 10px;
+	padding:10px;
+	margin:3px;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border:none;
+}
+
+
+
+
+
