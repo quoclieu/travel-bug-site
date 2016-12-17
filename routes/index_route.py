@@ -8,7 +8,6 @@ from travelbug import app
 @app.route("/")
 def index():
 	title = "Travel Bug"
-	session['my_var'] = 'my_value'
 	template_vars = {
 		"title" : title
 	}

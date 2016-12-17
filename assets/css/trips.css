@@ -112,5 +112,10 @@
 	border:none;
 	color: #9F9F9F;
 	background-color:#9F9F9F;
+}
 
+#no-trips{
+	text-align: center;
+	font-size: 20px;
+	padding-top: 60px;
 }
