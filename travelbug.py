@@ -6,7 +6,6 @@ app = Flask(__name__, static_folder='.', static_url_path='')
 from routes import *
 
 if __name__ == "__main__":
-    app.run(debug=True, port=2526, threaded=True) #get rid of threaded upon release 
-    #threaded makes page load faster for development purposes but not sure if it has othe r effects
+    app.run(debug=True, port=2526)
 	# http_server = WSGIServer(('', 2526), app).
 	# http_server.serve_forever()

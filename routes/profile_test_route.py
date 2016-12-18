@@ -10,8 +10,7 @@ config = {
   "authDomain": "travel-bugg.firebaseapp.com",
   "databaseURL": "https://travel-bugg.firebaseio.com",
   "storageBucket": "travel-bugg.appspot.com",
-  "serviceAccount" : "Unknown"
-
+  "serviceAccount" : "serviceAccount"
 }
 
 firebase = pyrebase.initialize_app(config)
