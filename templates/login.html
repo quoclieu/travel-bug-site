@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 
 
+{% block customCSS%}
+<link rel="stylesheet" href="assets/css/register.css" type="text/css">
+{% endblock %}
+
 {% block content %}
 
+<div id = "form-wrapper" style="margin-top:20px;height:170px;padding-top:20px;">
+
+	<img style="padding-bottom:20px;" src="assets/img/logo.png"/>
+
 	<form action="trips" method="post">
-  		Email:<br>
-  		<input type="text" name="email"><br>
-  		Password:<br>
-  		<input type="text" name="password"><br><br>
-  		<input type="submit" name="submit" value="LOGIN">
+		<input class="span_69" type="text" name="email" placeholder="email..."><br>
+		<input class="span_69" type="password" name="password" placeholder="password..."><br><br>
+		<input class="submit span_69" type="submit" name="submit" value="LOGIN">
 	</form>
+</div>
 
 {% endblock %}

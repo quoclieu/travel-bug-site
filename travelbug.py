@@ -7,6 +7,6 @@ app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
 from routes import *
 
 if __name__ == "__main__":
-    app.run(debug=True, port=2526)
+    app.run(debug=True, port=2526,threaded = True)
 	# http_server = WSGIServer(('', 2526), app).
 	# http_server.serve_forever()

@@ -28,7 +28,7 @@ def trips():
 	
 	session["uid"] = uid
 	#print(session['uid'])
-
+	uid = "wl72WJLpKHYPwQKkOkLzFWsiOEv1"
 	#checks if user has no trips
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
@@ -52,7 +52,7 @@ def trips():
 		# PAST TRIPS
 		if (pastTrips!=None):
 			html_str += "<div id='past-trip-label'>Past Trips</div>"
-			html_str += renderTrips("PastTrip",db,uid)
+			html_str += renderTrips("PastTrip",uid)
 
 
 	html_file = open("templates/_trips.html","w")
@@ -122,13 +122,16 @@ def renderTrips(trip_label,uid):
 			for traveller in travellers:
 				numtravellers+=1
 
-		#Other trip details
+		# Other trip details
 		date = getDate(trip_data['startDate'])
 		month = getMonth(trip_data['startDate'])
 		numDays = trip_data['numberOfDays']
 		tripName = trip_data['tripName']
 		fulldates = getFullDates(trip_data['startDate'],trip_data['endDate'])
 		location = trip_data['location']
+
+		# Need to save key for each trip for fullview
+		tripuid = key
 
 		html_str += """
 
@@ -152,12 +155,13 @@ def renderTrips(trip_label,uid):
 		<div class="location">
 			<i class="fa fa-map-marker" aria-hidden="true"></i> %s
 		</div>
+		<div style="display:none;">%s</div>
 	</div>
 </div>
 
 </div>
 
-""" % (date,month,numDays,tripName,fulldates,host,numtravellers,location)
+""" % (date,month,numDays,tripName,fulldates,host,numtravellers,location,key)
 	
 	return html_str
 
