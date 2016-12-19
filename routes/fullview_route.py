@@ -20,45 +20,63 @@ def fullview():
 	uid = "wl72WJLpKHYPwQKkOkLzFWsiOEv1"
 	trip_key="-KY1wbY8qi-qMzhjApap"
 
-	html_str = ""
-
 	trip_data = db.child("Trip").child(trip_key).get().val()
 
 	trip_days = db.child("Trip").child(trip_key).child("Days").get().val()
-	for day_key in trip.values():
+
+	daynum = 0
+	html_str = ""
+
+	for day_key in trip_days.values():
 		day_data = db.child("DayTrip").child(day_key).get().val()
-	
-		html += """
+		
+		dayTitle = "IN PROGRESS"
+		numAct = 999
+		daynum+=1
+		date = "IN PROGESS" # should be 19 AUG format
+
+		html_str += """
 <div class="day-card">
 	<div class="day-label">
 		<div class="day-title">
-			Great Ocean Road
-			<div class="num-act">8 activities planned</div>
+			%s
+			<div class="num-act">%s activities planned</div>
 		</div>
 		<div class="date-circle">
-			<div class="daynum">1</div>
-			<div class="date">19 AUG</div>
+			<div class="daynum">%s</div>
+			<div class="date">%s</div>
 		</div>
 	</div>
-"""
+""" % (dayTitle,numAct,daynum,date)
 		
-		for act_key in day_data:
-			if (day_data!=None):
-				for act_key in day_data:
-					html += """
+		if (day_data!=None):
+			# Activities
+			for act_key in day_data:
+				if (day_data!=None):
+					for act_key in day_data:
+						actName = "IN PROGRESS"
+						location = "IN PROGRESS"
+						html_str += """
+	
+	<div class="activity">
+		<div class="activity-name">
+			%s
+			<div class="activity-location">
+				<i class="fa fa-map-marker" aria-hidden="true"></i> %s
+			</div>
+		</div>
+		<div class="activity-pic"></div>
+	</div>
+	<hr>
+	
 
 
+""" % (actName, location)
+		html_str+="\n</div>"
 
-
-"""
-
-
-
-
-
-
-
-
+	html_file = open("templates/_fullview.html","w")
+	html_file.write(html_str)
+	html_file.close()
 
 	###############################################################
 
