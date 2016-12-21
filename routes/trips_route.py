@@ -15,20 +15,23 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
 #server/mytrips
-@app.route("/trips", methods = ['POST'])
+@app.route("/trips", methods = ['GET','POST'])
 def trips():
 
-	if (request.form["submit"] == "LOGIN"):
-		uid = log_in()
+	#if (request.form["submit"] == "LOGIN"):
+	#	uid = log_in()
 		#print("log in")
 	
-	elif (request.form["submit"] == "REGISTER"):
-		uid = register()
+	#elif (request.form["submit"] == "REGISTER"):
+	#	uid = register()
 		#print("reggo")	
 	
-	session["uid"] = uid
-	#print(session['uid'])
-	uid = "wl72WJLpKHYPwQKkOkLzFWsiOEv1"
+	#session["uid"] = uid
+
+	uid = session['uid']
+
+	print(session['uid'])
+
 	#checks if user has no trips
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()

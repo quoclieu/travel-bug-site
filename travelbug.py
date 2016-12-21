@@ -2,6 +2,7 @@ from flask import Flask, render_template, session
 # from gevent.wsgi import WSGIServer
 app = Flask(__name__, static_folder='.', static_url_path='')
 app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
+WTF_CSRF_ENABLED = True
 
 #import all routes from routes directory
 from routes import *
