@@ -24,9 +24,14 @@ def register():
 	form = RegisterForm()
 
 	if form.validate_on_submit():
+		
 		auth = firebase.auth()
 		#user register in authentication database
-		user_data = auth.create_user_with_email_and_password(request.form["email"], request.form["password"])
+		
+		try:
+			user_data = auth.create_user_with_email_and_password(request.form["email"], request.form["password"])
+		except:
+			return render_template("register.html",vars = template_vars, form=form, is_error=True)
 	
 		#have to store user in user database	
 		data = {
@@ -40,4 +45,4 @@ def register():
 		session['uid'] = user_data['localId']
 
 		return redirect('/trips')
-	return render_template("register.html",vars = template_vars, form=form)
+	return render_template("register.html",vars = template_vars, form=form, is_error=False)

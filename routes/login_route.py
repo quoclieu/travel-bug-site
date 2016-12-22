@@ -24,10 +24,15 @@ def login():
 	form = LoginForm()
 
 	if form.validate_on_submit():
+		
 		auth = firebase.auth()
-		user_data = auth.sign_in_with_email_and_password(request.form["email"], request.form["password"])
+		
+		try: 
+			user_data = auth.sign_in_with_email_and_password(request.form["email"], request.form["password"])		
+		except:
+			return render_template("login.html",vars = template_vars, form=form, is_error=True)
 
 		session['uid'] = user_data['localId']
 
 		return redirect('/trips')
-	return render_template("login.html",vars = template_vars, form=form)
+	return render_template("login.html",vars = template_vars, form=form, is_error=False)

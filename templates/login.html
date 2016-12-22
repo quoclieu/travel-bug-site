@@ -6,27 +6,37 @@
 {% endblock %}
 
 {% block content %}
+	
 
-<div id = "form-wrapper" style="margin-top:20px;height:170px;padding-top:20px;">
+
+
+<div id = "form-wrapper" style="margin-top:20px;height:250px;padding-top:20px;">
 
 	<img style="padding-bottom:20px;" src="assets/img/logo.png"/>
-
+	
+	{%if is_error %}
+		<span style="color: red; font-size: 10px;">
+			<p>Incorrect email or password.</p>
+			<p>Please try again</p>
+		</span>
+	{% endif %}
+	
 	<form action="" method="post">
 	    {{form.hidden_tag()}}
 
 	    {% for error in form.email.errors %}
-            <span style="color: red; font-size: 10px;">[{{ error }}]</span>
+            <span style="color: red; font-size: 9px;">[{{ error }}]</span>
         {% endfor %}
 		
-		{{form.email(placeholder="email...", class="span_69")}}
+		{{form.email(placeholder="email", class="span_69")}}
 
 		<br>
 
 		{% for error in form.password.errors %}
-            <span style="color: red; font-size: 10px;">[{{ error }}]</span>
+            <span style="color: red; font-size: 9px;">[{{ error }}]</span>
         {% endfor %}
 
-		{{form.password(placeholder="password...", class="span_69")}}
+		{{form.password(placeholder="password", class="span_69")}}
 
 		<br>
 		
