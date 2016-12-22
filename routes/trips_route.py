@@ -28,7 +28,7 @@ def trips():
 	
 	session["uid"] = uid
 	#print(session['uid'])
-	uid = "wl72WJLpKHYPwQKkOkLzFWsiOEv1"
+	#uid = "wl72WJLpKHYPwQKkOkLzFWsiOEv1"
 	#checks if user has no trips
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
@@ -136,28 +136,28 @@ def renderTrips(trip_label,uid):
 		html_str += """
 
 <div class="card-block">
-<div class="date-box">
-	<div class="date">%s</div>
-	<div class="month">%s</div>
-</div>
-
-<div class="card-left"></div>
-
-<div class="card-right">
-	<div class="trip-textbox">
-		<div class="days">%s DAYS</div>
-		<div class="title">%s</div>
-		<div class="full-dates">%s</div>
-		<div class="host">Hosted by %s</div>
-		<hr/>
-		<div class="numtravelers">%s travelers</div>
-
-		<div class="location">
-			<i class="fa fa-map-marker" aria-hidden="true"></i> %s
-		</div>
-		<div style="display:none;">%s</div>
+	<div class="date-box">
+		<div class="date">%s</div>
+		<div class="month">%s</div>
 	</div>
-</div>
+
+	<div class="card-left"></div>
+
+	<div class="card-right">
+		<div class="trip-textbox">
+			<div class="days">%s DAYS</div>
+			<div class="title">%s</div>
+			<div class="full-dates">%s</div>
+			<div class="host">Hosted by %s</div>
+			<hr/>
+			<div class="numtravelers">%s travelers</div>
+
+			<div class="location">
+				<i class="fa fa-map-marker" aria-hidden="true"></i> %s
+			</div>
+			<div style="display:none;">%s</div>
+		</div>
+	</div>
 
 </div>
 

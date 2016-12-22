@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime,timedelta
 
 ########### TRIPS ############
 
@@ -32,3 +32,10 @@ def getFullDates(startDate,endDate):
 		return "%s %s - %s %s" % (startDate.day, startDate.strftime("%B"),\
 			endDate.day,endDate.strftime("%B"))
 
+#Full date - takes in a date and an increment and return as a date number and month in format:
+#eg. 19 AUG
+#Example date = 1/2/2016 increment = 3 output = 4 Feb
+def formatDate(date,increment):
+	dateFormat = datetime.strptime(date, '%d/%m/%Y')
+	dateFormat += timedelta(days=increment)
+	return "%s %s" % (dateFormat.day, dateFormat.strftime("%b"))
