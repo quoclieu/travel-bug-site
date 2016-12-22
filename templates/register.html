@@ -7,7 +7,8 @@
 {% endblock %}
 
 {% block content %}
-<div id="form-wrapper">
+
+<div id = "form-wrapper">
 
 	<div class="title">
 		Join Travel Bug
@@ -23,34 +24,57 @@
 
 	<div class="smallgray">OR</div>
 
-	<button class="facebook">REGISTER WITH FACEBOOK</button>
+	{%if is_error %}
+		<span style="color: red; font-size: 10px;">
+			<p>Sorry! This email already exists</p>
+			<p>Please try again with another email address</p>
+		</span>
+	{% endif %}
+	
 
-	<div class="smallgray">OR</div>
+	<form action="" method="post">
+	    {{form.hidden_tag()}}
 
-	<form action="trips" method="post">
-		<input class="span_69" type="email" name ="email" placeholder="email">
-		<br>
-
-		<input class="span_30" type="text" name = "firstName" placeholder="first name">
-		<input class="span_30" type="text" name = "lastName" placeholder="last name">
-		<br>
-		<input class="span_69" type="password" name = "password" placeholder="password(min. 8 characters)">
-		<br>
-		<input class="span_69" type="password" name = "password2" placeholder="confirm password">
-
-		<br>
+	    {% for error in form.email.errors %}
+            <span style="color: red; font-size: 9px;">[{{ error }}]</span>
+        {% endfor %}
 		
-		<input type="radio" name="conditions" required>
+		{{form.email(placeholder="email", class="span_69")}}
+
+		<br>
+
+		{% for error in form.firstname.errors %}
+            <span style="color: red; font-size: 9px;">[{{ error }}]</span><br>
+        {% endfor %}
+		
+		{{form.firstname(placeholder="firstname", class="span_30")}}
+		{{form.lastname(placeholder="lastname", class="span_30")}}
+
+		<br>
+
+		{% for error in form.password.errors %}
+            <span style="color: red; font-size: 9px;">[{{ error }}]</span>
+        {% endfor %}
+
+		{{form.password(placeholder="password min. 8 characters", class="span_69")}}
+
+		<br>
+
+		{{form.confirm(placeholder="confirm password", class="span_69")}}
+
+		<br><br>
+
+		{% for error in form.accept_toc.errors %}
+            <span style="color: red; font-size: 9px;">[{{ error }}]</span><br>
+        {% endfor %}
+
+		{{form.accept_toc}}
 		<span style="font-size:8px;font-weight:500;"> I agree to Travel Bug's <a href="/#">terms and conditions</a> &amp <a href="/#">privacy policy.</a></span>
-		
+
 		<br>
 		
 		<input class="submit span_69" type="submit" name="submit" value="REGISTER">
 	</form>
-
-
-
 </div>
-
 
 {% endblock %}

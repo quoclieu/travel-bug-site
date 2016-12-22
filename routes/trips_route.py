@@ -15,20 +15,14 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
 #server/mytrips
-@app.route("/trips", methods = ['POST'])
+@app.route("/trips", methods = ['GET','POST'])
 def trips():
 
-	if (request.form["submit"] == "LOGIN"):
-		uid = log_in()
-		#print("log in")
-	
-	elif (request.form["submit"] == "REGISTER"):
-		uid = register()
-		#print("reggo")	
-	
-	session["uid"] = uid
+	uid = session['uid']
+
 	#print(session['uid'])
 	#uid = "wl72WJLpKHYPwQKkOkLzFWsiOEv1"
+
 	#checks if user has no trips
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
@@ -67,30 +61,6 @@ def trips():
 		"title" : title
 	}
 	return render_template("trips.html",vars = template_vars)
-
-
-def register():
-	
-	auth = firebase.auth()
-	#user register in authentication database
-	user_data = auth.create_user_with_email_and_password(request.form["email"], request.form["password"])
-	
-	#have to store user in user database	
-	data = {
-	    "firstName" : request.form["firstName"],
-		"lastName" : request.form["lastName"],
-	    "email" : request.form["email"]
-	}
-
-	db.child("User").child(user_data['localId']).set(data)
-
-	return user_data['localId']
-
-def log_in():	
-	auth = firebase.auth()
-	user_data = auth.sign_in_with_email_and_password(request.form["email"], request.form["password"])
-
-	return user_data['localId']
 	
 
 def renderTrips(trip_label,uid):
