@@ -62,11 +62,13 @@ def fullview():
 
 	trip_days = db.child("Trip").child(trip_key).child("Days").get().val()
 
-	daynum = 0
+	#daynum = 0
 
 	html_str+= '<div id="card-grid">'
 
-	for day_key in trip_days.values():
+	for daynum in range(len(trip_days)):
+		day = "Day" + str(daynum+1)
+		day_key = db.child("Trip").child(trip_key).child("Days").child(day).get().val()
 		day_data = db.child("DayTrip").child(day_key).get().val()
 
 		dayTitle = "TEMP"#day_data[dayTitle]
@@ -84,7 +86,7 @@ def fullview():
 			dayTitle = "No Title"
 
 		date = formatDate(trip_data['startDate'],daynum) # should be 19 AUG format
-		daynum+=1
+		
 		
 
 		html_str += """
@@ -99,7 +101,7 @@ def fullview():
 			<div class="date">%s</div>
 		</div>
 	</div>
-""" % (dayTitle,numAct,daynum,date)
+""" % (dayTitle,numAct,(daynum+1),date)
 
 ########ACTIVITIES################################# 
 
