@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request, session
 from travelbug import app
 import pyrebase
 from process import *
@@ -18,8 +18,8 @@ db = firebase.database()
 def fullview():
 
 	
-	uid = "7HYXTyUfgMhXVpF1ucU7zgjush52"
-	trip_key="-KY1wbY8qi-qMzhjApap"
+	uid = session['uid']
+	trip_key=request.args.get('trip_key', None)
 
 
 	##### REVAMP THIS ENTIRE SECTION - TRANSFER DATA AS A DICT FROM PREV PAGE INTO HERE##

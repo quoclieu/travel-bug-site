@@ -102,6 +102,8 @@ def renderTrips(trip_label,uid):
 
 		# Need to save key for each trip for fullview
 		tripuid = key
+		print("trips")
+		print(tripuid)
 
 		html_str += """
 
@@ -116,7 +118,7 @@ def renderTrips(trip_label,uid):
 	<div class="card-right">
 		<div class="trip-textbox">
 			<div class="days">%s DAYS</div>
-			<div class="title">%s</div>
+			<div class="title"><a href="{{ url_for('fullview', trip_key="%s") }}">%s</a></div>
 			<div class="full-dates">%s</div>
 			<div class="host">Hosted by %s</div>
 			<hr/>
@@ -125,13 +127,12 @@ def renderTrips(trip_label,uid):
 			<div class="location">
 				<i class="fa fa-map-marker" aria-hidden="true"></i> %s
 			</div>
-			<div style="display:none;">%s</div>
 		</div>
 	</div>
 
 </div>
 
-""" % (date,month,numDays,tripName,fulldates,host,numtravellers,location,key)
+""" % (date,month,numDays,tripuid,tripName,fulldates,host,numtravellers,location)
 	
 	return html_str
 
