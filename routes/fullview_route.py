@@ -48,7 +48,7 @@ def fullview():
 	%s<br>
 	<span style="color:#9F9F9F">%s</span>
 	<div class="host">Hosted by %s</div>
-	<hr>
+	<hr align="left">
 	<div class="location">
 		<i class="fa fa-map-marker" aria-hidden="true"></i> %s
 	</div>
@@ -62,8 +62,6 @@ def fullview():
 
 	trip_days = db.child("Trip").child(trip_key).child("Days").get().val()
 
-	#daynum = 0
-
 	html_str+= '<div id="card-grid">'
 
 	for daynum in range(len(trip_days)):
@@ -72,7 +70,7 @@ def fullview():
 		day_data = db.child("DayTrip").child(day_key).get().val()
 
 		dayTitle = "TEMP"#day_data[dayTitle]
-
+		#has not been implemented on android side yet
 
 ########DAYS##########################################
 		
@@ -80,12 +78,23 @@ def fullview():
 		numAct = 0
 		if (day_data!=None):
 			for act_key in day_data:
+				## Need to refactor this section
+				## it counts the number of activities and checks if the activity
+				## is a transport
+				## If its a transport it skips the count
+				act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
+				try:
+					actName = act_data["eventName"]
+				except KeyError:
+					continue
 				numAct+=1
+
+
 
 		if(dayTitle == None):
 			dayTitle = "No Title"
 
-		date = formatDate(trip_data['startDate'],daynum) # should be 19 AUG format
+		date = formatDate(trip_data['startDate'],daynum)
 		
 		
 
@@ -101,6 +110,7 @@ def fullview():
 			<div class="date">%s</div>
 		</div>
 	</div>
+	<hr>
 """ % (dayTitle,numAct,(daynum+1),date)
 
 ########ACTIVITIES################################# 
@@ -110,8 +120,11 @@ def fullview():
 			for act_key in day_data:
 				act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
 				if (act_data!=None):
-					actName = "yes"#act_data["eventName"]
-					location = "yes"#act_data["location"]["address"]
+					try:
+						actName = act_data["eventName"]
+					except KeyError:
+						continue
+					location = act_data["location"]["address"]
 					html_str += """
 	
 	<div class="activity">

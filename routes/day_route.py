@@ -6,6 +6,25 @@ from travelbug import app
 #server/mytrips
 @app.route("/day")
 def day():
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	###################################################################
 	title = "Day"
 	template_vars = {
 		"title" : title
