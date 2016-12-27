@@ -1,8 +1,6 @@
-
-
 #slider{
 	background-color: #41E2B0;
-	height:210px;
+	height:1px;
 	margin-top: 0px;
 }
 
@@ -24,7 +22,6 @@
 }
 
 .trip-details hr{
-	margin:10px 0px 10px 0px;
 	width:400px;
 	height:1px;
 	border:none;
@@ -47,7 +44,7 @@
 	margin-right: 20px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	overflow:scroll;
+	overflow:auto;
 
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
@@ -64,11 +61,9 @@
 }
 
 #card-grid .day-card .day-label .day-title{
-	float:right;
-	position:relative;
-	left:-70px;
-	top:10px;
 	font-size: 15px;
+	margin-left:60px;
+	padding-top:10px;
 }
 
 #card-grid .day-card .day-label .day-title .num-act{
@@ -86,9 +81,9 @@
 	background-color: white;
 	text-align: center;
 	vertical-align: middle;
-	position:relative;
-	top:8px;
-	left:10px;
+
+	margin-left:5px;
+	margin-top:-35px;
 }
 
 #card-grid .day-card .activity .activity-pic{
@@ -100,18 +95,14 @@
 	color: black;
 	/*background-image: url('/assets/img/logo.png');*/
 	background-color: #41E2B0;
-	text-align: center;
-	vertical-align: middle;
-	position:relative;
-	top:8px;
-	left:10px;
+	
+	margin-left: 10px;
+	margin-top: -40px;
 }
 
 #card-grid .day-card .activity .activity-name{
-	float:right;
-	position:relative;
-	left:-95px;
-	top:10px;
+	margin-top: 10px;
+	margin-left: 70px;
 	font-size: 15px;
 }
 
@@ -127,8 +118,7 @@
 #card-grid .day-card .activity{
 	margin-top: 5px;
 	margin-bottom: 0px;
-	overflow:scroll;
-	height:180px;
+	height:60px;
 }
 
 #card-grid .day-card .day-label .date-circle .daynum{

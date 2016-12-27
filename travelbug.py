@@ -8,6 +8,6 @@ WTF_CSRF_ENABLED = True
 from routes import *
 
 if __name__ == "__main__":
-    app.run(debug=True, port=2526,threaded = True)
+    app.run(debug=True, port=2526)
 	# http_server = WSGIServer(('', 2526), app).
 	# http_server.serve_forever()
