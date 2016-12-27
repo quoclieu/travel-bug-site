@@ -114,7 +114,7 @@ def renderTrips(trips):
 	<div class="card-right">
 		<div class="trip-textbox">
 			<div class="days">%s DAYS</div>
-			<div class="title"><a href="{{ url_for('fullview', trip_key="%s") }}">%s</a></div>
+			<div class="title"><a href="{{ url_for('fullview', trip_key="%s", trip_data='%s') }}">%s</a></div>
 			<div class="full-dates">%s</div>
 			<div class="host">Hosted by %s</div>
 			<hr/>
@@ -128,7 +128,9 @@ def renderTrips(trips):
 
 </div>
 
-""" % (date,month,numDays,tripuid,tripName,fulldates,host,numtravellers,location)
+""" % (date,month,numDays,tripuid,json.dumps(trip_data),tripName,fulldates,host,numtravellers,location)
+		#print(json.loads(json.dumps(trip_data)))
+
 	
 	return html_str
 

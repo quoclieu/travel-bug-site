@@ -1,6 +1,7 @@
 from flask import render_template, request, session
 from travelbug import app
 import pyrebase
+import json
 from process import *
 
 config = {
@@ -20,10 +21,17 @@ def fullview():
 	
 	uid = session['uid']
 	trip_key=request.args.get('trip_key', None)
-
+	print("fullview")
+	print(trip_key)
 
 	##### REVAMP THIS ENTIRE SECTION - TRANSFER DATA AS A DICT FROM PREV PAGE INTO HERE##
-	trip_data = db.child("Trip").child(trip_key).get().val()
+	
+	
+	trip_data =json.loads(request.args.get('trip_data'))
+	
+
+	
+	#db.child("Trip").child(trip_key).get().val()
 	user_data = db.child("User").child(uid).get().val()
 
 

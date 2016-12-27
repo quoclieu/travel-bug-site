@@ -6,6 +6,7 @@ from travelbug import app
 #server/mytrips
 @app.route("/day")
 def day():
+	uid = session['uid']
 
 
 

@@ -13,6 +13,7 @@ config = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
+
 #login
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -34,6 +35,8 @@ def login():
 
 		session['uid'] = user_data['localId']
 		session['logged_in'] = True
+		#session['db'] = db
+		#print(session['db'])
 
 		return redirect('/trips')
 	return render_template("login.html",vars = template_vars, form=form, is_error=False)
