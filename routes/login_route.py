@@ -33,6 +33,7 @@ def login():
 			return render_template("login.html",vars = template_vars, form=form, is_error=True)
 
 		session['uid'] = user_data['localId']
+		session['logged_in'] = True
 
 		return redirect('/trips')
 	return render_template("login.html",vars = template_vars, form=form, is_error=False)

@@ -37,12 +37,20 @@
                             <a href="/"><img src="assets/img/logoblack.png" style="width:20px;">
                             </a>
                         </li>
-                        <li ><a href="/login">My Trips</a></li>            
+                        {% if session.logged_in%}
+                        <li ><a href="/trips">My Trips</a></li> 
+                        {% endif %} 
+
                     </div>
 
                     <div id="rightnav">
+                        {% if session.logged_in%}
+                        <li style="border-left:2px solid #DBDBDB;"><a href="/logout">Logout</a></li>
+                        {% else %}
                         <li><a href="/login">Login</a></li>
                         <li style="border-left:2px solid #DBDBDB;"><a href="/register">Register</a></li>
+                        {% endif %}
+
                         <li><a href="/contact">Contact</a></li>
                         <li><a href="/about">About</a></li>
                         <li class="icon">

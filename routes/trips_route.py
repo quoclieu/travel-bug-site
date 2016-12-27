@@ -20,11 +20,9 @@ def trips():
 
 	uid = session['uid']
 
-	#print(session['uid'])
-	#uid = "wl72WJLpKHYPwQKkOkLzFWsiOEv1"
-
 	#checks if user has no trips
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
+	print(currTrips)
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
 	if (currTrips == None and pastTrips == None):
 		
@@ -40,13 +38,13 @@ def trips():
 	else:
 		#CURRENT TRIPS
 		if (currTrips!=None):
-			html_str = renderTrips("Trip",uid)
+			html_str = renderTrips(currTrips)
 
 	
 		# PAST TRIPS
 		if (pastTrips!=None):
 			html_str += "<div id='past-trip-label'>Past Trips</div>"
-			html_str += renderTrips("PastTrip",uid)
+			html_str += renderTrips(pastTrips)
 
 
 	html_file = open("templates/_trips.html","w")
@@ -60,12 +58,12 @@ def trips():
 	template_vars = {
 		"title" : title
 	}
-	return render_template("trips.html",vars = template_vars)
+	return render_template("trips.html",vars = template_vars, page = "trips")
 	
 
-def renderTrips(trip_label,uid):
+def renderTrips(trips):
 	
-	trips = db.child("User").child(uid).child(trip_label).get().val()
+	#trips = db.child("User").child(uid).child(trip_label).get().val()
 	
 
 	#else display all trips the user is in
@@ -102,9 +100,7 @@ def renderTrips(trip_label,uid):
 
 		# Need to save key for each trip for fullview
 		tripuid = key
-		print("trips")
-		print(tripuid)
-
+	
 		html_str += """
 
 <div class="card-block">

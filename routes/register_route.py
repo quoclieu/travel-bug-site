@@ -29,9 +29,13 @@ def register():
 		#user register in authentication database
 		
 		try:
+
 			user_data = auth.create_user_with_email_and_password(request.form["email"], request.form["password"])
 		except:
 			return render_template("register.html",vars = template_vars, form=form, is_error=True)
+
+		#veri_data = auth.send_email_verification(user_data['idToken'])
+		#print(veri_data)	
 	
 		#have to store user in user database	
 		data = {
@@ -43,6 +47,11 @@ def register():
 		db.child("User").child(user_data['localId']).set(data)
 
 		session['uid'] = user_data['localId']
+		session['logged_in'] = True
 
+		#return str("verification sent")
 		return redirect('/trips')
 	return render_template("register.html",vars = template_vars, form=form, is_error=False)
+
+
+

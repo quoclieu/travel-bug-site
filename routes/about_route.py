@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, session
 from travelbug import app
 
 #server/about
