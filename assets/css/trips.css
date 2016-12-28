@@ -1,12 +1,3 @@
-a:link {
-    color: black;
-}
-
-a:visited {
-    color: black;
-}
-
-
 #trip-heading{
 	padding:10px 0px 10px 0px;
 	text-align:center;
@@ -136,4 +127,9 @@ a:visited {
 	font-weight: 300;
 	padding-top:60px;
 }
+
+.card-block .card-right .title a:link,a:visited {
+    color: black;
+}
+
 

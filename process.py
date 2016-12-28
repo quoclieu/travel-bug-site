@@ -39,3 +39,44 @@ def formatDate(date,increment):
 	dateFormat = datetime.strptime(date, '%d/%m/%Y')
 	dateFormat += timedelta(days=increment)
 	return "%s %s" % (dateFormat.day, dateFormat.strftime("%b"))
+
+############ DAY ####################
+
+
+#Returns the correct font awesome icon
+def getIcon(transport):
+	if(transport == "Train" or transport == "Tram"):
+		transport_icon = "fa-train"
+	elif(transport == "Car"):
+		transport_icon = "fa-car"
+	elif(transport == "Bus"):
+		transport_icon = "fa-bus"
+	elif(transport == "Taxi"):
+		transport_icon = "fa-taxi"
+	else:
+		transport_icon = "fa-bug"
+	return transport_icon
+
+#Returns a 24 hour time into 12 hour time with AM or PM
+#Takes in a timeSort string eg. 421200 converts to 12:00PM
+def getTime(time):
+	#get rid of the 42 at the start of the string
+	time = time - 420000
+
+	if(time-1200)>0:
+		time = time-1200
+		time = str(time)
+		time_str = time[:-2]+':'+time[-2:]
+		return(time_str+"PM")
+	elif(time == 0):
+		return("12:00AM")
+	elif(time == 1200):
+		return("12:00PM")
+	else:
+		time = str(time)
+		time_str = time[:-2]+':'+time[-2:]
+		return(time_str+"AM")
+
+
+
+
