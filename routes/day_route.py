@@ -27,9 +27,9 @@ def day():
 	trip_data = db.child("Trip").child(trip_key).get().val()
 
 
-	dayNum = '1'
-	date = '20 August 2016' 
-	tripName = 'yeti'
+	dayNum = request.args.get('daynum', None)
+	date = request.args.get('date', None)
+	tripName = trip_data['tripName']
 	dayName = 'TEMP'
 
 	html_str = '''
@@ -66,8 +66,6 @@ def day():
 		try:
 			# Handles printing the transport slot
 			transport = act_data['transport']
-
-			time = getTime(int(act_data['timeSort']))
 			transport_icon = getIcon(transport)
 			description = act_data['description']
 
@@ -87,8 +85,6 @@ def day():
 
 		except KeyError:
 			# Handles printing activities
-
-			time = getTime(int(act_data['timeSort']))
 			title = act_data['eventName']
 			location = act_data['location']['address']
 			description = act_data['description']

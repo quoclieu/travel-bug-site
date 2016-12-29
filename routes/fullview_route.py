@@ -108,7 +108,7 @@ def fullview():
 <div class="day-card">
 	<div class="day-label">
 		<div class="day-title">
-			<a href="{{ url_for('day', trip_key="%s", day_key='%s') }}">%s</a>
+			<a href="{{ url_for('day', trip_key="%s", day_key='%s', daynum=%d, date='%s') }}">%s</a>
 			<div class="num-act">%s activities planned</div>
 		</div>
 		<div class="date-circle">
@@ -117,7 +117,7 @@ def fullview():
 		</div>
 	</div>
 	<hr>
-""" % (trip_key, day_key, dayTitle,numAct,(daynum+1),date)
+""" % (trip_key,day_key,(daynum+1),date,dayTitle,numAct,(daynum+1),date)
 
 ########ACTIVITIES################################# 
 
