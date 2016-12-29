@@ -22,9 +22,8 @@ def fullview():
 	uid = session['uid']
 	trip_key=request.args.get('trip_key', None)
 
-	##### REVAMP THIS ENTIRE SECTION - TRANSFER DATA AS A DICT FROM PREV PAGE INTO HERE##
-	
-	
+	#TODO - TRANSFER DATA AS A DICT FROM PREV PAGE INTO HERE
+	#done!
 	trip_data =json.loads(request.args.get('trip_data'))
 	
 	user_data = db.child("User").child(uid).get().val()
@@ -78,6 +77,7 @@ def fullview():
 		
 		#counts and records number of activities for a specific day
 		numAct = 0
+		act_time_key = []
 		if (day_data!=None):
 			for act_key in day_data:
 				## Need to refactor this section
@@ -90,6 +90,10 @@ def fullview():
 				except KeyError:
 					continue
 				numAct+=1
+				act_time_key.append((act_data['time'],act_key))
+			act_time_key.sort()
+			
+
 
 
 
@@ -104,7 +108,7 @@ def fullview():
 <div class="day-card">
 	<div class="day-label">
 		<div class="day-title">
-			<a href="{{ url_for('day', trip_key="%s", day_key='%s') }}">%s</a>
+			<a href="{{ url_for('day', trip_key="%s", day_key='%s', daynum=%d, date='%s') }}">%s</a>
 			<div class="num-act">%s activities planned</div>
 		</div>
 		<div class="date-circle">
@@ -113,13 +117,13 @@ def fullview():
 		</div>
 	</div>
 	<hr>
-""" % (trip_key, day_key, dayTitle,numAct,(daynum+1),date)
+""" % (trip_key,day_key,(daynum+1),date,dayTitle,numAct,(daynum+1),date)
 
 ########ACTIVITIES################################# 
 
 		if (day_data!=None):
 			# Activities
-			for act_key in day_data:
+			for (time,act_key) in act_time_key:
 				act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
 				if (act_data!=None):
 					try:

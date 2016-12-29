@@ -3,6 +3,7 @@ from travelbug import app
 import pyrebase
 import json
 from process import *
+from datetime import datetime as dt
 
 config = {
     "apiKey": "AIzaSyBNT4gDmMljV3Oko-E5WLMnNvW9mBfQ5FE",
@@ -62,13 +63,19 @@ def trips():
 
 def renderTrips(trips):
 	
-	#trips = db.child("User").child(uid).child(trip_label).get().val()
 	
+	# to get the dates of all the trips
+	trip_date_key = []
+	for key in trips: 
+		start_date = db.child("Trip").child(key).child("startDate").get().val()
+		trip_date_key.append((dt.strptime(start_date, "%d/%m/%Y"),key))
+		
+	trip_date_key.sort(reverse=True)
 
 	#else display all trips the user is in
 	html_str = ""
 
-	for key in trips:
+	for (date,key) in trip_date_key:
 		trip_data = db.child("Trip").child(key).get().val()
 
 		# Get Host Full name

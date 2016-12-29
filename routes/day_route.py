@@ -27,9 +27,9 @@ def day():
 	trip_data = db.child("Trip").child(trip_key).get().val()
 
 
-	dayNum = '1'
-	date = '20 August 2016' 
-	tripName = 'yeti'
+	dayNum = request.args.get('daynum', None)
+	date = request.args.get('date', None)
+	tripName = trip_data['tripName']
 	dayName = 'TEMP'
 
 	html_str = '''
@@ -51,28 +51,25 @@ def day():
 	''' %(dayNum, date, tripName,dayName)
 
 	# Sorts list of time
-	time_list = []
+	act_time_key = []
 	for act_key in day_data:
 		act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
-		time_list.append(act_data['timeSort'])
-
-	time_list = sorted(time_list)
+		act_time_key.append((act_data['time'],act_key))
+		#print(act_data['timeSort'])
+	act_time_key.sort()
 
 	# Prints activities and transport in accordance to the sorted time list
-	for time in time_list:
-		for act_key in day_data:
-			act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
-			if(time == act_data['timeSort']):
+	for (time,act_key) in act_time_key:
+		act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
+			
 		
-				try:
-					# Handles printing the transport slot
-					transport = act_data['transport']
+		try:
+			# Handles printing the transport slot
+			transport = act_data['transport']
+			transport_icon = getIcon(transport)
+			description = act_data['description']
 
-					time = getTime(int(act_data['timeSort']))
-					transport_icon = getIcon(transport)
-					description = act_data['description']
-
-					html_str += '''
+			html_str += '''
 
 			<div class="transport-block">
 				<div class="col span_10" style="font-size:10px;font-weight:500;padding-top:16px;">
@@ -86,15 +83,13 @@ def day():
 			<div style="clear:both;"></div>
 		'''	% (time,transport_icon,description)
 
-				except KeyError:
-					# Handles printing activities
+		except KeyError:
+			# Handles printing activities
+			title = act_data['eventName']
+			location = act_data['location']['address']
+			description = act_data['description']
 
-					time = getTime(int(act_data['timeSort']))
-					title = act_data['eventName']
-					location = act_data['location']['address']
-					description = act_data['description']
-
-					html_str += '''
+			html_str += '''
 	<div class="activity section group">
 			<div class="col span_10" style="font-size:10px;font-weight:500;padding-top:55px;">
 				%s
