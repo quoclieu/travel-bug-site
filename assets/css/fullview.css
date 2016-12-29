@@ -1,6 +1,6 @@
 #slider{
 	background-color: #41E2B0;
-	height:1px;
+	height:0px;
 	margin-top: 0px;
 }
 
@@ -132,5 +132,10 @@
 
 #card-grid .day-card hr{
 	margin-top: 0px;
+}
+
+
+.day-card .day-title a:link,a:visited {
+    color: black;
 }
 

@@ -15,7 +15,6 @@ config = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
-#server/mytrips
 @app.route("/trips", methods = ['GET','POST'])
 def trips():
 
@@ -136,8 +135,6 @@ def renderTrips(trips):
 </div>
 
 """ % (date,month,numDays,tripuid,json.dumps(trip_data),tripName,fulldates,host,numtravellers,location)
-		#print(json.loads(json.dumps(trip_data)))
-
 	
 	return html_str
 

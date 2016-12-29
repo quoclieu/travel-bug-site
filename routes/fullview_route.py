@@ -28,7 +28,6 @@ def fullview():
 	
 	user_data = db.child("User").child(uid).get().val()
 
-
 	tripName = trip_data['tripName']
 	fulldates = getFullDates(trip_data['startDate'],trip_data['endDate'])
 	# Get Host Full name
@@ -109,7 +108,7 @@ def fullview():
 <div class="day-card">
 	<div class="day-label">
 		<div class="day-title">
-			%s
+			<a href="{{ url_for('day', trip_key="%s", day_key='%s') }}">%s</a>
 			<div class="num-act">%s activities planned</div>
 		</div>
 		<div class="date-circle">
@@ -118,7 +117,7 @@ def fullview():
 		</div>
 	</div>
 	<hr>
-""" % (dayTitle,numAct,(daynum+1),date)
+""" % (trip_key, day_key, dayTitle,numAct,(daynum+1),date)
 
 ########ACTIVITIES################################# 
 
