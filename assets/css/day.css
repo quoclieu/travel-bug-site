@@ -22,7 +22,7 @@
 
 
 
-#day-dropdown .day-num{
+#dropdown .day-num{
 	font-size: 40px;
 	font-weight: 200;
 	text-align: center;
@@ -40,7 +40,7 @@
 	border:1px solid black;
 }
 
-#day-dropdown .date{
+#dropdown .date{
 	background-color: white;
 	height:20px;
 	width:40%;

@@ -47,6 +47,12 @@ hr {
   border-top: 2px solid #eee;
 }
 
+a:visited,a:link{
+	text-decoration: none;
+	color:black;
+}
+
+
 /*********** Top Nav Bar Styling **********/
 
 #header{
