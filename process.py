@@ -42,8 +42,9 @@ def formatDate(date,increment):
 
 #Takes in a date string and returns a full date
 #Example date = 1/2/2016 output = 1 February 2016
-def formatFullDate(date):
+def formatFullDate(date,increment):
 	dateFormat = datetime.strptime(date, '%d/%m/%Y')
+	dateFormat += timedelta(days=increment)
 	return "%s %s %s" % (dateFormat.day, dateFormat.strftime("%B"), dateFormat.year)
 
 ############ DAY ####################

@@ -113,7 +113,8 @@ def fullview():
 			dayTitle = "No Title"
 
 		date = formatDate(trip_data['startDate'],daynum)
-		
+		full_date = formatFullDate(trip_data['startDate'],daynum)
+		print(full_date)
 		
 
 		html_str += """
@@ -129,7 +130,7 @@ def fullview():
 		</div>
 	</div>
 	<hr>
-""" % (day_key,(daynum+1),date,trip_data['tripName'],dayTitle,numAct,(daynum+1),date)
+""" % (day_key,(daynum+1),full_date,trip_data['tripName'],dayTitle,numAct,(daynum+1),date)
 		print("fullview")
 		print(trip_data['tripName'])
 
