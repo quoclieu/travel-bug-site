@@ -65,6 +65,8 @@ def renderTrips(trips):
 	
 	
 	# to get the dates of all the trips
+	# PLS
+	# can get trip data here and access 
 	trip_date_key = []
 	for key in trips: 
 		start_date = db.child("Trip").child(key).child("startDate").get().val()
@@ -75,10 +77,14 @@ def renderTrips(trips):
 	#else display all trips the user is in
 	html_str = ""
 
+	#date = start date
 	for (date,key) in trip_date_key:
+		# all trip details are already pulled
 		trip_data = db.child("Trip").child(key).get().val()
 
 		# Get Host Full name
+		# PLS
+		# can get from trip data no need of another db access
 		host = db.child("Trip").child(key).child("User").child("Admin").get().val()
 		for host_key in host:
 			hostuid = host_key
@@ -89,6 +95,9 @@ def renderTrips(trips):
 		# Get number of travellers
 		numtravellers = 1
 
+		#PLS
+		# i swear to god i will throw a chair at you if i find out 
+		# another unnecessary db access
 		travellers = db.child("Trip").child(key).child("User")\
 		.child("Regular").get().val()
 

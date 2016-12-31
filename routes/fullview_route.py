@@ -25,12 +25,16 @@ def fullview():
 	#TODO - TRANSFER DATA AS A DICT FROM PREV PAGE INTO HERE
 	#done!
 	trip_data =json.loads(request.args.get('trip_data'))
-	
-	user_data = db.child("User").child(uid).get().val()
+	print(trip_data)
+	#PLS
+	#we do not need user data
 
 	tripName = trip_data['tripName']
 	fulldates = getFullDates(trip_data['startDate'],trip_data['endDate'])
+
 	# Get Host Full name
+	#PLS
+	# -.- another unnecessary db access
 	host = db.child("Trip").child(trip_key).child("User").child("Admin").get().val()
 	for host_key in host:
 		hostuid = host_key
@@ -57,17 +61,23 @@ def fullview():
 
 """ % (tripName, fulldates, host, location)
 
-
-
+	#PLS
+	#trip data pulled twice
 	trip_data = db.child("Trip").child(trip_key).get().val()
 
+	#PLS
+	#can get from previously pulled trip data
 	trip_days = db.child("Trip").child(trip_key).child("Days").get().val()
 
 	html_str+= '<div id="card-grid">'
 
 	for daynum in range(len(trip_days)):
 		day = "Day" + str(daynum+1)
+		#PLS
+		#can get from previously pulled trip data
 		day_key = db.child("Trip").child(trip_key).child("Days").child(day).get().val()
+
+		#this is necessary
 		day_data = db.child("DayTrip").child(day_key).get().val()
 
 		dayTitle = "TEMP"#day_data[dayTitle]
@@ -84,6 +94,8 @@ def fullview():
 				## it counts the number of activities and checks if the activity
 				## is a transport
 				## If its a transport it skips the count
+				#PLS
+				#can get from previously pulled day data
 				act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
 				try:
 					actName = act_data["eventName"]
@@ -108,7 +120,7 @@ def fullview():
 <div class="day-card">
 	<div class="day-label">
 		<div class="day-title">
-			<a href="{{ url_for('day', trip_key="%s", day_key='%s', daynum=%d, date='%s') }}">%s</a>
+			<a href="{{ url_for('day', day_key='%s', daynum=%d, date="%s", trip_name='%s') }}">%s</a>
 			<div class="num-act">%s activities planned</div>
 		</div>
 		<div class="date-circle">
@@ -117,13 +129,17 @@ def fullview():
 		</div>
 	</div>
 	<hr>
-""" % (trip_key,day_key,(daynum+1),date,dayTitle,numAct,(daynum+1),date)
+""" % (day_key,(daynum+1),date,trip_data['tripName'],dayTitle,numAct,(daynum+1),date)
+		print("fullview")
+		print(trip_data['tripName'])
 
 ########ACTIVITIES################################# 
 
 		if (day_data!=None):
 			# Activities
 			for (time,act_key) in act_time_key:
+				#PLS
+				# act_data can be outside the for loop 
 				act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
 				if (act_data!=None):
 					try:
