@@ -35,7 +35,7 @@ def day():
 	day_name = 'TEMP'
 
 	html_str = '''
-	<div id="day-dropdown">
+	<div id="dropdown">
 		<div class="day-num">%s</div>
 		<div class="date">
 			%s
