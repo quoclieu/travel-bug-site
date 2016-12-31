@@ -1,0 +1,16 @@
+#create-trip{
+	text-align: center;
+	margin:30% auto;
+}
+
+#create-trip input{
+	width:250px;
+	text-align: center;
+	font-weight: 700;
+
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	border-radius: 25px;
+
+	border: solid 1px black;
+}

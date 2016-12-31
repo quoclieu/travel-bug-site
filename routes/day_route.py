@@ -28,7 +28,7 @@ def day():
 
 
 	dayNum = request.args.get('daynum', None)
-	date = request.args.get('date', None)
+	date = request.args.get('date', None) #formatFullDate(date)
 	tripName = trip_data['tripName']
 	dayName = 'TEMP'
 
@@ -55,13 +55,12 @@ def day():
 	for act_key in day_data:
 		act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
 		act_time_key.append((act_data['time'],act_key))
-		#print(act_data['timeSort'])
 	act_time_key.sort()
 
 	# Prints activities and transport in accordance to the sorted time list
 	for (time,act_key) in act_time_key:
 		act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
-			
+		time = getTime(act_data['timeSort'])	
 		
 		try:
 			# Handles printing the transport slot
@@ -89,6 +88,22 @@ def day():
 			location = act_data['location']['address']
 			description = act_data['description']
 
+			#Ratings and Comments
+			numUp =  0
+			numDown = 0
+			
+			#Checks if votes section exist
+			try:
+				votes = act_data['Votes']
+
+				for (uid,val) in votes.items():
+					if (val == "true"):
+						numUp+=1
+					if (val == "false"):
+						numDown+=1
+			except KeyError:
+				pass
+
 			html_str += '''
 	<div class="activity section group">
 			<div class="col span_10" style="font-size:10px;font-weight:500;padding-top:55px;">
@@ -105,11 +120,15 @@ def day():
 				<div class="description">
 					%s
 				</div>
-				<div class="ratings"></div>
+				<div class="ratings right">
+					%s<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+					%s<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+					<i class="fa fa-comment" aria-hidden="true"></i>
+				</div>
 			</div>
 		</div>
 	<div style="clear:both;"></div>
-''' % (time, title, location, description)
+''' % (time, title, location, description, numUp, numDown)
 
 	html_str += '''
 		</div>
