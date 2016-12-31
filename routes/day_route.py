@@ -21,16 +21,20 @@ def day():
 	uid = session['uid']
 
 	day_key = request.args.get('day_key', None)
-	trip_key = request.args.get('trip_key', None)
+	#PLS
+	#i dont think we need trip key
 
+	#PLS
+	#We dont really need trip data 
+	#day data can be passed through url  
 	day_data = db.child("DayTrip").child(day_key).get().val()
-	trip_data = db.child("Trip").child(trip_key).get().val()
-
 
 	dayNum = request.args.get('daynum', None)
-	date = request.args.get('date', None) #formatFullDate(date)
-	tripName = trip_data['tripName']
-	dayName = 'TEMP'
+
+	date = request.args.get('date', None)
+	trip_name = request.args.get('trip_name', None)
+	day_name = 'TEMP'
+
 
 	html_str = '''
 	<div id="dropdown">
@@ -48,20 +52,18 @@ def day():
 	<div id="schedule-block">
 		<div id="schedule-container">
 
-	''' %(dayNum, date, tripName,dayName)
+	''' %(dayNum,date,trip_name,day_name)
 
+	
 	# Sorts list of time
 	act_time_key = []
 	for act_key in day_data:
 		act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
-		act_time_key.append((act_data['time'],act_key))
+		act_time_key.append((act_data['time'],act_key,act_data))
 	act_time_key.sort()
 
 	# Prints activities and transport in accordance to the sorted time list
-	for (time,act_key) in act_time_key:
-		act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
-		time = getTime(act_data['timeSort'])	
-		
+	for (time,act_key,act_data) in act_time_key:
 		try:
 			# Handles printing the transport slot
 			transport = act_data['transport']
@@ -145,3 +147,5 @@ def day():
 		"title" : title
 	}
 	return render_template("day.html",vars = template_vars)
+
+
