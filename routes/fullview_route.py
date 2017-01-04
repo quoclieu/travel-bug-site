@@ -70,10 +70,11 @@ def fullview():
 
 		day_data = db.child("DayTrip").child(day_key).get().val()
 
-		if(day_title == None):
-			day_title = "No Title"
+		
 		day_title = "TEMP"#day_data['dayTitle']
 		#has not been implemented on android side yet
+		if(day_title == None):
+			day_title = "No Title"
 
 ########DAYS##########################################
 		
@@ -98,11 +99,6 @@ def fullview():
 				act_time_key.append((act_data['time'],act_key,act_data))
 			act_time_key.sort()
 
-
-		#if(day_title == None):
-			#day_title = "No Title"
-
-		
 
 		html_str += """
 <div class="day-card">

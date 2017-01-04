@@ -38,13 +38,13 @@ def trips():
 	else:
 		#CURRENT TRIPS
 		if (currTrips!=None):
-			html_str = renderTrips(currTrips)
-
+			html_str = renderTrips(currTrips,uid,"curr")
+			pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
 	
 		# PAST TRIPS
 		if (pastTrips!=None):
 			html_str += "<div id='past-trip-label'>Past Trips</div>"
-			html_str += renderTrips(pastTrips)
+			html_str += renderTrips(pastTrips,uid,"past")
 
 
 	html_file = open("templates/_trips.html","w")
@@ -61,7 +61,7 @@ def trips():
 	return render_template("trips.html",vars = template_vars, page = "trips")
 	
 
-def renderTrips(trips):
+def renderTrips(trips,uid,type):
 	
 	
 	# to get the dates of all the trips
@@ -70,8 +70,18 @@ def renderTrips(trips):
 	trip_date_key = []
 	for key in trips:
 		trip_data = db.child("Trip").child(key).get().val() 
-		start_date = trip_data['startDate']
-		trip_date_key.append((dt.strptime(start_date, "%d/%m/%Y"),key,trip_data))
+		
+		#checking for past trips
+		#only for curr trips 
+		end_date = trip_data['endDate']
+
+		if( dt.strptime(end_date, "%d/%m/%Y") < dt.now() and type=="curr"):
+			db.child("User").child(uid).child("Trip").child(key).remove()
+			db.child("User").child(uid).child("PastTrip").child(key).set("true")
+		
+		else:
+			start_date = trip_data['startDate']
+			trip_date_key.append((dt.strptime(start_date, "%d/%m/%Y"),key,trip_data))
 		
 	trip_date_key.sort(reverse=True)
 
