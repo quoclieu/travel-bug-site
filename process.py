@@ -47,8 +47,8 @@ def formatFullDate(date,increment):
 	dateFormat += timedelta(days=increment)
 	return "%s %s %s" % (dateFormat.day, dateFormat.strftime("%B"), dateFormat.year)
 
-############ DAY ####################
 
+############ DAY ####################
 
 #Returns the correct font awesome icon
 def getIcon(transport):
