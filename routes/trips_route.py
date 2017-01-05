@@ -4,6 +4,7 @@ import pyrebase
 import json
 from process import *
 from datetime import datetime as dt
+import datetime
 
 config = {
     "apiKey": "AIzaSyBNT4gDmMljV3Oko-E5WLMnNvW9mBfQ5FE",
@@ -62,7 +63,7 @@ def trips():
 	
 
 def renderTrips(trips,uid,type):
-	
+	print(dt.now())
 	
 	#to get the dates of all the trips
 	trip_date_key = []
@@ -72,8 +73,13 @@ def renderTrips(trips,uid,type):
 		#checking for past trips
 		#only for curr trips 
 		end_date = trip_data['endDate']
+		end_date_comp = dt.strptime(end_date, "%d/%m/%Y") + datetime.timedelta(days=1)
+		print(end_date_comp)
+		
+		print(end_date_comp < dt.now())
 
-		if( dt.strptime(end_date, "%d/%m/%Y") < dt.now() and type=="curr"):
+		if( end_date_comp < dt.now() and type=="curr"):
+			print("here") 
 			db.child("User").child(uid).child("Trip").child(key).remove()
 			db.child("User").child(uid).child("PastTrip").child(key).set("true")
 		
