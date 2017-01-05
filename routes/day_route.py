@@ -32,7 +32,9 @@ def day():
 	dayNum = request.args.get('daynum', None)
 
 	date = request.args.get('date', None)
+	
 	trip_name = request.args.get('trip_name', None)
+	
 	day_name = 'TEMP'
 
 

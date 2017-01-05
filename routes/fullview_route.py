@@ -25,22 +25,15 @@ def fullview():
 	#TODO - TRANSFER DATA AS A DICT FROM PREV PAGE INTO HERE
 	#done!
 	trip_data =json.loads(request.args.get('trip_data'))
-	print(trip_data)
-	#PLS
-	#we do not need user data
 
-	tripName = trip_data['tripName']
+	trip_name = trip_data['tripName']
+	
 	fulldates = getFullDates(trip_data['startDate'],trip_data['endDate'])
 
-	# Get Host Full name
-	#PLS
-	# -.- another unnecessary db access
-	host = db.child("Trip").child(trip_key).child("User").child("Admin").get().val()
-	for host_key in host:
-		hostuid = host_key
-
-	host = db.child("User").child(hostuid).child("UserDetails").get().val()
-	host = host['firstName']+' '+host['lastName']
+	trip_host = trip_data['User']['Admin']
+	for host_key in trip_host:
+		host_details = db.child("User").child(host_key).child("UserDetails").get().val()
+		host_name = host_details['firstName']+' '+host_details['lastName']
 	
 	location = trip_data['location']
 
@@ -59,34 +52,34 @@ def fullview():
 	</div>
 </div>
 
-""" % (tripName, fulldates, host, location)
+""" % (trip_name, fulldates, host_name, location)
 
-	#PLS
-	#trip data pulled twice
-	trip_data = db.child("Trip").child(trip_key).get().val()
-
-	#PLS
-	#can get from previously pulled trip data
-	trip_days = db.child("Trip").child(trip_key).child("Days").get().val()
+	trip_days = trip_data['Days']
 
 	html_str+= '<div id="card-grid">'
 
 	for daynum in range(len(trip_days)):
-		day = "Day" + str(daynum+1)
-		#PLS
-		#can get from previously pulled trip data
-		day_key = db.child("Trip").child(trip_key).child("Days").child(day).get().val()
 
-		#this is necessary
+		day = "Day" + str(daynum+1)
+		
+		day_key = trip_days[day]
+		
+		full_date = formatFullDate(trip_data['startDate'],daynum)
+
+		date = formatDate(trip_data['startDate'],daynum)
+
 		day_data = db.child("DayTrip").child(day_key).get().val()
 
-		dayTitle = "TEMP"#day_data[dayTitle]
+		
+		day_title = "TEMP"#day_data['dayTitle']
 		#has not been implemented on android side yet
+		if(day_title == None):
+			day_title = "No Title"
 
 ########DAYS##########################################
 		
 		#counts and records number of activities for a specific day
-		numAct = 0
+		num_act = 0
 		act_time_key = []
 		if (day_data!=None):
 			for act_key in day_data:
@@ -94,28 +87,18 @@ def fullview():
 				## it counts the number of activities and checks if the activity
 				## is a transport
 				## If its a transport it skips the count
-				#PLS
-				#can get from previously pulled day data
-				act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
+
+				act_data = day_data[act_key]
+				#what if act_data == None
+				#will there ever be a situation when act data == None
 				try:
 					actName = act_data["eventName"]
 				except KeyError:
 					continue
-				numAct+=1
-				act_time_key.append((act_data['time'],act_key))
+				num_act+=1
+				act_time_key.append((act_data['time'],act_key,act_data))
 			act_time_key.sort()
-			
 
-
-
-
-		if(dayTitle == None):
-			dayTitle = "No Title"
-
-		date = formatDate(trip_data['startDate'],daynum)
-		full_date = formatFullDate(trip_data['startDate'],daynum)
-		print(full_date)
-		
 
 		html_str += """
 <div class="day-card">
@@ -130,23 +113,19 @@ def fullview():
 		</div>
 	</div>
 	<hr>
-""" % (day_key,(daynum+1),full_date,trip_data['tripName'],dayTitle,numAct,(daynum+1),date)
-		print("fullview")
-		print(trip_data['tripName'])
+""" % (day_key,(daynum+1),full_date,trip_name,day_title,num_act,(daynum+1),date)
+	
 
 ########ACTIVITIES################################# 
 
 		if (day_data!=None):
 			# Activities
-			for (time,act_key) in act_time_key:
-				#PLS
-				# act_data can be outside the for loop 
-				act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
+			# dont need the try block because act_time_key 
+			# only has activities no transport 
+			# so no key error
+			for (time,act_key,act_data) in act_time_key:
 				if (act_data!=None):
-					try:
-						actName = act_data["eventName"]
-					except KeyError:
-						continue
+					actName = act_data["eventName"]
 					location = act_data["location"]["address"]
 					html_str += """
 	
@@ -174,7 +153,6 @@ def fullview():
 
 
 ###############################################################
-
 
 
 	title = "Full Trip View"

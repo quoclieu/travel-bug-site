@@ -22,8 +22,8 @@ def trips():
 
 	#checks if user has no trips
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
-	print(currTrips)
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
+
 	if (currTrips == None and pastTrips == None):
 		
 		html_str = """
@@ -38,13 +38,13 @@ def trips():
 	else:
 		#CURRENT TRIPS
 		if (currTrips!=None):
-			html_str = renderTrips(currTrips)
-
+			html_str = renderTrips(currTrips,uid,"curr")
+			pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
 	
 		# PAST TRIPS
 		if (pastTrips!=None):
 			html_str += "<div id='past-trip-label'>Past Trips</div>"
-			html_str += renderTrips(pastTrips)
+			html_str += renderTrips(pastTrips,uid,"past")
 
 
 	html_file = open("templates/_trips.html","w")
@@ -61,16 +61,27 @@ def trips():
 	return render_template("trips.html",vars = template_vars, page = "trips")
 	
 
-def renderTrips(trips):
+def renderTrips(trips,uid,type):
 	
 	
 	# to get the dates of all the trips
 	# PLS
 	# can get trip data here and access 
 	trip_date_key = []
-	for key in trips: 
-		start_date = db.child("Trip").child(key).child("startDate").get().val()
-		trip_date_key.append((dt.strptime(start_date, "%d/%m/%Y"),key))
+	for key in trips:
+		trip_data = db.child("Trip").child(key).get().val() 
+		
+		#checking for past trips
+		#only for curr trips 
+		end_date = trip_data['endDate']
+
+		if( dt.strptime(end_date, "%d/%m/%Y") < dt.now() and type=="curr"):
+			db.child("User").child(uid).child("Trip").child(key).remove()
+			db.child("User").child(uid).child("PastTrip").child(key).set("true")
+		
+		else:
+			start_date = trip_data['startDate']
+			trip_date_key.append((dt.strptime(start_date, "%d/%m/%Y"),key,trip_data))
 		
 	trip_date_key.sort(reverse=True)
 
@@ -78,32 +89,22 @@ def renderTrips(trips):
 	html_str = ""
 
 	#date = start date
-	for (date,key) in trip_date_key:
+	for (date,key,trip_data) in trip_date_key:
 		# all trip details are already pulled
-		trip_data = db.child("Trip").child(key).get().val()
 
 		# Get Host Full name
 		# PLS
 		# can get from trip data no need of another db access
-		host = db.child("Trip").child(key).child("User").child("Admin").get().val()
-		for host_key in host:
-			hostuid = host_key
-
-		host = db.child("User").child(hostuid).child("UserDetails").get().val()
-		host = host['firstName']+' '+host['lastName']
+		trip_host = trip_data['User']['Admin']
+		for host_key in trip_host:
+			host_details = db.child("User").child(host_key).child("UserDetails").get().val()
+			host_name = host_details['firstName']+' '+host_details['lastName']
 
 		# Get number of travellers
-		numtravellers = 1
-
 		#PLS
 		# i swear to god i will throw a chair at you if i find out 
 		# another unnecessary db access
-		travellers = db.child("Trip").child(key).child("User")\
-		.child("Regular").get().val()
-
-		if(travellers!=None):
-			for traveller in travellers:
-				numtravellers+=1
+		numtravellers = len(trip_data['User']['Regular']) + 1
 
 		# Other trip details
 		date = getDate(trip_data['startDate'])
@@ -143,7 +144,7 @@ def renderTrips(trips):
 
 </div>
 
-""" % (date,month,numDays,tripuid,json.dumps(trip_data),tripName,fulldates,host,numtravellers,location)
+""" % (date,month,numDays,tripuid,json.dumps(trip_data),tripName,fulldates,host_name,numtravellers,location)
 	
 	return html_str
 
