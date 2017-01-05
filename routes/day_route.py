@@ -61,16 +61,22 @@ def day():
 	act_time_key = []
 	for act_key in day_data:
 		act_data = db.child("DayTrip").child(day_key).child(act_key).get().val()
-		act_time_key.append((act_data['time'],act_key,act_data))
+		act_time_key.append((act_data['timeSort'],act_key,act_data))
 	act_time_key.sort()
 
 	# Prints activities and transport in accordance to the sorted time list
-	for (time,act_key,act_data) in act_time_key:
+	for (timesort,act_key,act_data) in act_time_key:
+		
+		# Common details
+		description = act_data['description']
+		time = getTime(timesort)
+		
 		try:
 			# Handles printing the transport slot
 			transport = act_data['transport']
 			transport_icon = getIcon(transport)
-			description = act_data['description']
+
+
 
 			html_str += '''
 
@@ -90,13 +96,12 @@ def day():
 			# Handles printing activities
 			title = act_data['eventName']
 			location = act_data['location']['address']
-			description = act_data['description']
 
-			#Ratings and Comments
+			# Ratings and Comments
 			numUp =  0
 			numDown = 0
 			
-			#Checks if votes section exist
+			# Checks if votes section exist
 			try:
 				votes = act_data['Votes']
 

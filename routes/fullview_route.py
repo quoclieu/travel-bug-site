@@ -31,6 +31,7 @@ def fullview():
 	fulldates = getFullDates(trip_data['startDate'],trip_data['endDate'])
 
 	trip_host = trip_data['User']['Admin']
+	 
 	for host_key in trip_host:
 		host_details = db.child("User").child(host_key).child("UserDetails").get().val()
 		host_name = host_details['firstName']+' '+host_details['lastName']
@@ -96,7 +97,7 @@ def fullview():
 				except KeyError:
 					continue
 				num_act+=1
-				act_time_key.append((act_data['time'],act_key,act_data))
+				act_time_key.append((act_data['timeSort'],act_key,act_data))
 			act_time_key.sort()
 
 
