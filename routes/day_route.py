@@ -41,7 +41,6 @@ def day():
 		<div class="day-num">%s</div>
 		<div class="date">
 			%s
-			<i class="fa fa-angle-double-down" aria-hidden="true"></i>
 		</div>
 	</div>
 	
