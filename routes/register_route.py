@@ -43,7 +43,7 @@ def register():
 	    	"email" : request.form["email"]
 		}
 
-		db.child("User").child(user_data['localId']).set(data)
+		db.child('User').child(user_data['localId']).child('UserDetails').set(data)
 
 		#session['uid'] = user_data['localId']
 		#session['logged_in'] = True
