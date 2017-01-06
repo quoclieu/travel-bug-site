@@ -68,12 +68,15 @@ def day():
 
 		# Prints activities and transport in accordance to the sorted time list
 		for (time,act_key,act_data) in act_time_key:
+
+			description = act_data['description']
+			time = getTime(time)
+
 			try:
 				# Handles printing the transport slot
 				transport = act_data['transport']
 				transport_icon = getIcon(transport)
-				description = act_data['description']
-
+				
 				html_str += '''
 
 				<div class="transport-block">
@@ -86,13 +89,12 @@ def day():
 					</div>
 				</div>
 				<div style="clear:both;"></div>
-			'''	% (getTime(time),transport_icon,description)
+			'''	% (time,transport_icon,description)
 
 			except KeyError:
 				# Handles printing activities
 				title = act_data['eventName']
 				location = act_data['location']['address']
-				description = act_data['description']
 
 				#Ratings and Comments
 				numUp =  0
@@ -134,7 +136,7 @@ def day():
 				</div>
 			</div>
 		<div style="clear:both;"></div>
-	''' % (getTime(time), title, location, description, numUp, numDown)
+	''' % (time, title, location, description, numUp, numDown)
 
 		html_str += '''
 			</div>

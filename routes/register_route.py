@@ -34,8 +34,7 @@ def register():
 		except:
 			return render_template("register.html",vars = template_vars, form=form, is_error=True)
 
-		#veri_data = auth.send_email_verification(user_data['idToken'])
-		#print(veri_data)	
+		veri_data = auth.send_email_verification(user_data['idToken'])	
 	
 		#have to store user in user database	
 		data = {
@@ -46,11 +45,11 @@ def register():
 
 		db.child("User").child(user_data['localId']).set(data)
 
-		session['uid'] = user_data['localId']
-		session['logged_in'] = True
+		#session['uid'] = user_data['localId']
+		#session['logged_in'] = True
 
-		#return str("verification sent")
-		return redirect('/trips')
+		#return str("Verification link sent. Please check your inbox")
+		return render_template("pre_verification.html",vars = template_vars)
 	return render_template("register.html",vars = template_vars, form=form, is_error=False)
 
 

@@ -4,6 +4,7 @@ import pyrebase
 import json
 from process import *
 from datetime import datetime as dt
+import datetime
 
 config = {
     "apiKey": "AIzaSyBNT4gDmMljV3Oko-E5WLMnNvW9mBfQ5FE",
@@ -20,12 +21,23 @@ def trips():
 
 	uid = session['uid']
 
-	#checks if user has no trips
+	
+	
+	#CURRENT TRIPS
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
+	if (currTrips!=None):
+			html_str = renderTrips(currTrips,uid,"curr")
+	
+	# PAST TRIPS
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
+	if (pastTrips!=None):
+			html_str += "<div id='past-trip-label'>Past Trips</div>"
+			html_str += renderTrips(pastTrips,uid,"past")
 
 	html_str= ''
 
+    #checks if user has no trips
+    #moved around statements to avoid a db access
 	if (currTrips == None and pastTrips == None):
 		
 		html_str = """
@@ -36,17 +48,6 @@ def trips():
 </div>
 
 """
-
-	else:
-		#CURRENT TRIPS
-		if (currTrips!=None):
-			html_str = renderTrips(currTrips,uid,"curr")
-			pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
-	
-		# PAST TRIPS
-		if (pastTrips!=None):
-			html_str += "<div id='past-trip-label'>Past Trips</div>"
-			html_str += renderTrips(pastTrips,uid,"past")
 
 
 	html_file = open("templates/_trips.html","w")
@@ -64,11 +65,9 @@ def trips():
 	
 
 def renderTrips(trips,uid,type):
+	print(dt.now())
 	
-	
-	# to get the dates of all the trips
-	# PLS
-	# can get trip data here and access 
+	#to get the dates of all the trips
 	trip_date_key = []
 	for key in trips:
 		trip_data = db.child("Trip").child(key).get().val() 
@@ -76,8 +75,13 @@ def renderTrips(trips,uid,type):
 		#checking for past trips
 		#only for curr trips 
 		end_date = trip_data['endDate']
+		end_date_comp = dt.strptime(end_date, "%d/%m/%Y") + datetime.timedelta(days=1)
+		print(end_date_comp)
+		
+		print(end_date_comp < dt.now())
 
-		if( dt.strptime(end_date, "%d/%m/%Y") < dt.now() and type=="curr"):
+		if( end_date_comp < dt.now() and type=="curr"):
+			print("here") 
 			db.child("User").child(uid).child("Trip").child(key).remove()
 			db.child("User").child(uid).child("PastTrip").child(key).set("true")
 		
@@ -85,27 +89,26 @@ def renderTrips(trips,uid,type):
 			start_date = trip_data['startDate']
 			trip_date_key.append((dt.strptime(start_date, "%d/%m/%Y"),key,trip_data))
 		
-	trip_date_key.sort(reverse=True)
+	if(type=="curr"):
+		trip_date_key.sort()
+	else: # for past trips the most recent should be the first
+		trip_date_key.sort(reverse=True)
 
 	#else display all trips the user is in
 	html_str = ""
 
 	#date = start date
 	for (date,key,trip_data) in trip_date_key:
-		# all trip details are already pulled
+		# All trip details are already pulled
 
-		# Get Host Full name
-		# PLS
-		# can get from trip data no need of another db access
+	    # Host details
 		trip_host = trip_data['User']['Admin']
+		
 		for host_key in trip_host:
 			host_details = db.child("User").child(host_key).child("UserDetails").get().val()
 			host_name = host_details['firstName']+' '+host_details['lastName']
 
 		# Get number of travellers
-		#PLS
-		# i swear to god i will throw a chair at you if i find out 
-		# another unnecessary db access
 		numtravellers = len(trip_data['User']['Regular']) + 1
 
 		# Other trip details
