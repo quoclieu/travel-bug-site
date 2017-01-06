@@ -37,8 +37,3 @@
 ehthumbs.db
 Thumbs.db
 
-# HTML files #
-#####################
-templates/_trips.html
-templates/_fullview.html
-templates/_day_schedule.html
