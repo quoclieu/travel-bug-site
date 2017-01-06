@@ -24,6 +24,8 @@ def trips():
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
 
+	html_str= ''
+
 	if (currTrips == None and pastTrips == None):
 		
 		html_str = """

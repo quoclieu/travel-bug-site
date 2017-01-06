@@ -1,9 +1,9 @@
 #day-wrapper{
 	padding-top:10px;
 	padding-left: 15%;
-	min-width:900px; /* suppose you want minimun width of 1000px */
+	min-width:300px; /* suppose you want minimun width of 1000px */
     width: auto !important;  /* Firefox will set width as auto */
-    width:900px;             /* As IE ignores !important it will set width as 1000px; */
+    width:300px;  /* As IE ignores !important it will set width as 1000px; */
 }
 
 #schedule-block{
