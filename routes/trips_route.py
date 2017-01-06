@@ -31,9 +31,8 @@ def trips():
 	# PAST TRIPS
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
 	if (pastTrips!=None):
-
-	html_str += "<div id='past-trip-label'>Past Trips</div>"
-	html_str += renderTrips(pastTrips,uid,"past")
+		html_str += "<div id='past-trip-label'>Past Trips</div>"
+		html_str += renderTrips(pastTrips,uid,"past")
 
 
     #checks if user has no trips
