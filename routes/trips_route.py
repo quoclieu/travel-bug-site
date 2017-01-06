@@ -21,20 +21,18 @@ def trips():
 
 	uid = session['uid']
 
-	
+	html_str = ''
 	
 	#CURRENT TRIPS
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
 	if (currTrips!=None):
-			html_str = renderTrips(currTrips,uid,"curr")
+		html_str += renderTrips(currTrips,uid,"curr")
 	
 	# PAST TRIPS
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
 	if (pastTrips!=None):
-			html_str += "<div id='past-trip-label'>Past Trips</div>"
-			html_str += renderTrips(pastTrips,uid,"past")
-
-	html_str= ''
+		html_str += "<div id='past-trip-label'>Past Trips</div>"
+		html_str += renderTrips(pastTrips,uid,"past")
 
     #checks if user has no trips
     #moved around statements to avoid a db access
