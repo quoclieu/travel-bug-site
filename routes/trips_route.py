@@ -74,12 +74,8 @@ def renderTrips(trips,uid,type):
 		#only for curr trips 
 		end_date = trip_data['endDate']
 		end_date_comp = dt.strptime(end_date, "%d/%m/%Y") + datetime.timedelta(days=1)
-		print(end_date_comp)
-		
-		print(end_date_comp < dt.now())
 
 		if( end_date_comp < dt.now() and type=="curr"):
-			print("here") 
 			db.child("User").child(uid).child("Trip").child(key).remove()
 			db.child("User").child(uid).child("PastTrip").child(key).set("true")
 		
