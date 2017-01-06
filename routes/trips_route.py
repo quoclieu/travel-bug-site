@@ -34,6 +34,8 @@ def trips():
 			html_str += "<div id='past-trip-label'>Past Trips</div>"
 			html_str += renderTrips(pastTrips,uid,"past")
 
+	html_str= ''
+
     #checks if user has no trips
     #moved around statements to avoid a db access
 	if (currTrips == None and pastTrips == None):

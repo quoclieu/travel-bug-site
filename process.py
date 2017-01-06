@@ -65,11 +65,9 @@ def getIcon(transport):
 	return transport_icon
 
 #Returns a 24 hour time into 12 hour time with AM or PM
-#Takes in a timeSort string eg. 421200 converts to 12:00PM
 def getTime(time):
-	#get rid of the 42 at the start of the string
-	time = time - 420000
-
+	time = time[:-3]+time[-2:]
+	time = int(time)
 	if(time-1200)>0:
 		time = time-1200
 		time = str(time)
