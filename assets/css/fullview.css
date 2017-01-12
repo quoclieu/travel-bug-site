@@ -4,6 +4,37 @@
 	margin-top: 0px;
 }
 
+.att-list{
+	overflow:auto;
+	height:100px;
+	width:200px;
+	padding:10px;
+
+	border-bottom: 1px solid #EDEDED;
+}
+
+.att-list .title{
+	color:#3399ff;
+	font-size:20px;
+	font-weight: 500;
+	margin:0;
+	text-align: center;
+
+}
+
+.att-list li{
+	list-style: none;
+	font-size: 14px;
+	font-weight: 400;
+	margin-left:-40px;
+	color: black;
+	text-transform: none;
+}
+
+.att-list ul{
+	margin-top: 0;
+}
+
 .trip-details{
 	padding-top: 20px;
 	padding-left: 10%;
@@ -13,7 +44,7 @@
 
 .trip-details .location{
 	font-size: 15px;
-	font-weight: 200;
+	font-weight: 400;
 }
 
 .trip-details .host{
@@ -22,7 +53,7 @@
 }
 
 .trip-details hr{
-	width:400px;
+
 	height:1px;
 	border:none;
 	color: #9F9F9F;
@@ -95,9 +126,9 @@
 	color: black;
 	/*background-image: url('/assets/img/logo.png');*/
 	background-color: #41E2B0;
-	
-	margin-left: 10px;
-	margin-top: -40px;
+	float:left;
+	margin-left: -60px;
+
 }
 
 #card-grid .day-card .activity .activity-name{
