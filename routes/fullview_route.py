@@ -31,6 +31,9 @@ def fullview():
 	fulldates = getFullDates(trip_data['startDate'],trip_data['endDate'])
 
 	trip_host = trip_data['User']['Admin']
+
+	travellers = trip_data['User']['Regular']
+	print(travellers)
 	 
 	for host_key in trip_host:
 		host_details = db.child("User").child(host_key).child("UserDetails").get().val()
@@ -43,17 +46,58 @@ def fullview():
 
 	html_str = """
 
-<div class="trip-details">
-	%s<br>
-	<span style="color:#9F9F9F">%s</span>
-	<div class="host">Hosted by %s</div>
-	<hr align="left">
-	<div class="location">
-		<i class="fa fa-map-marker" aria-hidden="true"></i> %s
+<div class="section group">
+
+	<div class="trip-details col span_20">
+		%s<br>
+		<span style="color:#9F9F9F">%s</span>
+		<div class="host">Hosted by %s</div>
+		<hr align="left">
+		<div class="location">
+			<i class="fa fa-map-marker" aria-hidden="true"></i> %s
+		</div>
+	</div>
+
+""" % (trip_name, fulldates, host_name, location)
+
+#Display hich travellers are going - attendence list
+#Host is displayed first and is defaulted to going
+	html_str += """
+
+	<div class="trip-details col">
+		<div class="att-list">
+			<div class="title"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
+			<ul>
+				<li><i class="fa fa-check-circle-o" aria-hidden="true" style="color:#41E2B0;"></i> %s</li>
+""" % (host_name)
+
+#Display attendence of the rest of the travellers
+	
+	for (uid,val) in travellers.items():
+		user = db.child("User").child(uid).child("UserDetails").get().val()
+		user_name = user['firstName']+' '+user['lastName']
+		if(val == 'true'):
+			html_str+="""
+				<li><i class="fa fa-check-circle-o" aria-hidden="true" style="color:#41E2B0;"></i> %s</li>
+			"""%(user_name)
+		elif(val == "false"):
+			html_str+="""
+				<li><i class="fa fa-times-circle-o" aria-hidden="true" style="color:red;"></i> %s</li>
+			"""%(user_name)
+		else:
+			html_str+="""
+				<li><i class="fa fa-ellipsis-h" aria-hidden="true" style="color:#3399ff;"></i> John Nguyen</li>
+			"""%(user_name)
+
+	html_str += """
+			</ul>
+		</div>
 	</div>
 </div>
 
-""" % (trip_name, fulldates, host_name, location)
+"""
+
+
 
 	trip_days = trip_data['Days']
 
@@ -133,11 +177,12 @@ def fullview():
 	<div class="activity">
 		<div class="activity-name">
 			%s
+			<div class="activity-pic"></div>
 			<div class="activity-location">
 				<i class="fa fa-map-marker" aria-hidden="true"></i> %s
 			</div>
 		</div>
-		<div class="activity-pic"></div>
+		
 	</div>
 	<hr>
 	

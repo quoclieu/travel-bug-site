@@ -26,6 +26,7 @@ def trips():
 	#CURRENT TRIPS
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
 	if (currTrips!=None):
+		html_str += "<div id='past-trip-label'>Upcoming Trips</div>"
 		html_str += renderTrips(currTrips,uid,"curr")
 	
 	# PAST TRIPS
@@ -64,8 +65,6 @@ def trips():
 	
 
 def renderTrips(trips,uid,type):
-	print(dt.now())
-	
 	#to get the dates of all the trips
 	trip_date_key = []
 	for key in trips:
