@@ -20,6 +20,13 @@
 			<p>Please try again</p>
 		</span>
 	{% endif %}
+
+	{%if not_verified %}
+		<span style="color: red; font-size: 10px;">
+			<p>You email address has not been verified</p>
+			<p>Please check your inbox for verification link to verify your email</p>
+		</span>
+	{% endif %}
 	
 	<form action="" method="post">
 	    {{form.hidden_tag()}}

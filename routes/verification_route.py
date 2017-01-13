@@ -12,4 +12,7 @@ def verify():
 		"title" : title
 	}
 	
+	session['email_verified'] = True
+
+
 	return render_template("verification.html",vars = template_vars)

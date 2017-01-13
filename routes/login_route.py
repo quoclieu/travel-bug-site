@@ -33,8 +33,12 @@ def login():
 		except:
 			return render_template("login.html",vars = template_vars, form=form, is_error=True)
 
-		session['uid'] = user_data['localId']
-		session['logged_in'] = True
+		if(session['email_verified']):
+			session['uid'] = user_data['localId']
+			session['logged_in'] = True
+			return redirect('/trips')
+		else:
+			return render_template("login.html",vars = template_vars, form=form, not_verified=True)
 
-		return redirect('/trips')
+
 	return render_template("login.html",vars = template_vars, form=form, is_error=False)

@@ -8,7 +8,7 @@ def google_API():
 	google_places = GooglePlaces(apiKey)
 	query_result = google_places.nearby_search(
         location='London, England', keyword='Fish and Chips',
-        radius=20000, types=[types.TYPE_FOOD])
+        radius=2000, types=[types.TYPE_FOOD])
 
 	if query_result.has_attributions:
 		print(query_result.html_attributions)
@@ -21,10 +21,11 @@ def google_API():
 	html_str = ""
 
 	i = 0
+
 	for photo in place.photos:
 		if(i == 0):
 	    	# 'maxheight' or 'maxwidth' is required
-			photo.get(maxheight=50, maxwidth=50)
+			photo.get(maxheight=500, maxwidth=500)
 
 	   		 # MIME-type, e.g. 'image/jpeg'
 		
@@ -32,7 +33,7 @@ def google_API():
 			html_str += ''' 
 			<img src = %s height = %d width = %d>
 	    	 
-			''' % (photo.url, 50, 50)
+			''' % (photo.url, 500, 500)
 
 			i += 1
 		else: 
