@@ -29,7 +29,6 @@ def register():
 		#user register in authentication database
 		
 		try:
-
 			user_data = auth.create_user_with_email_and_password(request.form["email"], request.form["password"])
 		except:
 			return render_template("register.html",vars = template_vars, form=form, is_error=True)
@@ -40,12 +39,12 @@ def register():
 		data = {
 	    	"firstName" : request.form["firstname"],
 			"lastName" : request.form["lastname"],
-	    	"email" : request.form["email"]
-		}
+	    	"email" : request.form["email"],
+	    }
 
 		db.child('User').child(user_data['localId']).child('UserDetails').set(data)
 
-		#session['uid'] = user_data['localId']
+		session['email_verified'] = False		
 		#session['logged_in'] = True
 
 		#return str("Verification link sent. Please check your inbox")
