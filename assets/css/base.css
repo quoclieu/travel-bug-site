@@ -76,6 +76,11 @@ a:visited,a:link{
 	padding: 10px 20px 10px 20px;
 }
 
+.vertical-line{
+	border-left:2px
+	solid
+	#DBDBDB;
+}
 /* Style the links inside the list items */
 #header ul li a {
     display: inline-block;
@@ -104,6 +109,27 @@ a:visited,a:link{
 
 /* link to the rest of the css/js codehttp://www.w3schools.com/howto/howto_js_topnav.asp */
 
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens */
+@media screen and (max-width:680px) {
+#rightnav.responsive {
+	float: right;
+	padding-right: 20px;
+	margin-top: -5px;
+}
+  #rightnav.responsive li.icon {
+    position: absolute;
+    right: 72px;
+    top: 7px;
+  }
+  #rightnav.responsive li{
+    float: none;
+    display: inline;
+  }
+  #rightnav.responsive li a {
+    display: block;
+    text-align: right;
+  }
+}
 
 @media screen and (max-width:680px) {
 	#links li:not(:nth-child(3)) {
@@ -115,7 +141,25 @@ a:visited,a:link{
 	}
 }
 
+/**
+  footer menu responsive
+*/
+@media screen and (max-width:680px) {
 
+  #links.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 64px;
+  }
+  #links.responsive li:not(:nth-child(3)){
+    float: none;
+    display: inline;
+  }
+  #links.responsive li a {
+    display: block;
+    text-align: center;
+  }
+}
 
 
 
