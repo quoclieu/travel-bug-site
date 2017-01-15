@@ -48,13 +48,13 @@
                         <li style="border-left:2px solid #DBDBDB;"><a href="/logout">Logout</a></li>
                         {% else %}
                         <li><a href="/login">Login</a></li>
-                        <li style="border-left:2px solid #DBDBDB;"><a href="/register">Register</a></li>
+                        <li id="top-nav-line" class="vertical-line"><a href="/register">Register</a></li>
                         {% endif %}
 
                         <li><a href="/contact">Contact</a></li>
                         <li><a href="/about">About</a></li>
                         <li class="icon">
-                            <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+                            <a href="javascript:void(0);" onclick="headMenu()">&#9776;</a>
                         </li>
                     </div>
 
@@ -85,7 +85,7 @@
                             <a href="/contact">CONTACT</a>
                         </li>
                         <li class="icon">
-                            <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+                            <a href="javascript:void(0);" onclick="footMenu()">&#9776;</a>
                         </li>
                     </ul>
                 </div>
@@ -119,6 +119,8 @@
         <script src="assets/js/jquery-1.11.1.min.js">
         </script>
         <script src="assets/js/jquery.qtip.js">
+        </script>
+        <script src="assets/js/responsive.js">
         </script>
 
         <script>
