@@ -5,4 +5,5 @@ from travelbug import app
 def logout():
 	session.pop('uid', None)
 	session.pop('logged_in', None)
+
 	return redirect('/login')

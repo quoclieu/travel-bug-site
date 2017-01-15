@@ -33,7 +33,9 @@ def login():
 		except:
 			return render_template("login.html",vars = template_vars, form=form, is_error=True)
 
-		if(session['email_verified']):
+		ev_bool = db.child('User').child(user_data['localId']).child('UserDetails').child('emailVerified').get().val()
+
+		if(ev_bool == "true"):
 			session['uid'] = user_data['localId']
 			session['logged_in'] = True
 			return redirect('/trips')
@@ -41,4 +43,4 @@ def login():
 			return render_template("login.html",vars = template_vars, form=form, not_verified=True)
 
 
-	return render_template("login.html",vars = template_vars, form=form, is_error=False)
+	return render_template("login.html",vars = template_vars, form=form)
