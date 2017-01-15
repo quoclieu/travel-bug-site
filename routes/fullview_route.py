@@ -66,7 +66,7 @@ def fullview():
 
 	<div class="trip-details col">
 		<div class="att-list">
-			<div class="title"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
+			<div class="title">Travellers</div>
 			<ul>
 				<li><i class="fa fa-check-circle-o" aria-hidden="true" style="color:#41E2B0;"></i> %s</li>
 """ % (host_name)
