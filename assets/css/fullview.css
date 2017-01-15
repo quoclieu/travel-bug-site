@@ -1,8 +1,10 @@
-#slider{
-	background-color: #41E2B0;
-	height:0px;
-	margin-top: 0px;
+
+#slider { overflow: hidden; }
+#slider figure img { height: 200px; }
+#slider figure { 
+
 }
+
 
 .att-list{
 	overflow:auto;

@@ -3,6 +3,7 @@ from travelbug import app
 import pyrebase
 import json
 from process import *
+from gplaces import *
 
 config = {
     "apiKey": "AIzaSyBNT4gDmMljV3Oko-E5WLMnNvW9mBfQ5FE",
@@ -41,10 +42,17 @@ def fullview():
 	
 	location = trip_data['location']
 
+	photo_url = getLocImg(location)
+
 
 	######################################################################################
 
 	html_str = """
+<div id="slider">
+	<figure>
+		<img src = '%s'>
+	</figure>
+</div>
 
 <div class="section group">
 
@@ -58,7 +66,7 @@ def fullview():
 		</div>
 	</div>
 
-""" % (trip_name, fulldates, host_name, location)
+""" % (photo_url,trip_name, fulldates, host_name, location)
 
 #Display hich travellers are going - attendence list
 #Host is displayed first and is defaulted to going
