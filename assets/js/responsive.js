@@ -1,6 +1,7 @@
 function headMenu() {
     var x = document.getElementById("rightnav");
     var y = document.getElementById("top-nav-line");
+
     if (x.className === "") {
         x.className = "responsive";
         y.className="";
