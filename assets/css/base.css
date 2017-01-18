@@ -143,12 +143,15 @@ a:visited,a:link{
 }
 
 @media screen and (max-width:680px) {
-	#links li:not(:nth-child(3)) {
+	#footer ul li {
 		display: none;
 	}
 	#footer ul li.icon {
-	    float: right;
-	    display: inline-block;
+	float: none;
+	display: inline-block;
+    position: absolute;
+    right: 308px;
+    top: 21px;
 	}
 }
 
@@ -159,10 +162,10 @@ a:visited,a:link{
 
   #links.responsive li.icon {
     position: absolute;
-    right: 0;
-    top: 64px;
+    right: 308px;
+    top: 25px;
   }
-  #links.responsive li:not(:nth-child(3)){
+  #links.responsive li{
     float: none;
     display: inline;
   }
