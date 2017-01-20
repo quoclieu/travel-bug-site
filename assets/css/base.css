@@ -142,16 +142,17 @@ a:visited,a:link{
   }
 }
 
+/**
+foot menu
+*/
 @media screen and (max-width:680px) {
+
 	#footer ul li {
 		display: none;
 	}
 	#footer ul li.icon {
-	float: none;
-	display: inline-block;
-    position: absolute;
-    right: 308px;
-    top: 21px;
+	    float: none;
+	    display: inline-block;
 	}
 }
 
@@ -161,9 +162,10 @@ a:visited,a:link{
 @media screen and (max-width:680px) {
 
   #links.responsive li.icon {
-    position: absolute;
-    right: 308px;
-    top: 25px;
+		position: relative;
+		top: 4px;
+		left: 10px;
+
   }
   #links.responsive li{
     float: none;
