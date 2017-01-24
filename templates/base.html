@@ -43,18 +43,20 @@
 
                     </div>
 
-                    <div id="rightnav">
+                    <div id="rightnav" class="responsive">
                         {% if session.logged_in%}
                         <li id="top-nav-line1"><a href="/logout">Logout</a></li>
                         {% else %}
                         <li ><a href="/login">Login</a></li>
-                        <li id="top-nav-line" class="vertical-line"><a href="/register">Register</a></li>
-                        {% endif %}
+                        <div id="responsive-head">
+                            <li id="top-nav-line" class="vertical-line"><a href="/register">Register</a></li>
+                            {% endif %}
 
-                        <li><a href="/contact">Contact</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li class="icon">
-                            <a href="javascript:void(0);" onclick="headMenu()">&#9776;</a>
+                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="/about">About</a></li>
+                        </div>
+                        <li class="icon" id="head-bars">
+                            <a href="javascript:void(0);" >&#9776;</a>
                         </li>
                     </div>
 
@@ -67,27 +69,28 @@
             </div>
 
             <div id="footer">
-                <div id = "links">
+                <div id = "links" class="responsive">
                     <ul>
-                        <li class="icon">
-                            <a href="javascript:void(0);" onclick="footMenu()">&#9776;</a>
+                        <li class="icon" id="footer-bars">
+                            <a href="javascript:void(0);" >&#9776;</a>
                         </li>
-                        <li>
-                            <a href="/about">ABOUT</a>
-                        </li>
-                        <li>
-                            <a href="#">TERM AND CONDITIONS</a>
-                        </li>
-                        <li>
-                            <a href="/" class="bug0"><img src="assets/img/logoblack.png" style="width:25px;"></a>
-                        </li>
-                        <li>
-                            <a href="#">PRIVACY POLICY</a>
-                        </li>
-                        <li>
-                            <a href="/contact">CONTACT</a>
-                        </li>
-
+                        <div id="responsive-footer">
+                            <li>
+                                <a href="/about">ABOUT</a>
+                            </li>
+                            <li>
+                                <a href="#">TERM AND CONDITIONS</a>
+                            </li>
+                            <li>
+                                <a href="/" class="bug0"><img src="assets/img/logoblack.png" style="width:25px;"></a>
+                            </li>
+                            <li>
+                                <a href="#">PRIVACY POLICY</a>
+                            </li>
+                            <li>
+                                <a href="/contact">CONTACT</a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
 

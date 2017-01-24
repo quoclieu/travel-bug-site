@@ -101,70 +101,63 @@ a:visited,a:link{
 /******** Mobile adjustments *************/
 
 /* When the screen is less than 680 pixels wide, hide all list items, except for the first one ("Login").
- Show the list item that contains the link to open and close the topnav (li.icon) */
-@media screen and (max-width:680px) {
-	#rightnav li:not(:first-child) {
-		display: none;
-	}
-	#header ul li.icon {
-	    float: right;
-	    display: inline-block;
-	    position: absolute;
-	    right: 72px;
-	    top:5px;
-	}
-	#top-nav-line1{
-		border: 0;
-	}
-}
+  link to the rest of the css/js codehttp://www.w3schools.com/howto/howto_js_topnav.asp */
 
-/* link to the rest of the css/js codehttp://www.w3schools.com/howto/howto_js_topnav.asp */
 
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens */
 @media screen and (max-width:680px) {
 #rightnav.responsive {
 	float: right;
 	padding-right: 20px;
 	margin-top: -5px;
+	transition: height .5s;
 }
   #rightnav.responsive li.icon {
+	    float: right;
+	    display: inline-block;  	
 	    position: absolute;
 	    right: 72px;
 	    top: 7px;
   }
+  #responsive-head,
+  #responsive-footer{
+  	display: none;
+  }
   #rightnav.responsive li{
     float: none;
     display: inline;
+    transition: height .5s;
   }
   #rightnav.responsive li a {
     display: block;
     text-align: right;
+    transition: height .5s;
   }
-}
-
-/**
-foot menu
-*/
-@media screen and (max-width:680px) {
-
-	#footer ul li {
-		display: none;
-	}
-	#footer ul li.icon {
-	    float: none;
-	    display: inline-block;
+  #responsive-head{
+  	position: relative;
+  	top: -20px;
+  }
+  	#top-nav-line1,
+    #top-nav-line
+	{
+		border: 0;
 	}
 }
+
+
 
 /**
   footer menu responsive
 */
 @media screen and (max-width:680px) {
+	#links.responsive{
+		position: relative;/*top/padding-top will be useless without 'position'*/
+		top: -50px;
+	}
 
   #links.responsive li.icon {
+  		    float: none;
+	    display: inline-block;
 		position: relative;
-		top: 4px;
-		left: 10px;
 
   }
   #links.responsive li{
