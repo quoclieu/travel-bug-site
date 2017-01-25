@@ -10,7 +10,7 @@
         <title>{{vars.title}}</title>
 
         <!-- CSS -->        
-        <link rel="stylesheet" href="assets/css/base.css" type="text/css">
+        <link rel="stylesheet" href="assets/css/base2.css" type="text/css">
         <link rel="stylesheet" href="assets/css/jquery.qtip.css" type="text/css">
         <link rel='shortcut icon' href='assets/img/favicon.ico' type='image/x-icon'/ >
  
@@ -44,19 +44,20 @@
                     </div>
 
                     <div id="rightnav" class="responsive">
+                    <div id="responsive-head" class="hide">
                         {% if session.logged_in%}
-                        <li id="top-nav-line1"><a href="/logout">Logout</a></li>
+                        <li class="vertical-line"><a href="/logout">Logout</a></li>
                         {% else %}
                         <li ><a href="/login">Login</a></li>
-                        <div id="responsive-head">
-                            <li id="top-nav-line" class="vertical-line"><a href="/register">Register</a></li>
+                        
+                            <li  class="vertical-line"><a href="/register">Register</a></li>
                             {% endif %}
 
                             <li><a href="/contact">Contact</a></li>
                             <li><a href="/about">About</a></li>
                         </div>
                         <li class="icon" id="head-bars">
-                            <a href="javascript:void(0);" >&#9776;</a>
+                            <a href="javascript:void(0);" onclick="headMenu()" >&#9776;</a>
                         </li>
                     </div>
 
@@ -72,9 +73,9 @@
                 <div id = "links" class="responsive">
                     <ul>
                         <li class="icon" id="footer-bars">
-                            <a href="javascript:void(0);" >&#9776;</a>
+                            <a href="javascript:void(0);" onclick="footerMenu()" >&#9776;</a>
                         </li>
-                        <div id="responsive-footer">
+                        <div id="responsive-footer"  class="hide2">
                             <li>
                                 <a href="/about">ABOUT</a>
                             </li>
@@ -119,13 +120,13 @@
 
             </div>
         </div>
-
+        
         <script src="assets/js/jquery-1.11.1.min.js">
         </script>
         <script src="assets/js/jquery.qtip.js">
         </script>
-        <script src="assets/js/responsive.js">
-        </script>
+        <script src="assets/js/responsive1.js"/>
+        
 
         <script>
         // $('.bug0').qtip({ // Grab some elements to apply the tooltip to
