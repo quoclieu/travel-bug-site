@@ -39,7 +39,21 @@
 	font-weight: lighter;
 	margin-top: -3px;
 }
+.card-block{
+	opacity: 0;
+    -webkit-transition: opacity 2s ease-in;
+   -moz-transition: opacity 2s ease-in;
+    -ms-transition: opacity 2s ease-in;
+     -o-transition: opacity 2s ease-in;
+        transition: opacity 2s ease-in;
+}
+.card-block.load {
+    opacity: 1;
+}
 
+.card-block.load1 {
+    opacity: 0.3;
+}
 .card-right .trip-textbox{
 	padding: 20px 10px 10px 200px;
 }
