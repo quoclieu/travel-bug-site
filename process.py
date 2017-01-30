@@ -68,19 +68,30 @@ def getIcon(transport):
 def getTime(time):
 	time = time[:-3]+time[-2:]
 	time = int(time)
-	if(time-1200)>0:
-		time = time-1200
-		time = str(time)
-		time_str = time[:-2]+':'+time[-2:]
-		return(time_str+"PM")
-	elif(time == 0):
-		return("12:00AM")
+	if(time<100):
+	    if(time<10):
+	        time = str(time)
+	        time_str = "12:"+"0"+time+"AM"
+	    else:
+	        time = str(time)
+	        time_str = "12:"+time+"AM"
+	elif(time-1200)>0:
+	    if(time>=1300):
+	        time = time-1200
+	        time = str(time)
+	        time_str = time[:-2]+':'+time[-2:]
+	        time_str += "PM"
+	    else:
+	        time = str(time)
+	        time_str = "12:"+time[-2:]+"PM"
+
 	elif(time == 1200):
-		return("12:00PM")
+	    time_str = "12:00PM"
 	else:
-		time = str(time)
-		time_str = time[:-2]+':'+time[-2:]
-		return(time_str+"AM")
+	    time = str(time)
+	    time_str = time[:-2]+':'+time[-2:]
+	    time_str += "AM"
+	return(time_str)
 
 
 

@@ -45,9 +45,9 @@
 
                     <div id="rightnav">
                         {% if session.logged_in%}
-                        <li style="border-left:2px solid #DBDBDB;"><a href="/logout">Logout</a></li>
+                        <li id="top-nav-line1"><a href="/logout">Logout</a></li>
                         {% else %}
-                        <li><a href="/login">Login</a></li>
+                        <li ><a href="/login">Login</a></li>
                         <li id="top-nav-line" class="vertical-line"><a href="/register">Register</a></li>
                         {% endif %}
 

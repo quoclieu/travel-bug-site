@@ -11,11 +11,10 @@
 	height:100px;
 	width:200px;
 	padding:10px;
-
-	border: 1px solid #EDEDED;
+	border-left: 1px solid #EDEDED;
 }
 
-.att-list .title{
+.trip-details .title{
 	color:#3399ff;
 	font-size:20px;
 	font-weight: 500;

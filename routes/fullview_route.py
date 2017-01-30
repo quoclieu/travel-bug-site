@@ -73,8 +73,8 @@ def fullview():
 	html_str += """
 
 	<div class="trip-details col">
-		<div class="att-list">
-			<div class="title">Travellers</div>
+		<div class="title">Travellers</div>
+			<div class="att-list">
 			<ul>
 				<li><i class="fa fa-check-circle-o" aria-hidden="true" style="color:#41E2B0;"></i> %s</li>
 """ % (host_name)

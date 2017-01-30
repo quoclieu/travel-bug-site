@@ -40,16 +40,16 @@ def register():
 	    	"firstName" : request.form["firstname"],
 			"lastName" : request.form["lastname"],
 	    	"email" : request.form["email"],
+	    	"emailVerified" : "false"
 	    }
 
 		db.child('User').child(user_data['localId']).child('UserDetails').set(data)
 
-		session['email_verified'] = False		
+		session['uid_email_verified'] = user_data['localId']		
 		#session['logged_in'] = True
 
-		#return str("Verification link sent. Please check your inbox")
 		return render_template("pre_verification.html",vars = template_vars)
-	return render_template("register.html",vars = template_vars, form=form, is_error=False)
+	return render_template("register.html",vars = template_vars, form=form)
 
 
 

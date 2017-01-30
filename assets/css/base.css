@@ -76,6 +76,11 @@ a:visited,a:link{
 	padding: 10px 20px 10px 20px;
 }
 
+#top-nav-line1{
+	border-left:2px
+	solid
+	#DBDBDB;
+}
 .vertical-line{
 	border-left:2px
 	solid
@@ -104,6 +109,12 @@ a:visited,a:link{
 	#header ul li.icon {
 	    float: right;
 	    display: inline-block;
+	    position: absolute;
+	    right: 72px;
+	    top:5px;
+	}
+	#top-nav-line1{
+		border: 0;
 	}
 }
 
@@ -117,9 +128,9 @@ a:visited,a:link{
 	margin-top: -5px;
 }
   #rightnav.responsive li.icon {
-    position: absolute;
-    right: 72px;
-    top: 7px;
+	    position: absolute;
+	    right: 72px;
+	    top: 7px;
   }
   #rightnav.responsive li{
     float: none;
