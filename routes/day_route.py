@@ -36,11 +36,17 @@ def day():
 
 
 	html_str = '''
+
+
 	<div id="dropdown">
 		<div class="day-num">%s</div>
-		<div class="date">
-			%s
-		</div>
+                  <form >
+                    <select id="dates">
+                      <option class="date">%s</option>
+                      <option class="date">dd/mm/yy</option>
+                      <option class="date"></option>
+                    </select> 
+                  </form>
 	</div>
 	
 
