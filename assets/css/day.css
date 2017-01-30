@@ -158,8 +158,28 @@
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 
-	margin:10px;
+	margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 5px;
+
+
 }
+
+.day-form{
+	display: none;
+}
+
+#day-form input{
+	padding: 5px;
+	margin: 5px;
+}
+
+.show {
+	display:block;
+}
+
+
+
 
 /***** RATING *********************/
 

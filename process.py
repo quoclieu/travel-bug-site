@@ -67,11 +67,15 @@ def getIcon(transport):
 #Returns a 24 hour time into 12 hour time with AM or PM
 def getTime(time):
 	time = time[:-3]+time[-2:]
+	print(time)
 	time = int(time)
 	if(time-1200)>0:
+		print("i am here")
 		time = time-1200
 		time = str(time)
+		print(time)
 		time_str = time[:-2]+':'+time[-2:]
+
 		return(time_str+"PM")
 	elif(time == 0):
 		return("12:00AM")

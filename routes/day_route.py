@@ -70,7 +70,7 @@ def day():
 		for (time,act_key,act_data) in act_time_key:
 
 			description = act_data['description']
-			time = getTime(time)
+			time = getTime(str(time))
 
 			try:
 				# Handles printing the transport slot

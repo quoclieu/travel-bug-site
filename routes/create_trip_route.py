@@ -7,4 +7,10 @@ def create_trip():
 	template_vars = {
 		"title" : title
 	}
+
+
+	
+	
+
+
 	return render_template("create_trip.html",vars = template_vars)
