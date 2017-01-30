@@ -25,7 +25,11 @@
 
 	<div id='past-trip-label'>Upcoming Trips</div>
 
-	{% for trip in curr_trips %}
+		{% if no_curr %}
+
+		{% else %}
+		
+			{% for trip in curr_trips %}
 
 	<div class="card-block">
 		<div class="date-box">
@@ -38,7 +42,7 @@
 		<div class="card-right">
 			<div class="trip-textbox">
 				<div class="days"> {{ trip['numdays'] }} DAYS</div>
-				<div class="title"><a href="{{ url_for('fullview', trip_key={{ trip['key']}}, trip_data= {{curr_trips}} }}">%s</a></div>
+				<div class="title"> {{ trip['tripname'] }} </div>
 				<div class="full-dates"> {{ trip['fulldates'] }} </div>
 				<div class="host">Hosted by {{ trip['host'] }}</div>
 				<hr/>
@@ -49,11 +53,19 @@
 				</div>
 			</div>
 		</div>
-	{% endblock %}
+			
+			{% endfor %}
+
+		{% endif %}
+
 
 	<div id='past-trip-label'>Past Trips</div>
 
-	{% for trip in past_trips %}
+		{% if no_past %}
+
+		{% else %}
+
+			{% for trip in past_trips %}
 
 	<div class="card-block">
 		<div class="date-box">
@@ -66,7 +78,7 @@
 		<div class="card-right">
 			<div class="trip-textbox">
 				<div class="days"> {{ trip['numdays'] }} DAYS</div>
-				<div class="title"><a href="{{ url_for('fullview', trip_key={{ trip['key']}}, trip_data= {{past_trips}} }}">%s</a></div>
+				<div class="title"> {{ trip['tripname'] }} </div>
 				<div class="full-dates"> {{ trip['fulldates'] }} </div>
 				<div class="host">Hosted by {{ trip['host'] }}</div>
 				<hr/>
@@ -77,7 +89,9 @@
 				</div>
 			</div>
 		</div>
-	{% endblock %}
+			{% endfor %}
+
+		{% endif %}
 	
 	{% endif %}
 

@@ -25,25 +25,36 @@ def trips():
 
 	curr_trips_details = None
 	past_trips_details = None
-	
+	no_curr = False
+	no_past = False
+	no_trips = False
+
+
 	#CURRENT TRIPS
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
 	if (currTrips!=None):
-		
 		curr_trips_details = getTripDetails(currTrips,uid,"curr")
+		print("curr")
+		print(curr_trips_details)
+
+	else:
+		no_curr = True
 	
 	# PAST TRIPS
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
 	if (pastTrips!=None):
 		past_trips_details = getTripDetails(pastTrips,uid,"past")
+		print("past")
+		print(past_trips_details)
 
+	else:
+		no_past = True
 
     #checks if user has no trips
     #moved around statements to avoid a db access
 	if (currTrips == None and pastTrips == None):
 		curr_trips_details = None
 		past_trips_details = None
-
 		no_trips = True 
 
 
@@ -53,7 +64,7 @@ def trips():
 	template_vars = {
 		"title" : title
 	}
-	return render_template("trips.html",vars = template_vars, page = "trips", curr_trips=curr_trips_details, past_trips=past_trips_details)
+	return render_template("trips.html",vars=template_vars, page="trips", curr_trips=curr_trips_details, past_trips=past_trips_details, no_trips=no_trips, no_curr=no_curr, no_past=no_past)
 	
 
 def getTripDetails(trips,uid,type):
@@ -90,9 +101,6 @@ def getTripDetails(trips,uid,type):
 		
 		trip_list.sort(reverse=True)
 
-	#else display all trips the user is in
-	html_str = ""
-
 #########################################################################
 	
 	# List contains data related to each trip
@@ -115,7 +123,6 @@ def getTripDetails(trips,uid,type):
 			user_name = user_data['firstName']+' '+user_data['lastName']
 			regular_travellers.append((user_name,val))
 
-
 		data = {
 			"tripname" : trip_data['tripName'],
 			"numtravelers" : len(trip_data['User']['Regular']) + 1,
@@ -133,8 +140,6 @@ def getTripDetails(trips,uid,type):
 
 		# Need to save key for each trip for fullview
 		all_trips.append(data)
-	
-		
 
 	return all_trips
 
