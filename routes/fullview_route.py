@@ -33,7 +33,7 @@ def fullview():
 	trip_host = trip_data['User']['Admin']
 
 	travellers = trip_data['User']['Regular']
-	print(travellers)
+	
 	 
 	for host_key in trip_host:
 		host_details = db.child("User").child(host_key).child("UserDetails").get().val()

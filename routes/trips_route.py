@@ -22,37 +22,29 @@ def trips():
 	uid = session['uid']
 
 	html_str = ''
+
+	curr_trips_details = None
+	past_trips_details = None
 	
 	#CURRENT TRIPS
 	currTrips = db.child("User").child(uid).child("Trip").get().val()
 	if (currTrips!=None):
-		html_str += "<div id='past-trip-label'>Upcoming Trips</div>"
-		html_str += renderTrips(currTrips,uid,"curr")
+		
+		curr_trips_details = getTripDetails(currTrips,uid,"curr")
 	
 	# PAST TRIPS
 	pastTrips = db.child("User").child(uid).child("PastTrip").get().val()
 	if (pastTrips!=None):
-		html_str += "<div id='past-trip-label'>Past Trips</div>"
-		html_str += renderTrips(pastTrips,uid,"past")
+		past_trips_details = getTripDetails(pastTrips,uid,"past")
 
 
     #checks if user has no trips
     #moved around statements to avoid a db access
 	if (currTrips == None and pastTrips == None):
-		
-		html_str = """
+		curr_trips_details = None
+		past_trips_details = None
 
-<div id="no-trips">
-	Looks like you have no plans yet.<br>
-	Ready to start planning? Click on add trip!
-</div>
-
-"""
-
-
-	html_file = open("templates/_trips.html","w")
-	html_file.write(html_str)
-	html_file.close()
+		no_trips = True 
 
 
 	############################################################
@@ -61,92 +53,94 @@ def trips():
 	template_vars = {
 		"title" : title
 	}
-	return render_template("trips.html",vars = template_vars, page = "trips")
+	return render_template("trips.html",vars = template_vars, page = "trips", curr_trips=curr_trips_details, past_trips=past_trips_details)
 	
 
-def renderTrips(trips,uid,type):
-	#to get the dates of all the trips
-	trip_date_key = []
+def getTripDetails(trips,uid,type):
+
+	# Trip list contains the key, date and data of the trip 
+	# This list is used to sort the trips
+	trip_list = []
 	for key in trips:
 		trip_data = db.child("Trip").child(key).get().val() 
 		
-		#checking for past trips
-		#only for curr trips 
-		end_date = trip_data['endDate']
-		end_date_comp = dt.strptime(end_date, "%d/%m/%Y") + datetime.timedelta(days=1)
+		# End date is the last day of the trip 
+		# Checking for past trips
 
-		if( end_date_comp < dt.now() and type=="curr"):
+		# Converting to date object to compare
+		end_date_obj = dt.strptime(trip_data['endDate'], "%d/%m/%Y")
+
+		if( dt.now() > end_date_obj  and type=="curr"):
+			
 			db.child("User").child(uid).child("Trip").child(key).remove()
 			db.child("User").child(uid).child("PastTrip").child(key).set("true")
 		
 		else:
-			start_date = trip_data['startDate']
-			trip_date_key.append((dt.strptime(start_date, "%d/%m/%Y"),key,trip_data))
+
+			start_date_obj = dt.strptime(trip_data['startDate'], "%d/%m/%Y")
+
+			trip_list.append((start_date_obj,key,trip_data))
 		
 	if(type=="curr"):
-		trip_date_key.sort()
-	else: # for past trips the most recent should be the first
-		trip_date_key.sort(reverse=True)
+		trip_list.sort()
+
+	else: 
+		
+		# For past trips the most recent should be the first
+		
+		trip_list.sort(reverse=True)
 
 	#else display all trips the user is in
 	html_str = ""
 
-	#date = start date
-	for (date,key,trip_data) in trip_date_key:
-		# All trip details are already pulled
+#########################################################################
+	
+	# List contains data related to each trip
+	# data is in a JSON format
+	all_trips = []
+	
+	for (start_date_obj,trip_key,trip_data) in trip_list:
 
 	    # Host details
 		trip_host = trip_data['User']['Admin']
-		
 		for host_key in trip_host:
 			host_details = db.child("User").child(host_key).child("UserDetails").get().val()
 			host_name = host_details['firstName']+' '+host_details['lastName']
 
-		# Get number of travellers
-		numtravellers = len(trip_data['User']['Regular']) + 1
+		# Regular travellers' details
+		regular_travellers = []
+	
+		for (uid,val) in (trip_data['User']['Regular']).items():
+			user_data = db.child("User").child(uid).child("UserDetails").get().val()
+			user_name = user_data['firstName']+' '+user_data['lastName']
+			regular_travellers.append((user_name,val))
 
-		# Other trip details
-		date = getDate(trip_data['startDate'])
-		month = getMonth(trip_data['startDate'])
-		numDays = trip_data['numberOfDays']
-		tripName = trip_data['tripName']
-		fulldates = getFullDates(trip_data['startDate'],trip_data['endDate'])
-		location = trip_data['location']
+
+		data = {
+			"tripname" : trip_data['tripName'],
+			"numtravelers" : len(trip_data['User']['Regular']) + 1,
+			"host" : host_name,
+			"date" : getDate(trip_data['startDate']),
+			"month" : getMonth(trip_data['startDate']),
+			"numdays" : trip_data['numberOfDays'],
+			"fulldates" :  getFullDates(trip_data['startDate'],trip_data['endDate']),
+			"location" : trip_data['location'],
+			"tripuid" : trip_key,
+			"regular": regular_travellers,
+			"dayKeys" : trip_data['Days']
+
+		}
 
 		# Need to save key for each trip for fullview
-		tripuid = key
+		all_trips.append(data)
 	
-		html_str += """
+		
 
-<div class="card-block">
-	<div class="date-box">
-		<div class="date">%s</div>
-		<div class="month">%s</div>
-	</div>
+	return all_trips
 
-	<div class="card-left"></div>
-
-	<div class="card-right">
-		<div class="trip-textbox">
-			<div class="days">%s DAYS</div>
-			<div class="title"><a href="{{ url_for('fullview', trip_key="%s", trip_data='%s') }}">%s</a></div>
-			<div class="full-dates">%s</div>
-			<div class="host">Hosted by %s</div>
-			<hr/>
-			<div class="numtravelers">%s travelers</div>
-
-			<div class="location">
-				<i class="fa fa-map-marker" aria-hidden="true"></i> %s
-			</div>
-		</div>
-	</div>
-
-</div>
-
-""" % (date,month,numDays,tripuid,json.dumps(trip_data),tripName,fulldates,host_name,numtravellers,location)
+	#% (date,month,numDays,tripuid,json.dumps(trip_data),tripName,fulldates,host_name,numtravellers,location)
 	
-	return html_str
-
+	
 
 
 
