@@ -7,8 +7,8 @@ def google_API():
 	apiKey = "AIzaSyAbMwmG09ccahMdSZacASf5fb1lHaLs0Iw"
 	google_places = GooglePlaces(apiKey)
 	query_result = google_places.nearby_search(
-        location='London, England', keyword='Fish and Chips',
-        radius=2000, types=[types.TYPE_FOOD])
+        location='509 North Rd, Ormond VIC 3204, Australia', keyword='Ormond IGA',
+        radius=200, types=[types.TYPE_FOOD])
 
 	if query_result.has_attributions:
 		print(query_result.html_attributions)

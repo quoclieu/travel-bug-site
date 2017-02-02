@@ -20,13 +20,7 @@ db = firebase.database()
 def day():
 	uid = session['uid']
 
-	day_key = request.args.get('day_key', None)
-	#PLS
-	#i dont think we need trip key
-
-	#PLS
-	#We dont really need trip data 
-	#day data can be passed through url  
+	day_key = request.args.get('day_key', None) 
 	day_data = db.child("DayTrip").child(day_key).get().val()
 
 	day_num = request.args.get('daynum', None)
@@ -76,7 +70,7 @@ def day():
 		for (time,act_key,act_data) in act_time_key:
 
 			description = act_data['description']
-			time = getTime(time)
+			time = getTime(str(time))
 
 			try:
 				# Handles printing the transport slot
@@ -101,6 +95,12 @@ def day():
 				# Handles printing activities
 				title = act_data['eventName']
 				location = act_data['location']['address']
+
+
+				# Need to revise this consider using the address
+				#term instead - dependent on android side
+				lat = act_data['location']['lat']
+				lng = act_data['location']['lng']
 
 				#Ratings and Comments
 				numUp =  0
@@ -128,6 +128,11 @@ def day():
 			
 				<div class="text-block col span_60">
 					<span style="font-weight:500;">%s</span>
+					
+					<a href ="http://maps.google.com/maps?q=loc:%s,%s" target="_blank">
+						<i class="fa fa-map" aria-hidden="true"></i>
+					</a>
+
 					<div class="location">
 						<i class="fa fa-map-marker" aria-hidden="true"></i> <i>%s</i>
 					</div>
@@ -142,7 +147,7 @@ def day():
 				</div>
 			</div>
 		<div style="clear:both;"></div>
-	''' % (time, title, location, description, numUp, numDown)
+	''' % (time, title, lat, lng, location, description, numUp, numDown)
 
 		html_str += '''
 			</div>

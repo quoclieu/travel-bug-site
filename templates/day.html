@@ -2,21 +2,90 @@
 
 {% block customCSS %}
 <link rel="stylesheet" href="assets/css/day.css" type="text/css">
-{% endblock %}
+<link rel="stylesheet" href="assets/css/register.css" type="text/css">
 
-{% block customJSS %}
 {% endblock %}
 
 {% block content %}
 <div id="day-wrapper">
 	
 	{% include "_day_schedule.html" %}
-<!-- 	
+
 	<div id="recommendations-box">
-		<button type="button" class="right create"><span style="padding-right:15px;">create</span>+</button>
+		
+		<button onclick="newActivity()" type="button" class="create">create activity +</button>
+
+		<button onclick="newTransport()" type="button" class="create">create transport +</button>
+		
+		<form id ="day-form" method='post'>
+			<div id="day-form-input">
+			
+			</div>
+			
+			<input type='hidden' name="day_key" id="day_key">
+			<input type='hidden' name="daynum" id="daynum">
+			<input type='hidden' name="date" id="date">
+			<input type='hidden' name="trip_name" id="trip_name">
+			
+		</form>
+		
 
 		<div class="recommendations">
 		</div>
-	</div> -->
+	</div>
 </div>
+{% endblock %}
+
+
+{% block customJS %}
+<script>
+function newTransport(){
+	document.getElementById("day-form").action="/create_trans"
+	document.getElementById("day-form-input").innerHTML = `
+	type: 
+	<input type='radio' name='transport' value='Walk'> Walk 
+	<input type='radio' name='transport' value= 'Tram'> Tram
+	<input type='radio' name='transport' value='Train'> Train
+	<input type='radio' name='transport' value='Bus'> Bus
+	<input type='radio' name='transport' value='Car'> Car
+	<input type='radio' name='transport' value='Taxi'> Taxi/Uber
+	<br>
+	time: <input type='time' name='time'>
+	<br>
+	description: <input type='text' name='description'> 
+	<br>
+	<input type='submit' value='Add Transport'>
+	`
+	;
+
+	addHiddenElem();
+	
+}
+
+function newActivity(){
+	document.getElementById("day-form").action="/create_act"
+	document.getElementById("day-form-input").innerHTML = "";
+}
+
+function addHiddenElem(){
+	document.getElementById("day_key").value = getParameterByName('day_key')
+	document.getElementById("daynum").value = getParameterByName('daynum')
+	document.getElementById("date").value = getParameterByName('date')
+	document.getElementById("trip_name").value = getParameterByName('trip_name')
+
+}
+
+function getParameterByName( name ){
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+</script>
+
 {% endblock %}
