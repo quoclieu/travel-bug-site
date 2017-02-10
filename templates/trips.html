@@ -15,87 +15,9 @@
 </div>
 
 <div id="card-column">
-	{% if no_trips %}
-	<div id="no-trips">
-		Looks like you have no plans yet.<br>
-		Ready to start planning? Click on add trip!
-	</div>
+
+	{% include "_trips.html" %}
 	
-	{% else %}	
-
-	<div id='past-trip-label'>Upcoming Trips</div>
-
-		{% if no_curr %}
-
-		{% else %}
-		
-			{% for trip in curr_trips %}
-
-	<div class="card-block">
-		<div class="date-box">
-			<div class="date">{{ trip['date'] }}</div>
-			<div class="month">{{ trip['month'] }}</div>
-		</div>
-
-		<div class="card-left"></div>
-
-		<div class="card-right">
-			<div class="trip-textbox">
-				<div class="days"> {{ trip['numdays'] }} DAYS</div>
-				<div class="title"> {{ trip['tripname'] }} </div>
-				<div class="full-dates"> {{ trip['fulldates'] }} </div>
-				<div class="host">Hosted by {{ trip['host'] }}</div>
-				<hr/>
-				<div class="numtravelers"> {{ trip['numtravelers'] }} travelers</div>
-
-				<div class="location">
-					<i class="fa fa-map-marker" aria-hidden="true"></i> {{ trip['location'] }}
-				</div>
-			</div>
-		</div>
-			
-			{% endfor %}
-
-		{% endif %}
-
-
-	<div id='past-trip-label'>Past Trips</div>
-
-		{% if no_past %}
-
-		{% else %}
-
-			{% for trip in past_trips %}
-
-	<div class="card-block">
-		<div class="date-box">
-			<div class="date">{{ trip['date'] }}</div>
-			<div class="month">{{ trip['month'] }}</div>
-		</div>
-
-		<div class="card-left"></div>
-
-		<div class="card-right">
-			<div class="trip-textbox">
-				<div class="days"> {{ trip['numdays'] }} DAYS</div>
-				<div class="title"> {{ trip['tripname'] }} </div>
-				<div class="full-dates"> {{ trip['fulldates'] }} </div>
-				<div class="host">Hosted by {{ trip['host'] }}</div>
-				<hr/>
-				<div class="numtravelers"> {{ trip['numtravelers'] }} travelers</div>
-
-				<div class="location">
-					<i class="fa fa-map-marker" aria-hidden="true"></i> {{ trip['location'] }}
-				</div>
-			</div>
-		</div>
-			{% endfor %}
-
-		{% endif %}
-	
-	{% endif %}
-
 </div>
-	
 
 {% endblock %}
